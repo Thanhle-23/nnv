@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Khám phá các hoạt động trải nghiệm làng nghề gắn với nghệ nhân và di sản thủ công Việt Nam.">
+<meta name="theme-color" content="#faf7f1">
+<title>Trải nghiệm cùng nghệ nhân | Nghệ nhân Việt</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/styletrainghiem.css">
+
+<script src="../js/script.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/content-data.js" defer></script>
+<script src="../js/content-pages.js" defer></script>
+<script src="../js/luutam.js" defer></script>
+</head>
+
+<body data-page="experiences">
+
+<a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+<header class="site-header" id="top">
+<div class="container header-inner">
+
+<a class="brand" href="./index.html" aria-label="Nghệ nhân Việt - Trang chủ">
+<img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+<span class="brand-copy">
+<strong>Nghệ nhân Việt</strong>
+<small>Di sản &amp; làng nghề</small>
+</span>
+</a>
+
+<button class="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="primary-nav">
+<span></span><span></span><span></span>
+</button>
+
+<nav class="primary-nav" id="primary-nav" aria-label="Điều hướng chính">
+<a class="nav-link" href="./index.html">Trang chủ</a>
+<a class="nav-link" href="./nghe-nhan.html">Nghệ nhân</a>
+<a class="nav-link" href="./san-pham.html">Sản phẩm &amp; Nghề</a>
+<a class="nav-link" href="./cau-chuyen-van-hoa.html">Câu chuyện</a>
+<a class="nav-link active" href="./trai-nghiem.html" aria-current="page">Trải nghiệm</a>
+<a class="nav-link" href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+</nav>
+
+<div class="header-search-wrap">
+<form class="header-search" action="tim-kiem.html" method="get" role="search">
+<label class="visually-hidden" for="header-q">Tìm nội dung</label>
+<input id="header-q" name="q" type="search" placeholder="Tìm nghệ nhân, nghề, sản phẩm...">
+<button type="submit" aria-label="Tìm kiếm">⌕</button>
+</form>
+</div>
+
+<div class="header-account">
+<a class="header-me" href="./toi.html" aria-label="Tôi" title="Tôi">
+<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+<path d="M4.5 21c.7-4.3 3.2-6.5 7.5-6.5s6.8 2.2 7.5 6.5"
+fill="none"
+stroke="currentColor"
+stroke-width="1.8"
+stroke-linecap="round"></path>
+</svg>
+<span class="me-badge" id="me-badge" hidden></span>
+</a>
+</div>
+
+</div>
+</header>
+
+<button
+class="floating-back"
+type="button"
+aria-label="Quay lại trang trước"
+onclick="if (history.length > 1) { history.back(); } else { window.location.href='./index.html'; }"
+>
+<span aria-hidden="true">←</span>
+<span></span>
+</button>
+
+<main id="main">
+
+<!-- =========================
+     TIÊU ĐỀ TRANG
+========================== -->
+<section
+class="artist-page-heading"
+aria-labelledby="experience-page-title"
+>
+<div class="container artist-page-heading-inner">
+
+<h1 id="experience-page-title">
+Đi để hiểu nghề, chạm để nhớ văn hóa
+</h1>
+
+<p class="artist-page-subtitle">
+Lựa chọn hoạt động trải nghiệm tại các làng nghề truyền thống và gặp gỡ trực tiếp những người giữ lửa di sản
+</p>
+
+</div>
+</section>
+
+<!-- =========================
+     BỘ LỌC & DANH SÁCH TRẢI NGHIỆM
+========================== -->
+<section
+class="artist-section"
+aria-label="Danh sách hoạt động trải nghiệm"
+>
+<div class="container">
+
+<!-- BỘ LỌC -->
+<div
+class="filter-bar"
+role="search"
+aria-label="Lọc danh sách trải nghiệm"
+>
+
+<label for="experience-search">
+<input
+id="experience-search"
+type="search"
+autocomplete="off"
+placeholder="Nhập tên trải nghiệm, nghệ nhân hoặc làng nghề..."
+>
+</label>
+
+<label for="experience-craft">
+<select id="experience-craft">
+<option value="">Tất cả nghề</option>
+<option value="Dệt lụa tơ tằm và tơ sen">Dệt lụa &amp; tơ sen</option>
+<option value="Sơn mài">Sơn mài</option>
+<option value="Tranh dân gian Đông Hồ">Tranh dân gian Đông Hồ</option>
+<option value="Mộc và chạm khắc gỗ">Mộc &amp; chạm khắc gỗ</option>
+<option value="Hoa giấy Thanh Tiên">Hoa giấy</option>
+<option value="Chạm bạc truyền thống Chăm">Chạm bạc Chăm</option>
+<option value="Dệt thổ cẩm Chăm">Dệt thổ cẩm Chăm</option>
+<option value="Chế tác mão, mặt nạ và hiện vật Khmer">Chế tác mặt nạ Khmer</option>
+<option value="Tranh kiếng Khmer">Tranh kiếng Khmer</option>
+<option value="Mây tre đan Khmer">Mây tre đan</option>
+</select>
+</label>
+
+<label for="experience-place">
+<select id="experience-place">
+<option value="">Tất cả địa phương</option>
+<option value="Hà Nội">Hà Nội</option>
+<option value="Bắc Ninh">Bắc Ninh</option>
+<option value="Đà Nẵng">Đà Nẵng</option>
+<option value="Huế">Huế</option>
+<option value="Khánh Hòa">Khánh Hòa</option>
+<option value="An Giang">An Giang</option>
+<option value="Vĩnh Long">Vĩnh Long</option>
+<option value="Cần Thơ">Cần Thơ</option>
+</select>
+</label>
+
+</div>
+
+<!-- DANH SÁCH -->
+<div class="content-grid" id="experience-grid"></div>
+
+<noscript>
+Hãy bật JavaScript để hiển thị danh sách trải nghiệm.
+</noscript>
+
+<p
+class="empty-state"
+id="experience-empty"
+role="status"
+hidden
+>
+Không tìm thấy hoạt động trải nghiệm phù hợp.
+</p>
+
+<p class="demo-note">
+* Nội dung được tổng hợp từ nguồn tham khảo. Lịch tổ chức, thời lượng và khả năng tham gia
+có thể thay đổi; cần xác nhận với cơ sở hoặc đơn vị tổ chức trước khi sử dụng như thông tin đặt lịch thực tế.
+</p>
+
+</div>
+</section>
+
+<section class="travel-cta">
+<div class="container travel-cta-inner">
+
+<div>
+<h2>Không chỉ tham quan, hãy thử chạm vào nghề</h2>
+<p>
+Trải nghiệm là cách giúp du khách hiểu rõ hơn công sức, kỹ thuật và câu chuyện
+đằng sau mỗi sản phẩm thủ công truyền thống.
+</p>
+</div>
+
+<a href="./huong-dan-van-hoa.html">
+Xem hướng dẫn ứng xử văn hóa →
+</a>
+
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="footer">
+<div class="container footer-main">
+
+<div class="footer-brand">
+<a class="brand brand-light" href="./index.html">
+<img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+<span class="brand-copy">
+<strong>Nghệ nhân Việt</strong>
+<small>Di sản &amp; làng nghề</small>
+</span>
+</a>
+<p>Không gian số kể chuyện về những người gìn giữ nghề và giá trị văn hóa Việt.</p>
+<span class="footer-motto">Văn hóa được gìn giữ khi được sẻ chia.</span>
+</div>
+
+<div class="footer-column">
+<h3>Khám phá</h3>
+<a href="./nghe-nhan.html">Nghệ nhân</a>
+<a href="./san-pham.html">Sản phẩm &amp; nghề</a>
+<a href="./cau-chuyen-van-hoa.html">Câu chuyện văn hóa</a>
+<a href="./trai-nghiem.html">Trải nghiệm</a>
+</div>
+
+<div class="footer-column">
+<h3>Thông tin</h3>
+<a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
+<a href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+<a href="./index.html#about">Giới thiệu</a>
+</div>
+
+<div class="footer-column footer-contact">
+<h3>Kết nối</h3>
+<a href="mailto:hello@nghenhanviet.example">hello@nghenhanviet.example</a>
+<span>Đại học Trà Vinh</span>
+<span>Trà Vinh, Việt Nam</span>
+</div>
+
+</div>
+
+<div class="container footer-bottom">
+<span>© 2026 Nghệ nhân Việt. Bản demo phục vụ mục đích học tập.</span>
+<a href="#top">Lên đầu trang ↑</a>
+</div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Lên đầu trang">↑</button>
+
+</body>
+</html>

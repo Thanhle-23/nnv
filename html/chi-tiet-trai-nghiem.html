@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Chi tiết hoạt động trải nghiệm làng nghề cùng nghệ nhân tại Nghệ nhân Việt.">
+<meta name="theme-color" content="#faf7f1">
+<title>Chi tiết trải nghiệm | Nghệ nhân Việt</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/stylechitiettrainghiem.css">
+
+<script src="../js/script.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/content-data.js" defer></script>
+<script src="../js/content-pages.js" defer></script>
+<script src="../js/luutam.js" defer></script>
+</head>
+
+<body data-page="experience-detail">
+
+<a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+<header class="site-header" id="top">
+<div class="container header-inner">
+
+<a class="brand" href="./index.html" aria-label="Nghệ nhân Việt - Trang chủ">
+<img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+<span class="brand-copy">
+<strong>Nghệ nhân Việt</strong>
+<small>Di sản &amp; làng nghề</small>
+</span>
+</a>
+
+<button class="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="primary-nav">
+<span></span><span></span><span></span>
+</button>
+
+<nav class="primary-nav" id="primary-nav" aria-label="Điều hướng chính">
+<a class="nav-link" href="./index.html">Trang chủ</a>
+<a class="nav-link" href="./nghe-nhan.html">Nghệ nhân</a>
+<a class="nav-link" href="./san-pham.html">Sản phẩm &amp; Nghề</a>
+<a class="nav-link" href="./cau-chuyen-van-hoa.html">Câu chuyện</a>
+<a class="nav-link active" href="./trai-nghiem.html" aria-current="page">Trải nghiệm</a>
+<a class="nav-link" href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+</nav>
+
+<div class="header-search-wrap">
+<form class="header-search" action="tim-kiem.html" method="get" role="search">
+<label class="visually-hidden" for="header-q">Tìm nội dung</label>
+<input id="header-q" name="q" type="search" placeholder="Tìm nghệ nhân, nghề, sản phẩm...">
+<button type="submit" aria-label="Tìm kiếm">⌕</button>
+</form>
+</div>
+
+<div class="header-account">
+<a class="header-me" href="./toi.html" aria-label="Tôi" title="Tôi">
+<svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+<path d="M4.5 21c.7-4.3 3.2-6.5 7.5-6.5s6.8 2.2 7.5 6.5"
+fill="none"
+stroke="currentColor"
+stroke-width="1.8"
+stroke-linecap="round"></path>
+</svg>
+<span class="me-badge" id="me-badge" hidden></span>
+</a>
+</div>
+
+</div>
+</header>
+
+<button
+class="floating-back"
+type="button"
+aria-label="Quay lại trang trước"
+onclick="if (history.length > 1) { history.back(); } else { window.location.href='./trai-nghiem.html'; }"
+>
+<span aria-hidden="true">←</span>
+</button>
+
+<main id="main">
+
+<!-- 1. BREADCRUMB ĐƯỢC ĐƯA LÊN TRƯỚC TIÊU ĐỀ -->
+<nav class="breadcrumb container" aria-label="Đường dẫn trang">
+<a href="./index.html">Trang chủ</a>
+<span aria-hidden="true">›</span>
+<a href="./trai-nghiem.html">Trải nghiệm</a>
+<span aria-hidden="true">›</span>
+<span aria-current="page">Chi tiết trải nghiệm</span>
+</nav>
+
+<!-- 2. TIÊU ĐỀ NẰM SAU BREADCRUMB -->
+<section class="page-hero experience-hero">
+<div class="container experience-hero-grid">
+
+<div>
+<p class="eyebrow"><span></span>Du lịch làng nghề · Trải nghiệm cùng nghệ nhân</p>
+<h1>Chi tiết trải nghiệm</h1>
+</div>
+
+<p class="experience-hero-summary">
+Khám phá hoạt động, nghệ nhân đồng hành và không gian làng nghề.
+</p>
+
+</div>
+</section>
+
+<section class="section-pad">
+<div class="container">
+
+<!-- ẢNH LỚN -->
+<figure class="experience-cover-shell">
+<img
+id="experience-cover"
+class="detail-cover"
+src="../images/minh-hoa-chung.svg"
+alt=""
+>
+
+<div class="experience-cover-meta" aria-label="Thông tin nhanh">
+<span id="experience-place-badge">Địa điểm</span>
+<span id="experience-duration-badge">Thời lượng</span>
+</div>
+</figure>
+
+<!-- NỘI DUNG + THÔNG TIN CHUYẾN ĐI -->
+<div class="detail-columns">
+
+<article
+class="experience-info"
+id="experience-info"
+></article>
+
+<aside
+class="experience-trip-panel"
+id="experience-trip-panel"
+aria-label="Thông tin trải nghiệm"
+></aside>
+
+</div>
+
+<!-- BẢN ĐỒ -->
+<section class="experience-location" aria-labelledby="location-title">
+
+<div class="location-heading">
+
+<div>
+<p class="eyebrow"><span></span>Tìm hiểu khu vực</p>
+<h2 id="location-title">Bản đồ tham khảo</h2>
+<p>Vị trí trên bản đồ được tạo từ địa danh trong dữ liệu trải nghiệm.</p>
+</div>
+
+<a
+class="map-link"
+id="experience-map-link"
+href="#"
+target="_blank"
+rel="noopener noreferrer"
+>
+Xem trên Google Maps ↗
+</a>
+
+</div>
+
+<div class="map-frame">
+<iframe
+id="experience-map"
+title="Bản đồ khu vực trải nghiệm"
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade"
+></iframe>
+</div>
+
+</section>
+
+<p class="back-link">
+<a href="./trai-nghiem.html">← Quay lại danh sách trải nghiệm</a>
+</p>
+
+</div>
+</section>
+
+</main>
+
+<!-- =====================================================
+     MODAL ĐĂNG KÝ
+     Không hiển thị cố định trên trang.
+===================================================== -->
+<div
+class="booking-modal"
+id="booking-modal"
+hidden
+>
+
+<div
+class="booking-modal-backdrop"
+data-booking-close
+></div>
+
+<section
+class="booking-dialog"
+role="dialog"
+aria-modal="true"
+aria-labelledby="booking-modal-title"
+>
+
+<button
+class="booking-close"
+type="button"
+aria-label="Đóng biểu mẫu"
+data-booking-close
+>
+×
+</button>
+
+<p class="form-kicker">TRẢI NGHIỆM VĂN HÓA</p>
+
+<h2 id="booking-modal-title">
+Đăng ký trải nghiệm
+</h2>
+
+<p class="booking-experience-name" id="booking-experience-name"></p>
+
+<form class="booking-form" id="booking-form">
+
+<div class="booking-form-grid">
+
+<label>
+<span>Họ và tên</span>
+<input
+type="text"
+name="name"
+autocomplete="name"
+placeholder="Nhập họ và tên"
+required
+>
+</label>
+
+<label>
+<span>Email</span>
+<input
+type="email"
+name="email"
+autocomplete="email"
+placeholder="ten@example.com"
+required
+>
+</label>
+
+<label>
+<span>Số điện thoại</span>
+<input
+type="tel"
+name="phone"
+autocomplete="tel"
+placeholder="Số điện thoại"
+required
+>
+</label>
+
+<label>
+<span>Ngày muốn tham gia</span>
+<input
+type="date"
+name="date"
+required
+>
+</label>
+
+<label>
+<span>Số người</span>
+<input
+type="number"
+name="people"
+min="1"
+max="20"
+value="1"
+required
+>
+</label>
+
+<label class="booking-note-field">
+<span>Ghi chú</span>
+<textarea
+name="note"
+rows="4"
+placeholder="Ghi chú thêm (không bắt buộc)"
+></textarea>
+</label>
+
+</div>
+
+<p class="form-message" id="booking-form-message" hidden></p>
+
+<div class="booking-form-actions">
+<button
+class="button button-outline"
+type="button"
+data-booking-close
+>
+Hủy
+</button>
+
+<button
+class="button button-dark"
+type="submit"
+>
+Hoàn thành đăng ký
+<span aria-hidden="true">↗</span>
+</button>
+</div>
+
+</form>
+
+</section>
+</div>
+
+<footer class="site-footer" id="footer">
+<div class="container footer-main">
+
+<div class="footer-brand">
+<a class="brand brand-light" href="./index.html">
+<img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+<span class="brand-copy">
+<strong>Nghệ nhân Việt</strong>
+<small>Di sản &amp; làng nghề</small>
+</span>
+</a>
+<p>Không gian số kể chuyện về những người gìn giữ nghề và giá trị văn hóa Việt.</p>
+<span class="footer-motto">Văn hóa được gìn giữ khi được sẻ chia.</span>
+</div>
+
+<div class="footer-column">
+<h3>Khám phá</h3>
+<a href="./nghe-nhan.html">Nghệ nhân</a>
+<a href="./san-pham.html">Sản phẩm &amp; nghề</a>
+<a href="./cau-chuyen-van-hoa.html">Câu chuyện văn hóa</a>
+<a href="./trai-nghiem.html">Trải nghiệm</a>
+</div>
+
+<div class="footer-column">
+<h3>Thông tin</h3>
+<a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
+<a href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+<a href="./index.html#about">Giới thiệu</a>
+</div>
+
+<div class="footer-column footer-contact">
+<h3>Kết nối</h3>
+<a href="mailto:hello@nghenhanviet.example">hello@nghenhanviet.example</a>
+<span>Đại học Trà Vinh</span>
+<span>Trà Vinh, Việt Nam</span>
+</div>
+
+</div>
+
+<div class="container footer-bottom">
+<span>© 2026 Nghệ nhân Việt. Bản demo phục vụ mục đích học tập.</span>
+<a href="#top">Lên đầu trang ↑</a>
+</div>
+</footer>
+
+<button class="back-to-top" type="button" aria-label="Lên đầu trang">↑</button>
+
+</body>
+</html>

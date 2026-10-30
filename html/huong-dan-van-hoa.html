@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Giới thiệu về website Nghệ nhân Việt, hướng dẫn ứng xử văn hóa và giải đáp thắc mắc khi khám phá làng nghề.">
+  <meta name="theme-color" content="#faf7f1">
+  <title>Giới thiệu &amp; Hướng dẫn ứng xử văn hóa | Nghệ nhân Việt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/stylehuongdanvanhoa.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/search.js" defer></script>
+  <script src="../js/huong-dan-van-hoa.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+
+      <a class="brand" href="./index.html" aria-label="Nghệ nhân Việt - Trang chủ">
+        <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+        <span class="brand-copy">
+          <strong>Nghệ nhân Việt</strong>
+          <small>Di sản &amp; làng nghề</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Điều hướng chính">
+        <a class="nav-link" href="./index.html">Trang chủ</a>
+        <a class="nav-link" href="./nghe-nhan.html">Nghệ nhân</a>
+        <a class="nav-link" href="./san-pham.html">Sản phẩm &amp; Nghề</a>
+        <a class="nav-link" href="./cau-chuyen-van-hoa.html">Câu chuyện</a>
+        <a class="nav-link" href="./trai-nghiem.html">Trải nghiệm</a>
+        <a class="nav-link active" href="./huong-dan-van-hoa.html" aria-current="page">Ứng xử văn hóa</a>
+      </nav>
+
+      <div class="header-search-wrap">
+        <form class="header-search" action="tim-kiem.html" method="get" role="search">
+          <label class="visually-hidden" for="header-q">Tìm nội dung</label>
+          <input id="header-q" name="q" type="search" placeholder="Tìm nghệ nhân, nghề, sản phẩm...">
+          <button type="submit" aria-label="Tìm kiếm">⌕</button>
+        </form>
+      </div>
+
+      <div class="header-account">
+        <a class="header-me" href="./toi.html" aria-label="Tôi" title="Tôi">
+          <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M4.5 21c.7-4.3 3.2-6.5 7.5-6.5s6.8 2.2 7.5 6.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"></path>
+          </svg>
+          <span class="me-badge" id="me-badge" hidden></span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <nav class="breadcrumb container" aria-label="Đường dẫn trang">
+      <a href="./index.html">Trang chủ</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Giới thiệu &amp; Ứng xử văn hóa</span>
+    </nav>
+
+    <!-- =====================================================
+         PHẦN 1: CHI TIẾT THÔNG TIN VỀ WEBSITE NGHỆ NHÂN VIỆT
+    ===================================================== -->
+    <section class="about-project-section" id="gioi-thieu-website" aria-labelledby="about-website-title">
+      <div class="container">
+
+        <div class="about-overview-grid">
+          <div class="about-overview-copy">
+            <p class="eyebrow"><span></span>Về dự án Nghệ nhân Việt</p>
+            <h1 id="about-website-title">
+              Không gian văn hóa số kết nối <em>di sản &amp; làng nghề</em>
+            </h1>
+            <p class="about-lead">
+              <strong>Nghệ nhân Việt</strong> là website đồ án ngành Công nghệ thông tin (Trường Đại học Trà Vinh), được thực hiện với đề tài
+              <em>“Thiết kế website hỗ trợ nghệ nhân giới thiệu và truyền tải giá trị văn hóa trong du lịch cộng đồng”</em>.
+            </p>
+            <p>
+              Dự án hướng đến việc xây dựng một không gian trưng bày và kể chuyện trực quan, nơi giao thoa giữa bản sắc văn hóa truyền thống Việt Nam và ngôn ngữ thiết kế biên tập hiện đại. Thông qua website, du khách và người yêu văn hóa có thể tìm hiểu chân dung những người giữ nghề ở nhiều vùng miền — từ lụa tơ sen Phùng Xá, sơn mài Đường Lâm, tranh dân gian Đông Hồ đến mộc Kim Bồng, hoa giấy Thanh Tiên, chạm bạc và thổ cẩm Chăm hay nghệ thuật chế tác mặt nạ, tranh kiếng, mây tre đan Khmer Nam Bộ.
+            </p>
+          </div>
+
+          <aside class="project-meta-card" aria-label="Thông tin tóm tắt đồ án">
+            <span class="project-meta-badge">Hồ sơ đồ án</span>
+            <h2>Thông tin tổng quan</h2>
+            <dl class="project-meta-list">
+              <div>
+                <dt>Tên website</dt>
+                <dd>Nghệ nhân Việt — Di sản &amp; làng nghề</dd>
+              </div>
+              <div>
+                <dt>Tên đề tài</dt>
+                <dd>Thiết kế website hỗ trợ nghệ nhân giới thiệu và truyền tải giá trị văn hóa trong du lịch cộng đồng</dd>
+              </div>
+              <div>
+                <dt>Đơn vị thực hiện</dt>
+                <dd>Sinh viên ngành Công nghệ thông tin · Trường Đại học Trà Vinh</dd>
+              </div>
+              <div>
+                <dt>Đối tượng sử dụng</dt>
+                <dd>Khách tham quan, khách du lịch và người tìm hiểu nghề thủ công, văn hóa Việt Nam</dd>
+              </div>
+              <div>
+                <dt>Công nghệ sử dụng</dt>
+                <dd>HTML5, CSS3, JavaScript thuần và LocalStorage (Prototype Front-end tĩnh)</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+
+        <!-- 6 MỤC TIÊU TRỌNG TÂM CỦA WEBSITE -->
+        <div class="project-pillars-wrap">
+          <div class="project-pillars-head">
+            <p class="eyebrow"><span></span>Mục đích &amp; Giá trị cốt lõi</p>
+            <h2>Sáu nội dung trọng tâm trên <em>Nghệ nhân Việt</em></h2>
+          </div>
+
+          <div class="project-pillars-grid">
+            <article class="pillar-card">
+              <span class="pillar-num">01</span>
+              <h3>Tôn vinh người giữ nghề</h3>
+              <p>Giới thiệu hồ sơ nghệ nhân, hành trình gắn bó với nghề truyền thống và kỹ năng trao truyền qua nhiều thế hệ tại các vùng miền Việt Nam.</p>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">02</span>
+              <h3>Sản phẩm &amp; quy trình thủ công</h3>
+              <p>Trình bày chi tiết sản phẩm tiêu biểu, chất liệu tự nhiên, nguồn gốc địa phương và từng công đoạn chế tác thủ công tỉ mỉ.</p>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">03</span>
+              <h3>Lan tỏa câu chuyện văn hóa</h3>
+              <p>Truyền tải tri thức dân gian, ký ức làng nghề và ý nghĩa tinh thần ẩn sau mỗi nét chạm khắc, lớp sơn hay tấm vải dệt.</p>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">04</span>
+              <h3>Kết nối du lịch trải nghiệm</h3>
+              <p>Giới thiệu các hoạt động tham quan, quan sát quy trình và thực hành thử thao tác nghề cùng nghệ nhân tại không gian làng nghề.</p>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">05</span>
+              <h3>Lưu trữ cá nhân hóa</h3>
+              <p>Hỗ trợ khách tham quan lưu lại nghệ nhân, sản phẩm, trải nghiệm yêu thích và theo dõi danh sách đăng ký trải nghiệm tại mục <a href="./toi.html">Tôi</a>.</p>
+            </article>
+
+            <article class="pillar-card">
+              <span class="pillar-num">06</span>
+              <h3>Du lịch cộng đồng văn minh</h3>
+              <p>Định hướng quy tắc ứng xử tôn trọng văn hóa bản địa, bảo vệ môi trường làng nghề và trân trọng công sức lao động của nghệ nhân.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- LƯU Ý PHẠM VI PROTOTYPE -->
+        <div class="project-scope-banner">
+          <div>
+            <strong>Lưu ý về phạm vi phiên bản Prototype</strong>
+            <p>
+              Website hiện tại là bản mẫu giao diện Front-end tĩnh phục vụ mục đích học tập và nghiên cứu đồ án. Các chức năng lưu danh sách yêu thích, đăng ký trải nghiệm hoặc gửi câu hỏi được mô phỏng trực tiếp trên trình duyệt thông qua <code>LocalStorage</code> (không sử dụng cơ sở dữ liệu máy chủ, không thực hiện thanh toán hay giữ chỗ đặt lịch thực tế).
+            </p>
+          </div>
+          <a class="scope-jump-link" href="#guide-title">
+            Xem nguyên tắc ứng xử văn hóa ↓
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PHẦN 2: HƯỚNG DẪN ỨNG XỬ VĂN HÓA
+    ===================================================== -->
+    <section class="guide-section section-pad" aria-labelledby="guide-title">
+      <div class="container">
+        <div class="section-intro">
+          <div>
+            <p class="eyebrow"><span></span> Cùng gìn giữ nét đẹp</p>
+            <h2 id="guide-title">Bốn nguyên tắc cho <em>chuyến đi ý nghĩa</em></h2>
+          </div>
+          <p>Những gợi ý nhỏ giúp du khách tương tác văn minh, trân trọng lao động thủ công và giữ gìn không gian sinh hoạt chung.</p>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card reveal">
+            <div class="guide-card-top"><span class="guide-icon" aria-hidden="true">✳</span><span class="guide-number">01</span></div>
+            <h3>Tôn trọng nghệ nhân</h3>
+            <ul>
+              <li>Xin phép trước khi chụp ảnh hoặc quay phim.</li>
+              <li>Tránh làm gián đoạn quá trình thực hành nghề.</li>
+              <li>Tôn trọng không gian làm việc và hướng dẫn của người chủ trì.</li>
+            </ul>
+          </article>
+          <article class="guide-card reveal">
+            <div class="guide-card-top"><span class="guide-icon" aria-hidden="true">⌂</span><span class="guide-number">02</span></div>
+            <h3>Tôn trọng văn hóa địa phương</h3>
+            <ul>
+              <li>Lựa chọn trang phục phù hợp với địa điểm.</li>
+              <li>Giữ thái độ lịch sự khi trò chuyện và tham quan.</li>
+              <li>Hỏi trước khi chạm vào hiện vật hoặc đồ dùng.</li>
+            </ul>
+          </article>
+          <article class="guide-card reveal">
+            <div class="guide-card-top"><span class="guide-icon" aria-hidden="true">♧</span><span class="guide-number">03</span></div>
+            <h3>Gìn giữ môi trường</h3>
+            <ul>
+              <li>Bỏ rác đúng nơi quy định.</li>
+              <li>Hạn chế đồ nhựa dùng một lần khi có thể.</li>
+              <li>Giữ gìn cảnh quan và không gian chung.</li>
+            </ul>
+          </article>
+          <article class="guide-card reveal">
+            <div class="guide-card-top"><span class="guide-icon" aria-hidden="true">◇</span><span class="guide-number">04</span></div>
+            <h3>Trân trọng sản phẩm thủ công</h3>
+            <ul>
+              <li>Quan sát và sử dụng sản phẩm theo hướng dẫn.</li>
+              <li>Không tự ý cầm hoặc di chuyển sản phẩm trưng bày.</li>
+              <li>Tìm hiểu câu chuyện, chất liệu và công sức phía sau sản phẩm.</li>
+            </ul>
+          </article>
+        </div>
+        <p class="guide-note">Hãy ưu tiên trao đổi với người hướng dẫn tại điểm đến khi có điều chưa rõ. Tập quán có thể khác nhau giữa các cộng đồng.</p>
+      </div>
+    </section>
+
+    <section class="faq-section section-pad" id="giai-dap" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div class="faq-intro">
+          <p class="eyebrow"><span></span> Giải đáp thắc mắc</p>
+          <h2 id="faq-title">Câu hỏi <em>thường gặp</em></h2>
+          <p>Tìm hiểu cách sử dụng các chức năng Nghệ nhân Việt trước khi bắt đầu hành trình khám phá.</p>
+          <a class="text-link" href="#question-form">Chưa thấy câu trả lời? Đặt câu hỏi <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="faq-panel">
+          <div class="faq-controls">
+            <label class="field-label" for="faq-search">Tìm trong câu hỏi</label>
+            <div class="faq-search-wrap">
+              <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m15.6 15.6 4.3 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <input id="faq-search" type="search" autocomplete="off" placeholder="Ví dụ: nghệ nhân, trải nghiệm, bản đồ...">
+            </div>
+            <label class="field-label" for="faq-filter">Nhóm chủ đề</label>
+            <select id="faq-filter">
+              <option value="all">Tất cả chủ đề</option>
+              <option value="nghe-nhan">Nghệ nhân</option>
+              <option value="san-pham">Sản phẩm &amp; Nghề</option>
+              <option value="cau-chuyen">Câu chuyện văn hóa</option>
+              <option value="trai-nghiem">Trải nghiệm</option>
+              <option value="website">Sử dụng website</option>
+            </select>
+          </div>
+          <p class="faq-count" id="faq-count" aria-live="polite">10 câu trả lời có sẵn</p>
+          <div id="faq-list">
+            <details class="faq-item" data-topic="nghe-nhan">
+              <summary>Làm sao xem thông tin và hồ sơ của nghệ nhân?</summary>
+              <div class="faq-answer"><p>Mở mục <a href="./nghe-nhan.html">Nghệ nhân</a>, tìm theo tên, nghề hoặc địa phương rồi chọn vào thẻ nghệ nhân để đọc hành trình theo nghề, kỹ năng và sản phẩm liên quan.</p></div>
+            </details>
+            <details class="faq-item" data-topic="nghe-nhan">
+              <summary>Thông tin nghệ nhân trên website đã được xác minh chưa?</summary>
+              <div class="faq-answer"><p>Ở phiên bản prototype hiện tại, các hồ sơ được biên tập từ nguồn tư liệu báo chí chính thống kết hợp nội dung minh họa giao diện. Khi đưa vào vận hành thực tế, thông tin lịch trình cần được xác nhận trực tiếp với nghệ nhân và địa phương.</p></div>
+            </details>
+            <details class="faq-item" data-topic="san-pham">
+              <summary>Tôi có thể xem quy trình làm sản phẩm ở đâu?</summary>
+              <div class="faq-answer"><p>Vào <a href="./san-pham.html">Sản phẩm &amp; Nghề</a>, chọn một sản phẩm và nhấn <strong>Xem chi tiết</strong>. Trang này giới thiệu chất liệu, nguồn gốc, nghệ nhân liên quan và các bước làm nghề.</p></div>
+            </details>
+            <details class="faq-item" data-topic="san-pham">
+              <summary>Website có hỗ trợ mua hoặc đặt hàng sản phẩm không?</summary>
+              <div class="faq-answer"><p>Hiện tại website tập trung giới thiệu giá trị văn hóa và quy trình làm nghề, chưa có chức năng thanh toán hay đặt mua sản phẩm trực tuyến.</p></div>
+            </details>
+            <details class="faq-item" data-topic="cau-chuyen">
+              <summary>Tôi tìm những câu chuyện và tri thức làng nghề ở đâu?</summary>
+              <div class="faq-answer"><p>Truy cập <a href="./cau-chuyen-van-hoa.html">Câu chuyện</a> để khám phá bài viết về làng nghề, nghệ nhân và tri thức bản địa. Chọn <strong>Đọc câu chuyện</strong> để xem nội dung đầy đủ.</p></div>
+            </details>
+            <details class="faq-item" data-topic="trai-nghiem">
+              <summary>Làm sao xem trải nghiệm cùng nghệ nhân?</summary>
+              <div class="faq-answer"><p>Mở <a href="./trai-nghiem.html">Trải nghiệm</a> và chọn một hoạt động. Trang chi tiết trình bày nội dung dự kiến, người hướng dẫn, thời lượng và thông tin tham khảo.</p></div>
+            </details>
+            <details class="faq-item" data-topic="trai-nghiem">
+              <summary>Bản đồ địa điểm trải nghiệm xuất hiện ở đâu?</summary>
+              <div class="faq-answer"><p>Bản đồ được đặt trong <strong>trang chi tiết từng trải nghiệm</strong> để du khách xem khu vực tương ứng. Các vị trí đang mang tính tham khảo, chưa phải địa chỉ tổ chức được xác nhận.</p></div>
+            </details>
+            <details class="faq-item" data-topic="trai-nghiem">
+              <summary>Gửi biểu mẫu đăng ký có đồng nghĩa giữ chỗ thành công?</summary>
+              <div class="faq-answer"><p>Chưa. Đây là tính năng đăng ký <strong>mô phỏng</strong> của prototype. Dữ liệu đăng ký được lưu tạm bằng localStorage trên trình duyệt của người dùng để hiển thị tại trang <a href="./toi.html">Tôi</a>, không gửi đến máy chủ và không xác nhận giữ chỗ thực tế.</p></div>
+            </details>
+            <details class="faq-item" data-topic="website">
+              <summary>Làm thế nào tìm nhanh nghệ nhân, sản phẩm hoặc câu chuyện?</summary>
+              <div class="faq-answer"><p>Sử dụng ô tìm kiếm trên thanh điều hướng để xem gợi ý nội dung và mở trang chi tiết phù hợp. Ngoài ra, trang Nghệ nhân có bộ lọc riêng theo tên, nghề và địa phương.</p></div>
+            </details>
+            <details class="faq-item" data-topic="website">
+              <summary>Tôi cần lưu ý gì khi tham quan và chụp ảnh?</summary>
+              <div class="faq-answer"><p>Nên xin phép nghệ nhân trước khi chụp hình hoặc quay phim, không tự ý chạm vào sản phẩm trưng bày và tuân thủ hướng dẫn của người phụ trách tại điểm tham quan.</p></div>
+            </details>
+          </div>
+          <p class="faq-empty" id="faq-empty" hidden>Không tìm thấy câu hỏi phù hợp. Bạn có thể gửi câu hỏi demo ở phần bên dưới.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="question-section section-pad" id="dat-cau-hoi" aria-labelledby="question-title">
+      <div class="container question-layout">
+        <div class="question-copy">
+          <p class="eyebrow"><span></span> Chia sẻ điều muốn biết</p>
+          <h2 id="question-title">Bạn còn điều gì <em>muốn hỏi?</em></h2>
+          <p>Chọn chủ đề và viết câu hỏi để lưu thử trong phiên bản website tĩnh.</p>
+          <div class="demo-disclosure">
+            <strong>Chức năng minh họa</strong>
+            <p>Câu hỏi chỉ được lưu trên trình duyệt này bằng localStorage, <strong>chưa gửi đến quản trị viên hoặc nghệ nhân</strong>. Đừng nhập số điện thoại, email hay thông tin riêng tư.</p>
+          </div>
+        </div>
+        <div class="question-card">
+          <form id="question-form" novalidate>
+            <div class="field">
+              <label for="question-topic">Chủ đề câu hỏi</label>
+              <select name="topic" id="question-topic" required>
+                <option value="Nghệ nhân">Nghệ nhân</option>
+                <option value="Sản phẩm & Nghề">Sản phẩm &amp; Nghề</option>
+                <option value="Câu chuyện văn hóa">Câu chuyện văn hóa</option>
+                <option value="Trải nghiệm">Trải nghiệm</option>
+                <option value="Sử dụng website">Sử dụng website</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+            <div class="field">
+              <div class="field-heading"><label for="question-text">Nội dung câu hỏi</label><span id="question-length">0/500</span></div>
+              <textarea name="question" id="question-text" rows="5" maxlength="500" minlength="10" required placeholder="Ví dụ: Làm thế nào để tìm trải nghiệm nghề dệt phù hợp?..."></textarea>
+              <small>Từ 10–500 ký tự, chỉ nhập nội dung về website và văn hóa.</small>
+            </div>
+            <button class="submit-question" type="submit">Gửi câu hỏi (demo) <span aria-hidden="true">↗</span></button>
+            <p class="question-status" id="question-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="saved-questions" id="saved-questions" hidden>
+            <div class="saved-heading"><h3>Câu hỏi đã lưu trên thiết bị</h3><span id="saved-count"></span></div>
+            <ul id="saved-question-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="brand brand-light" href="./index.html">
+          <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
+          <span class="brand-copy"><strong>Nghệ nhân Việt</strong><small>Di sản &amp; làng nghề</small></span>
+        </a>
+        <p>Không gian số kể chuyện về những người gìn giữ nghề và giá trị văn hóa Việt.</p>
+        <span class="footer-motto">Văn hóa được gìn giữ khi được sẻ chia.</span>
+      </div>
+      <div class="footer-column">
+        <h3>Khám phá</h3>
+        <a href="./nghe-nhan.html">Nghệ nhân</a>
+        <a href="./san-pham.html">Sản phẩm &amp; nghề</a>
+        <a href="./cau-chuyen-van-hoa.html">Câu chuyện văn hóa</a>
+        <a href="./trai-nghiem.html">Trải nghiệm</a>
+      </div>
+      <div class="footer-column">
+        <h3>Thông tin</h3>
+        <a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
+        <a href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+        <a href="./huong-dan-van-hoa.html#gioi-thieu-website">Giới thiệu</a>
+      </div>
+      <div class="footer-column footer-contact">
+        <h3>Kết nối</h3>
+        <span>Đại học Trà Vinh</span>
+        <span>Trà Vinh, Việt Nam</span>
+        <span>Website minh họa phục vụ học tập</span>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Nghệ nhân Việt. Bản demo phục vụ mục đích học tập.</span>
+      <a href="#top">Lên đầu trang ↑</a>
+    </div>
+  </footer>
+  <button class="back-to-top" type="button" aria-label="Lên đầu trang">↑</button>
+</body>
+</html>

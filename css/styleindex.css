@@ -1,0 +1,1016 @@
+body {
+    opacity: 1;
+    transition: opacity 0.22s ease;
+}
+
+/* Khi chuẩn bị chuyển sang trang khác */
+body.page-leaving {
+    opacity: 0;
+}
+
+/* Hiệu ứng khi trang mới vừa mở */
+body.page-entering {
+    animation: pageEnter 0.35s ease both;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Tôn trọng người dùng không muốn animation */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body.page-entering {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+}
+
+/* 1. THIẾT LẬP CHUNG ------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  color: #2d2824;
+  background: #faf7f1;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+a, button, input { -webkit-tap-highlight-color: transparent; }
+:where(button, input, a):focus-visible {
+  outline: 2px solid #c99b5b;
+  outline-offset: 3px;
+}
+/* Các ô và nút có bo góc 10px; riêng logo giữ hình tròn. */
+button, input, .button, .content-card, .craft-card,
+.feature-panel, .image-caption, .experience-badge,
+.header-login, .header-register, .back-to-top {
+  border-radius: 10px;
+}
+::selection { background: #c99b5b; color: #171311; }
+.container {
+  width: min(1494px, calc(100% - 64px));
+  margin-inline: auto;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 8px;
+  left: 12px;
+  padding: 10px 15px;
+  background: #fff;
+  color: #573e32;
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* 2. HEADER TRONG SUỐT ĐÈ LÊN VIDEO HERO (NHƯ HÌNH 2) ----- */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(18, 15, 13, 0.62) 0%, rgba(18, 15, 13, 0) 100%);
+}
+.header-inner {
+  width: min(1800px, calc(100% - 64px));
+  min-height: 88px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 14px;
+}
+.brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  color: #ffffff;
+}
+.brand-mark-image {
+  width: 54px;
+  height: 54px;
+  border: 1px solid #f5d4a7;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+.brand-copy { display: flex; flex-direction: column; }
+.brand-copy strong {
+  color: #ffffff;
+  font: 600 22px/1.22 "Playfair Display", Georgia, serif;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+.brand-copy small {
+  color: #e6d5be;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+.primary-nav {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  min-width: max-content;
+}
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14.4px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #f5d4a7;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .22s ease;
+}
+.nav-link:hover, .nav-link.active { color: #f5d4a7; }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+.header-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 1 360px;
+  min-width: 190px;
+  max-width: 435px;
+}
+/* Ô nhập và nút tìm kiếm trong suốt nhẹ trên nền video */
+.header-search {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 43px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+}
+.header-search input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+}
+.header-search input::placeholder { color: rgba(255, 255, 255, 0.78); opacity: 1; }
+.header-search:focus-within { outline: 2px solid #f5d4a7; outline-offset: 2px; }
+.header-search button {
+  flex: 0 0 48px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(87, 62, 50, 0.85);
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 1;
+}
+.header-search button:hover { background: #573e32; }
+.header-account {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.header-me {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.header-me:hover {
+    border-color: #f5d4a7;
+    background: #573e32;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.header-me svg {
+    pointer-events: none;
+}
+
+.me-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border: 2px solid #faf7f1;
+    border-radius: 999px;
+    background: #a12228;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.me-badge[hidden] {
+    display: none;
+}
+
+/* GỢI Ý TÌM KIẾM: popup nằm dưới ô tìm kiếm HEADER đã có */
+.search-suggest-panel {
+  position: absolute;
+  z-index: 120;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  max-height: min(445px, 64vh);
+  overflow-y: auto;
+  padding: 9px;
+  border: 1px solid #e0d3c3;
+  border-radius: 10px;
+  background: #fffcf6;
+  box-shadow: 0 16px 38px rgba(41, 31, 25, .20);
+  color: #382921;
+}
+.header-search-wrap .search-suggest-panel {
+  right: 0;
+  left: auto;
+  width: min(420px, calc(100vw - 30px));
+}
+.search-suggest-panel[hidden] { display: none; }
+.search-suggest-heading {
+  padding: 6px 10px 9px;
+  color: #8b6d53;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .9px;
+  text-transform: uppercase;
+}
+.search-suggest-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 64px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #382921;
+}
+.search-suggest-item:hover,
+.search-suggest-item.is-active,
+.search-suggest-item:focus-visible {
+  background: #f3ecde;
+  outline: none;
+}
+.search-suggest-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e0cbb4;
+  border-radius: 9px;
+  background: #f5e9d8;
+  color: #905b32;
+  font-size: 11px;
+  font-weight: 700;
+}
+.search-suggest-item[data-type="Sản phẩm"] .search-suggest-icon {
+  background: #f5e5e2;
+  border-color: #e2c2bf;
+  color: #9a3030;
+}
+.search-suggest-body { flex: 1; min-width: 0; }
+.search-suggest-type { color: #9c6e49; font-size: 10px; font-weight: 700; }
+.search-suggest-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #382921;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.search-suggest-desc {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #706760;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.search-suggest-arrow { color: #a12228; font-size: 17px; }
+.search-suggest-empty {
+  padding: 16px 11px;
+  color: #706760;
+  font-size: 13px;
+}
+.search-suggest-footer {
+  display: block;
+  margin-top: 5px;
+  padding: 11px 10px 5px;
+  border-top: 1px solid #eaded0;
+  color: #9b2429;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.search-suggest-footer:hover { color: #6d171c; text-decoration: underline; }
+
+.menu-toggle { display: none; }
+
+/* 3. HERO / BANNER VIDEO FULL MÀN HÌNH MÁY TÍNH (100VH) --- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow: hidden;
+  background: #211e1c;
+  color: #ffffff;
+}
+.hero-video,
+.hero-image {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-image {
+  background-image: url("../images/hero-ceramics.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.hero-shade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(18, 15, 13, 0.52) 0%,
+      rgba(18, 15, 13, 0.25) 45%,
+      rgba(18, 15, 13, 0.65) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(1494px, calc(100% - 64px));
+  padding-top: 120px;
+  padding-bottom: 56px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 28px;
+  color: #573e32;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 1.35px;
+  text-transform: uppercase;
+}
+.eyebrow > span:first-child {
+  display: inline-block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 1px;
+  background: #c99b5b;
+}
+.hero-eyebrow { color: #f5d4a7; margin-bottom: 32px; }
+.hero h1 {
+  max-width: 950px;
+  margin: 0;
+  font: 600 clamp(58px, 5.2vw, 98px)/1.075 "Playfair Display", Georgia, serif;
+  letter-spacing: -2.8px;
+}
+.hero h1 em {
+  color: #c99b5b;
+  font-weight: 600;
+}
+.hero-description {
+  max-width: 680px;
+  margin: 36px 0 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.85;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 56px;
+  padding: 13px 21px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.button:hover { transform: translateY(-2px); }
+.button span { font-size: 18px; line-height: 1; color: #c99b5b; }
+.button-dark { background: #573e32; color: #fff; }
+.button-dark:hover { background: #382921; }
+.button-light { background: #f3ecde; color: #573e32; }
+.button-light:hover { background: #fff; }
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 26px;
+}
+.hero-actions .button { min-width: 220px; min-height: 62px; justify-content: space-between; }
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  width: fit-content;
+  border-bottom: 1px solid transparent;
+  color: #573e32;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: color .2s ease, border-color .2s ease;
+}
+.text-link span { font-size: 22px; font-weight: 400; }
+.text-link:hover { border-bottom-color: currentColor; }
+.light-link { color: #fff; }
+.hero-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 51px;
+  color: #f8dfb6;
+  font: italic 16px/1.5 "Playfair Display", Georgia, serif;
+}
+.note-line { width: 49px; height: 1px; background: #c99b5b; }
+.hero-index {
+  position: absolute;
+  right: max(5%, calc((100% - 1715px)/2));
+  bottom: 22px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.hero-index span { color: #c99b5b; }
+
+/* 4. TIÊU ĐỀ & NÚT CHUNG CHO CÁC KHỐI --------------------- */
+.section-pad { padding: 108px 0; }
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 35px;
+  margin-bottom: 42px;
+}
+.section-heading .eyebrow { margin-bottom: 18px; }
+section:not(.hero) h2 {
+  margin: 0;
+  font: 600 clamp(34px,3.1vw,54px)/1.24 "Playfair Display", Georgia, serif;
+  letter-spacing: -.8px;
+}
+section:not(.hero) h2 em { color: #9c6e49; font-weight: 500; }
+.section-heading .heading-link { margin-bottom: 6px; flex: 0 0 auto; }
+.heading-description { max-width: 390px; margin: 0 0 8px; color: #706760; }
+.section-button { margin-top: 32px; }
+
+/* 5. GIỚI THIỆU ------------------------------------------ */
+.intro { background: #fffcf6; }
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(45px,7vw,120px);
+}
+.intro-visual { position: relative; min-width: 0; padding: 0 22px 32px 0; }
+.intro-visual > img { width: 100%; height: 570px; object-fit: cover; }
+.image-caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 290px;
+  padding: 20px 24px;
+  background: #573e32;
+  color: #fff;
+  border-radius: 10px;
+  font: 500 13px/1.7 "DM Sans", Arial, sans-serif;
+}
+.caption-symbol { color: #c99b5b; font-size: 28px; }
+.intro-stamp {
+  position: absolute;
+  top: 27px;
+  left: -28px;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #a12228;
+  color: #fff;
+  font: 700 17px/1.25 "Playfair Display", Georgia, serif;
+  text-align: center;
+  transform: rotate(-14deg);
+}
+.intro-copy .eyebrow { margin-bottom: 24px; }
+.intro-copy h2 { margin-bottom: 25px; }
+.intro-copy > p:not(.eyebrow) {
+  max-width: 590px;
+  margin: 0 0 20px;
+  color: #706760;
+  font-size: 16px;
+  line-height: 1.95;
+}
+.intro-copy .intro-small { font-size: 14px; color: #573e32; }
+.intro-copy .text-link { margin-top: 15px; }
+
+/* 6. NGHỆ NHÂN & CÂU CHUYỆN ------------------------------- */
+.artists { background: #f4edde; }
+.artist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 24px;
+}
+.content-card {
+  min-width: 0;
+  background: #fffcf6;
+  overflow: hidden;
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.content-card:hover { box-shadow: 0 14px 32px rgba(46,35,24,.12); transform: translateY(-4px); }
+.content-card-image { display: block; overflow: hidden; }
+.content-card-image img {
+  width: 100%;
+  height: 285px;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.content-card:hover .content-card-image img { transform: scale(1.04); }
+.content-card-body { padding: 23px 23px 25px; }
+.card-kicker {
+  margin: 0 0 12px;
+  color: #a16f47;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.content-card-body h2 {
+  margin: 0 0 12px;
+  font: 600 23px/1.35 "Playfair Display", Georgia, serif;
+  letter-spacing: -.2px;
+}
+.content-card-body h2 a:hover { color: #a12228; }
+.content-card-body > p:not(.card-kicker) {
+  min-height: 70px;
+  margin: 0 0 17px;
+  color: #706760;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #c99b5b;
+  padding-bottom: 3px;
+  color: #573e32;
+  font-size: 13px;
+  font-weight: 700;
+}
+.card-link span { color: #b5874e; font-size: 18px; }
+.card-link:hover { color: #a12228; }
+.demo-note { margin: 20px 0 23px; font-size: 12px; color: #706760; }
+
+/* 7. SẢN PHẨM & NGHỀ ------------------------------------ */
+.crafts { background: #fffcf6; }
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  grid-auto-rows: 255px;
+  gap: 18px;
+}
+.craft-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 27px;
+  color: #fff;
+  isolation: isolate;
+}
+.craft-large { grid-row: span 2; }
+.craft-card img, .craft-overlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.craft-card img { object-fit: cover; transition: transform .4s ease; }
+.craft-card:hover img { transform: scale(1.06); }
+.craft-overlay {
+  z-index: -1;
+  background: linear-gradient(0deg,rgba(24,18,14,.88),rgba(24,18,14,.1) 65%);
+}
+.craft-meta { font-size: 12px; letter-spacing: 1px; color: #f7d9a3; }
+.craft-title { margin-top: 8px; font: 600 30px/1.25 "Playfair Display", Georgia, serif; }
+.craft-arrow { position: absolute; bottom: 25px; right: 24px; font-size: 26px; }
+.craft-large .craft-title { font-size: 42px; }
+
+/* 8. CHUYỆN VĂN HÓA --------------------------------------- */
+.stories { background: #f3ecde; }
+.story-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 27px; }
+.story-grid .content-card-image img { height: 320px; }
+.story-grid .content-card-body { min-height: 245px; }
+
+/* 9. TRẢI NGHIỆM ------------------------------------------ */
+.experiences { background: #fffcf6; }
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  align-items: center;
+  gap: clamp(45px,7vw,125px);
+}
+.experience-copy > p:not(.eyebrow) {
+  max-width: 560px;
+  color: #706760;
+  font-size: 16px;
+  line-height: 1.9;
+}
+.experience-copy .eyebrow { margin-bottom: 24px; }
+.experience-copy h2 { margin-bottom: 23px; }
+.experience-list { padding: 0; margin: 28px 0 35px; list-style: none; }
+.experience-list li {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 53px;
+  border-bottom: 1px solid #e2d8ca;
+  font-size: 15px;
+}
+.experience-list li span { color: #a77e51; font-size: 13px; font-weight: 700; }
+.experience-visual { position: relative; }
+.experience-visual img { width: 100%; height: 630px; object-fit: cover; }
+.experience-badge {
+  position: absolute;
+  bottom: -22px;
+  left: -30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 24px;
+  background: #a12228;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.experience-badge strong { font: italic 30px "Playfair Display", Georgia, serif; color: #c99b5b; }
+
+/* 10. BẢN ĐỒ VÀ ỨNG XỬ VĂN HÓA --------------------------- */
+.feature-section { background: #eee3d0; }
+.feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.feature-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 375px;
+  padding: 44px;
+  border: 1px solid #d6c8b6;
+  background: #f9f5eb;
+}
+.feature-panel:nth-child(2) { background: #e5d8c4; }
+.feature-panel .eyebrow { margin-bottom: 20px; }
+.feature-panel h2 { font-size: clamp(30px,2.6vw,43px); }
+.feature-panel p:not(.eyebrow) { max-width: 430px; color: #706760; }
+
+/* 11. SỐ LIỆU -------------------------------------------- */
+.stats-section { padding: 84px 0; background: #573e32; color: #fff; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1.7fr repeat(4,minmax(0,1fr));
+  align-items: center;
+  gap: 24px;
+}
+.stats-heading .eyebrow { color: #f4d5a9; margin-bottom: 20px; }
+.stats-heading h2 { font-size: 38px; }
+.stats-heading h2 em { color: #c99b5b; }
+.stat { display: flex; flex-direction: column; gap: 6px; text-align: center; }
+.stat strong { font: 600 clamp(36px,3.2vw,57px)/1.3 "Playfair Display", Georgia, serif; color: #f0d0a1; }
+.stat span { font-size: 12px; color: #eee4db; }
+.stats-note { grid-column: 1/-1; margin: 7px 0 0; font-size: 12px; color: #e2d4c5; }
+
+/* 12. LỜI MỜI KHÁM PHÁ ----------------------------------- */
+.closing-cta { padding: 100px 0; background: #251e1b; color: #fff; text-align: center; }
+.cta-inner { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.cta-inner .eyebrow { color: #f2d0a0; margin: 0; }
+.closing-cta h2 { font-size: clamp(32px,3.5vw,60px); }
+.closing-cta h2 em { color: #c99b5b; }
+
+/* 13. FOOTER --------------------------------------------- */
+.site-footer { background: #1d1b19; color: #eee6dc; }
+.footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.1fr;
+  gap: 45px;
+  padding: 74px 0 62px;
+}
+.brand-light .brand-copy strong { color: #fff; }
+.brand-light .brand-copy small { color: #bca996; }
+.footer-brand > p { max-width: 350px; color: #c3b8ae; font-size: 13px; margin-top: 24px; }
+.footer-motto { display: block; margin-top: 22px; color: #d1a16a; font: italic 17px "Playfair Display", Georgia, serif; }
+.footer-column { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.footer-column h3 { margin: 0 0 13px; color: #fff; font: 600 20px "Playfair Display", Georgia, serif; }
+.footer-column a, .footer-column > span { color: #c3b8ae; font-size: 13px; }
+.footer-column a:hover { color: #c99b5b; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid #3f3732;
+  color: #bcaea3;
+  font-size: 12px;
+}
+.footer-bottom a:hover { color: #c99b5b; }
+.back-to-top {
+  position: fixed;
+  z-index: 45;
+  right: 23px;
+  bottom: 22px;
+  width: 45px;
+  height: 45px;
+  border: 1px solid #bfac97;
+  background: #573e32;
+  color: #fff;
+  font-size: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.back-to-top.is-visible,
+.back-to-top.visible,
+.back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+/* 14. RESPONSIVE — chỉ điều chỉnh tại từng mốc màn hình -------- */
+@media (min-width: 1280px) and (max-width: 1499px) {
+  .header-inner { width: calc(100% - 40px); gap: 10px; }
+  .brand { gap: 8px; }
+  .brand-mark-image { width: 44px; height: 44px; }
+  .brand-copy strong { font-size: 18px; }
+  .brand-copy small { font-size: 8px; letter-spacing: 1.2px; }
+  .primary-nav { gap: 12px; }
+  .nav-link { font-size: 13px; }
+  .header-search-wrap { flex-basis: 260px; min-width: 155px; }
+  .header-search input { padding: 0 10px; font-size: 11px; }
+  .header-search button { flex-basis: 43px; }
+  .header-account { gap: 6px; }
+  .header-login, .header-register { padding: 0 9px; font-size: 11px; min-height: 40px; }
+}
+@media (max-width: 1279px) {
+  .header-inner {
+    width: calc(100% - 44px);
+    min-height: 76px;
+    display: grid;
+    grid-template-columns: auto minmax(150px, 1fr) auto auto;
+    grid-template-areas: "brand search account toggle";
+    gap: 12px;
+  }
+  .header-inner > .brand { grid-area: brand; }
+  .header-inner > .header-search-wrap { grid-area: search; width: 100%; max-width: none; min-width: 0; }
+  .header-inner > .header-account { grid-area: account; }
+  .menu-toggle {
+    grid-area: toggle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 43px;
+    height: 43px;
+    padding: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .menu-toggle span { width: 22px; height: 2px; background: #ffffff; }
+  .primary-nav {
+    position: absolute;
+    z-index: 80;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-width: 0;
+    padding: 14px 24px 18px;
+    border-top: 1px solid #e2d8ca;
+    background: #faf7f1;
+    box-shadow: 0 12px 22px rgba(30,23,19,.12);
+  }
+  .primary-nav.open,
+  .primary-nav.is-open,
+  .menu-toggle[aria-expanded="true"] + .primary-nav { display: flex; }
+  .nav-link {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 7px;
+    color: #514740;
+    font-size: 15px;
+    border-bottom: 1px solid #e2d8ca;
+  }
+  .nav-link:hover, .nav-link.active { color: #a12228; }
+  .nav-link::after { display: none; }
+  .hero { min-height: 100vh; }
+  .hero-content { padding-top: 110px; }
+  .hero h1 { font-size: clamp(52px, 7.7vw, 78px); }
+  .intro-grid, .experience-grid { gap: 45px; }
+  .intro-visual > img { height: 470px; }
+  .experience-visual img { height: 525px; }
+  .stats-grid { grid-template-columns: repeat(4,1fr); }
+  .stats-heading { grid-column: 1/-1; text-align: center; }
+  .stats-heading .eyebrow { justify-content: center; }
+  .footer-main { grid-template-columns: 2fr 1fr 1fr; }
+  .footer-contact { grid-column: 2/4; }
+}
+@media (max-width: 1280px) {
+  .container { width: calc(100% - 56px); }
+  .artist-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .content-card-image img { height: 320px; }
+}
+@media (max-width: 760px) {
+  .container, .header-inner { width: calc(100% - 36px); }
+  .header-inner {
+    grid-template-columns: minmax(0,1fr) auto auto;
+    grid-template-areas: "brand account toggle" "search search search";
+    gap: 10px;
+    padding: 12px 0;
+  }
+  .header-search-wrap { width: 100%; }
+  .header-search { height: 42px; }
+  .brand-mark-image { width: 46px; height: 46px; }
+  .brand-copy strong { font-size: 18px; }
+  .brand-copy small { font-size: 8px; }
+  .header-account { gap: 5px; }
+  .header-login { min-height: 35px; padding: 0 8px; font-size: 10px; }
+  .header-me {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+  .header-me svg {
+    width: 18px;
+    height: 18px;
+  }
+  .header-search input { font-size: 12px; }
+  .header-search button { flex-basis: 46px; }
+  .hero { min-height: 100vh; }
+  .hero-content { padding-top: 135px; padding-bottom: 70px; }
+  .hero-eyebrow { margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(45px,8vw,65px); letter-spacing: -1.5px; }
+  .hero-description { max-width: 540px; margin-top: 28px; font-size: 14px; }
+  .hero-actions { gap: 20px; }
+  .hero-actions .button { min-height: 55px; min-width: 194px; }
+  .hero-note { margin-top: 48px; }
+  .hero-index { right: 18px; bottom: 23px; font-size: 14px; }
+  .section-pad { padding: 74px 0; }
+  .section-heading { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 30px; }
+  .intro-grid, .experience-grid { grid-template-columns: 1fr; }
+  .intro-visual { max-width: 600px; margin-left: 20px; }
+  .intro-visual > img { height: 490px; }
+  .intro-copy { padding-top: 8px; }
+  .artist-grid, .story-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px; }
+  .content-card-image img, .story-grid .content-card-image img { height: 245px; }
+  .content-card-body { padding: 18px; }
+  .craft-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-rows: 240px; }
+  .craft-large { grid-row: span 2; }
+  .craft-card { padding: 19px; }
+  .craft-title, .craft-large .craft-title { font-size: 25px; }
+  .experience-visual { max-width: 620px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .feature-panel { min-height: 320px; padding: 31px; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); row-gap: 28px; }
+  .footer-main { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 34px; }
+  .footer-brand { grid-column: 1/-1; }
+  .footer-contact { grid-column: auto; }
+}
+@media (max-width: 480px) {
+  .container, .header-inner { width: calc(100% - 30px); }
+  .header-inner { column-gap: 7px; }
+  .brand { gap: 7px; }
+  .brand-copy strong { font-size: 15px; }
+  .brand-copy small { font-size: 7px; letter-spacing: 1px; }
+  .brand-mark-image { width: 38px; height: 38px; }
+  .menu-toggle { width: 38px; height: 38px; }
+  .header-search input { font-size: 11px; }
+  .hero-content { padding-top: 125px; padding-bottom: 70px; }
+  .hero h1 { font-size: clamp(35px,9.4vw,47px); letter-spacing: -.7px; }
+  .hero-description { font-size: 13px; line-height: 1.8; }
+  .hero-actions { align-items: flex-start; gap: 13px; flex-direction: column; }
+  .hero-actions .button { min-width: 206px; }
+  .hero-note { font-size: 13px; gap: 10px; }
+  .note-line { width: 32px; }
+  .eyebrow { font-size: 10px; gap: 10px; letter-spacing: 1px; }
+  .eyebrow > span:first-child { flex-basis: 24px; width: 24px; }
+  section:not(.hero) h2 { font-size: 34px; }
+  .artist-grid, .story-grid { grid-template-columns: 1fr; }
+  .content-card-image img, .story-grid .content-card-image img { height: 270px; }
+  .content-card-body > p:not(.card-kicker) { min-height: 0; }
+  .craft-grid { grid-template-columns: 1fr; grid-auto-rows: 255px; }
+  .craft-large { grid-row: span 1; }
+  .intro-visual > img, .experience-visual img { height: 370px; }
+  .intro-stamp { left: -18px; width: 69px; height: 69px; font-size: 13px; }
+  .image-caption { padding: 12px; font-size: 11px; max-width: 240px; }
+  .experience-badge { left: -7px; padding: 13px; font-size: 9px; }
+  .feature-panel { padding: 23px; }
+  .stat strong { font-size: 38px; }
+  .closing-cta { padding: 75px 0; }
+  .footer-main { grid-template-columns: 1fr 1fr; }
+  .footer-contact { grid-column: 1/-1; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 370px) {
+  .header-login { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

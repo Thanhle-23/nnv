@@ -1,0 +1,1362 @@
+body {
+    opacity: 1;
+    
+    transition:
+        opacity 0.22s ease,
+        
+}
+
+/* Khi chuẩn bị chuyển sang trang khác */
+body.page-leaving {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+/* Hiệu ứng khi trang mới vừa mở */
+body.page-entering {
+    animation: pageEnter 0.35s ease both;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tôn trọng người dùng không muốn animation */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body.page-entering {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    background: #faf7f1;
+    color: #2d2824;
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+:where(a, button, input):focus-visible {
+    outline: 2px solid #c99b5b;
+    outline-offset: 3px;
+}
+
+.container {
+    width: min(1320px, calc(100% - 64px));
+    margin-inline: auto;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: fixed;
+    z-index: 1000;
+    top: 8px;
+    left: 12px;
+    padding: 10px 15px;
+    background: #ffffff;
+    color: #573e32;
+    transform: translateY(-160%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   2. HEADER
+========================================================= */
+.site-header {
+    position: relative;
+    z-index: 50;
+    background: #faf7f1;
+    border-bottom: 1px solid #e5ddd1;
+}
+
+.header-inner {
+    width: min(1800px, calc(100% - 64px));
+    min-height: 88px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* BRAND */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+.brand-mark-image {
+    width: 54px;
+    height: 54px;
+    border: 1px solid #c99b5b;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-copy strong {
+    font: 600 22px/1.2 "Playfair Display", Georgia, serif;
+    white-space: nowrap;
+}
+
+.brand-copy small {
+    color: #8c796b;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* NAV */
+.primary-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    gap: 40px;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    color: #514740;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #a12228;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 1px;
+    background: #a12228;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* SEARCH */
+.header-search-wrap {
+    position: relative;
+    flex: 0 1 340px;
+    min-width: 180px;
+    max-width: 420px;
+}
+
+.header-search {
+    display: flex;
+    width: 100%;
+    height: 43px;
+    overflow: hidden;
+    border: 1px solid #d7ccbd;
+    border-radius: 10px;
+    background: #faf7f1;
+}
+
+.header-search input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0 14px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #2d2824;
+}
+
+.header-search button {
+    flex: 0 0 48px;
+    border: 0;
+    background: #573e32;
+    color: #ffffff;
+    font-size: 26px;
+}
+
+.header-search button:hover {
+    background: #382921;
+}
+
+/* SUGGESTIONS DROPDOWN */
+.search-suggest-panel {
+    position: absolute;
+    z-index: 120;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(420px, calc(100vw - 30px));
+    max-height: min(445px, 64vh);
+    overflow-y: auto;
+    padding: 9px;
+    border: 1px solid #e0d3c3;
+    border-radius: 10px;
+    background: #fffcf6;
+    box-shadow: 0 16px 38px rgba(41, 31, 25, 0.2);
+    color: #382921;
+}
+
+.search-suggest-panel[hidden] {
+    display: none;
+}
+
+.search-suggest-heading {
+    padding: 6px 10px 9px;
+    color: #8b6d53;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+}
+
+.search-suggest-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    width: 100%;
+    min-height: 64px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: #382921;
+}
+
+.search-suggest-item:hover,
+.search-suggest-item.is-active {
+    background: #f3ecde;
+}
+
+.search-suggest-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #e0cbb4;
+    border-radius: 9px;
+    background: #f5e9d8;
+    color: #905b32;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.search-suggest-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-suggest-type {
+    color: #9c6e49;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.search-suggest-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #382921;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.search-suggest-desc {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #706760;
+    font-size: 11px;
+}
+
+.search-suggest-arrow {
+    color: #a12228;
+    font-size: 17px;
+}
+
+.search-suggest-empty {
+    padding: 16px 11px;
+    color: #706760;
+    font-size: 13px;
+}
+
+.search-suggest-footer {
+    display: block;
+    margin-top: 5px;
+    padding: 11px 10px 5px;
+    border-top: 1px solid #eaded0;
+    color: #9b2429;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* ACCOUNT / TÔI */
+.header-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    gap: 0;
+}
+
+.header-me {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #573e32;
+    border-radius: 50%;
+    background: #faf7f1;
+    color: #573e32;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.header-me:hover,
+.header-me.active {
+    background: #573e32;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.header-me svg {
+    pointer-events: none;
+}
+
+.me-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: grid;
+    place-items: center;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border: 2px solid #faf7f1;
+    border-radius: 999px;
+    background: #a12228;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.me-badge[hidden] {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* =========================================================
+   3. THANH CHÀO MỪNG ĐẦU TRANG (THEO BỐ CỤC ẢNH 1)
+========================================================= */
+.me-page-main {
+    padding-bottom: 84px;
+}
+
+.me-top-bar {
+    padding: 34px 0 24px;
+}
+
+.me-top-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.me-welcome-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.me-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #d7c8b6;
+    border-radius: 50%;
+    background: #efe6d8;
+    color: #573e32;
+    font-size: 19px;
+    line-height: 1;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.me-back-btn:hover {
+    border-color: #573e32;
+    background: #573e32;
+    color: #ffffff;
+    transform: translateX(-2px);
+}
+
+.me-welcome-text h1 {
+    margin: 0;
+    color: #382921;
+    font: 600 clamp(30px, 3.4vw, 44px)/1.12 "Playfair Display", Georgia, serif;
+}
+
+.me-welcome-text p {
+    margin: 4px 0 0;
+    color: #706760;
+    font-size: 13px;
+}
+
+.me-top-bar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.me-auth-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+}
+
+.me-auth-note {
+    margin: 0;
+    color: #8c796b;
+    font-size: 11px;
+    text-align: right;
+}
+
+/* =========================================================
+   4. KHỐI NHÓM LỚN: BỘ SƯU TẬP YÊU THÍCH & LỊCH SỬ ĐĂNG KÝ
+========================================================= */
+.me-group-section {
+    padding: 18px 0 26px;
+}
+
+.me-group-header {
+    margin-bottom: 16px;
+}
+
+.me-group-header h2 {
+    margin: 0;
+    color: #382921;
+    font: 600 clamp(24px, 2.5vw, 32px)/1.25 "Playfair Display", Georgia, serif;
+}
+
+/* Khung bao lớn (tương ứng khung xám bo góc trong Ảnh 1) */
+.me-group-box {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 28px 30px;
+    border: 1px solid #dfd2c1;
+    border-radius: 18px;
+    background: #f3ecde;
+    box-shadow: 0 10px 28px rgba(49, 37, 28, 0.05);
+}
+
+.me-sub-block {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.me-sub-block + .me-sub-block {
+    padding-top: 24px;
+    border-top: 1px solid #e2d5c4;
+}
+
+.me-sub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.me-sub-header h3 {
+    margin: 0;
+    color: #573e32;
+    font: 600 21px/1.3 "Playfair Display", Georgia, serif;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    color: #7a583b;
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.text-link:hover {
+    color: #a12228;
+    border-bottom-color: #a12228;
+}
+
+/* =========================================================
+   5. LƯỚI 4 THẺ NGANG TRONG MỖI DANH MỤC (THEO ẢNH 1)
+========================================================= */
+.me-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.me-list:empty {
+    display: none;
+}
+
+.me-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #dfd2c1;
+    border-radius: 14px;
+    background: #fffdf8;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.me-card:hover {
+    border-color: #c99b5b;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(46, 35, 24, 0.1);
+}
+
+.me-card-image {
+    display: block;
+    width: 100%;
+    height: 165px;
+    min-height: 165px;
+    overflow: hidden;
+    background: #e8ded1;
+}
+
+.me-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.me-card:hover .me-card-image img {
+    transform: scale(1.04);
+}
+
+.me-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 16px 18px 18px;
+}
+
+.card-kicker {
+    margin: 0 0 6px;
+    color: #a16f47;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.me-card h3 {
+    margin: 0 0 8px;
+    color: #382921;
+    font: 600 18px/1.32 "Playfair Display", Georgia, serif;
+}
+
+.me-card h3 a:hover {
+    color: #a12228;
+}
+
+.me-card-content > p {
+    margin: 0 0 6px;
+    color: #706760;
+    font-size: 12px;
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.booking-experience-card .me-card-content > p {
+    display: block;
+    overflow: visible;
+}
+
+/* =========================================================
+   6. NHÃN TRẠNG THÁI & NÚT TRONG THẺ
+========================================================= */
+.me-status,
+.favorite-status,
+.product-favorite-status,
+.experience-favorite-status,
+.booking-status {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #f5dddd;
+    color: #a12228;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.booking-status {
+    background: #e6efe2;
+    color: #3d6336;
+}
+
+.me-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #c99b5b;
+    color: #573e32;
+    font-size: 12px;
+    font-weight: 700;
+    transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.card-link:hover {
+    color: #a12228;
+    gap: 8px;
+}
+
+.remove-favorite,
+.remove-product-favorite,
+.remove-experience-favorite,
+.remove-order,
+.remove-booking {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0 10px;
+    border: 1px solid #d0b4ae;
+    border-radius: 7px;
+    background: transparent;
+    color: #8f3535;
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.remove-favorite:hover,
+.remove-product-favorite:hover,
+.remove-experience-favorite:hover,
+.remove-order:hover,
+.remove-booking:hover {
+    border-color: #a12228;
+    background: #a12228;
+    color: #ffffff;
+}
+
+/* =========================================================
+   7. EMPTY STATE GỌN GÀNG TRONG KHUNG NHÓM
+========================================================= */
+.me-empty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 18px 22px;
+    border: 1px dashed #d5c4b0;
+    border-radius: 12px;
+    background: #faf7f1;
+    text-align: left;
+}
+
+.me-empty[hidden] {
+    display: none;
+}
+
+.me-empty-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #f2e6d8;
+    color: #a12228;
+}
+
+.me-empty-icon svg {
+    display: block;
+}
+
+.me-empty-text {
+    flex: 1 1 260px;
+    min-width: 0;
+}
+
+.me-empty h3,
+.me-empty h4 {
+    margin: 0 0 4px;
+    color: #382921;
+    font: 600 17px/1.3 "Playfair Display", Georgia, serif;
+}
+
+.me-empty p {
+    margin: 0;
+    color: #706760;
+    font-size: 13px;
+}
+
+/* =========================================================
+   8. BUTTON CHUNG
+========================================================= */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button-dark {
+    border-color: #573e32;
+    background: #573e32;
+    color: #ffffff;
+}
+
+.button-dark:hover {
+    border-color: #382921;
+    background: #382921;
+}
+
+.button-outline {
+    border: 1px solid #573e32;
+    background: transparent;
+    color: #573e32;
+}
+
+.button-outline:hover {
+    background: #573e32;
+    color: #ffffff;
+}
+
+/* =========================================================
+   9. POPUP ĐĂNG NHẬP - ĐĂNG KÝ
+========================================================= */
+body.auth-modal-open {
+    overflow: hidden;
+}
+
+.auth-modal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.auth-modal[hidden] {
+    display: none;
+}
+
+.auth-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 25, 21, 0.63);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.auth-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(520px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 38px;
+    border: 1px solid #e1d4c5;
+    border-radius: 14px;
+    background: #fffdf8;
+    box-shadow: 0 28px 80px rgba(28, 21, 17, 0.28);
+    animation: authDialogOpen 0.22s ease both;
+}
+
+@keyframes authDialogOpen {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.auth-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid #e0d5c8;
+    border-radius: 50%;
+    background: #faf7f1;
+    color: #573e32;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.auth-close:hover {
+    background: #573e32;
+    color: #ffffff;
+}
+
+.auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 45px;
+    margin-bottom: 31px;
+}
+
+.auth-brand-mark {
+    display: grid;
+    place-items: center;
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #573e32;
+    color: #ffffff;
+}
+
+.auth-brand > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-brand strong {
+    color: #382921;
+    font: 600 18px/1.3 "Playfair Display", Georgia, serif;
+}
+
+.auth-brand small {
+    margin-top: 2px;
+    color: #8c796b;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.auth-panel[hidden] {
+    display: none;
+}
+
+.auth-eyebrow {
+    margin: 0 0 10px;
+    color: #a16f47;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.auth-panel h2 {
+    margin: 0;
+    color: #382921;
+    font: 600 36px/1.2 "Playfair Display", Georgia, serif;
+}
+
+.auth-description {
+    margin: 13px 0 25px;
+    color: #706760;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.auth-form {
+    display: grid;
+    gap: 17px;
+}
+
+.auth-form label {
+    display: grid;
+    gap: 7px;
+}
+
+.auth-form label > span {
+    color: #573e32;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.auth-form input {
+    width: 100%;
+    height: 47px;
+    padding: 0 13px;
+    border: 1px solid #d8ccbd;
+    border-radius: 9px;
+    outline: 0;
+    background: #ffffff;
+    color: #2d2824;
+}
+
+.auth-form input:focus {
+    border-color: #c99b5b;
+    box-shadow: 0 0 0 3px rgba(201, 155, 91, 0.14);
+}
+
+.auth-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.auth-submit {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.auth-message {
+    min-height: 22px;
+    margin: 0;
+    color: #52734f;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.auth-message.error {
+    color: #a12228;
+}
+
+.auth-switch {
+    margin: 24px 0 0;
+    color: #706760;
+    font-size: 12px;
+    text-align: center;
+}
+
+.auth-switch button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #a12228;
+    font-weight: 700;
+}
+
+.auth-switch button:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   10. FOOTER & BACK TO TOP
+========================================================= */
+.site-footer {
+    border-top: 3px solid #c99b5b;
+    background: #2b2521;
+    color: #ffffff;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 45px;
+    padding: 62px 0;
+}
+
+.brand-light {
+    color: #ffffff;
+}
+
+.footer-brand p {
+    max-width: 370px;
+    color: #c3b8ae;
+    font-size: 13px;
+}
+
+.footer-motto {
+    color: #d3b27e;
+    font: italic 15px "Playfair Display", Georgia, serif;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-column h3 {
+    margin: 0 0 8px;
+    font-size: 13px;
+}
+
+.footer-column a,
+.footer-column > span {
+    color: #c3b8ae;
+    font-size: 12px;
+}
+
+.footer-column a:hover {
+    color: #c99b5b;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px 0;
+    border-top: 1px solid #403831;
+    color: #bcaea3;
+    font-size: 11px;
+}
+
+.back-to-top {
+    position: fixed;
+    z-index: 40;
+    right: 22px;
+    bottom: 22px;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #bfac97;
+    border-radius: 10px;
+    background: #573e32;
+    color: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.back-to-top.visible,
+.back-to-top.show,
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   11. RESPONSIVE
+========================================================= */
+@media (max-width: 1279px) {
+    .header-inner {
+        width: calc(100% - 44px);
+        min-height: 76px;
+        display: grid;
+        grid-template-columns: auto minmax(150px, 1fr) auto auto;
+        grid-template-areas: "brand search account toggle";
+        gap: 12px;
+    }
+
+    .brand {
+        grid-area: brand;
+    }
+
+    .header-search-wrap {
+        grid-area: search;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .header-account {
+        grid-area: account;
+    }
+
+    .menu-toggle {
+        grid-area: toggle;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: 43px;
+        height: 43px;
+        padding: 9px;
+        border: 1px solid #e2d8ca;
+        border-radius: 10px;
+        background: #faf7f1;
+    }
+
+    .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #573e32;
+    }
+
+    .primary-nav {
+        position: absolute;
+        z-index: 80;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 14px 24px 18px;
+        border-top: 1px solid #e2d8ca;
+        background: #faf7f1;
+        box-shadow: 0 12px 22px rgba(30, 23, 19, 0.12);
+    }
+
+    .primary-nav.open {
+        display: flex;
+    }
+
+    .nav-link {
+        width: 100%;
+        padding: 0 7px;
+        border-bottom: 1px solid #e2d8ca;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .me-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 980px) {
+    .me-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .container {
+        width: calc(100% - 36px);
+    }
+
+    .header-inner {
+        width: calc(100% - 36px);
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        grid-template-areas:
+            "brand account toggle"
+            "search search search";
+        gap: 10px;
+        padding: 12px 0;
+    }
+
+    .brand-mark-image {
+        width: 46px;
+        height: 46px;
+    }
+
+    .brand-copy strong {
+        font-size: 18px;
+    }
+
+    .brand-copy small {
+        font-size: 8px;
+    }
+
+    .header-me {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+    }
+
+    .header-me svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .header-search {
+        height: 42px;
+    }
+
+    .me-top-bar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .me-top-bar-right {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .me-auth-note {
+        text-align: left;
+    }
+
+    .me-group-box {
+        padding: 20px 18px;
+        gap: 22px;
+    }
+
+    .me-empty {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 540px) {
+    .brand-copy small {
+        display: none;
+    }
+
+    .me-list {
+        grid-template-columns: 1fr;
+    }
+
+    .me-card-image {
+        height: 195px;
+    }
+
+    .auth-dialog {
+        padding: 26px 20px;
+    }
+
+    .auth-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
