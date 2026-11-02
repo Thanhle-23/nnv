@@ -157,15 +157,86 @@
         'Xem chi tiết'
       )).join('');
     } else {
-      grid.innerHTML = data.stories.map(s => card(
-        s.image,
-        `Hình minh họa ${s.title}`,
-        s.category,
-        s.title,
-        s.description,
-        url('cau-chuyen', s.id),
-        'Đọc câu chuyện'
-      )).join('');
+      const featuredMain = document.getElementById('story-featured-main');
+      const featuredSub = document.getElementById('story-featured-sub');
+      const moreList = document.getElementById('story-more-list');
+      const stories = Array.isArray(data.stories) ? data.stories : [];
+
+      if (featuredMain && featuredSub && moreList) {
+        const heroStory = stories[0];
+        const subStories = stories.slice(1, 4);
+        const moreStories = stories.slice(4);
+
+        if (heroStory) {
+          const heroLink = url('cau-chuyen', heroStory.id);
+          featuredMain.innerHTML = `
+            <article class="story-hero-card reveal is-visible">
+              <a class="story-hero-image" href="${esc(heroLink)}">
+                <img
+                  src="${esc(heroStory.image)}"
+                  alt="${esc(heroStory.title)}"
+                  loading="eager"
+                >
+              </a>
+              <p class="story-kicker">${esc(heroStory.category)}</p>
+              <h3 class="story-hero-title">
+                <a href="${esc(heroLink)}">${esc(heroStory.title)}</a>
+              </h3>
+              <p class="story-hero-desc">${esc(heroStory.description)}</p>
+            </article>
+          `;
+        }
+
+        featuredSub.innerHTML = subStories.map(s => {
+          const storyLink = url('cau-chuyen', s.id);
+          return `
+            <article class="story-sub-card reveal is-visible">
+              <a class="story-sub-image" href="${esc(storyLink)}">
+                <img
+                  src="${esc(s.image)}"
+                  alt="${esc(s.title)}"
+                  loading="lazy"
+                >
+              </a>
+              <p class="story-kicker">${esc(s.category)}</p>
+              <h3 class="story-sub-title">
+                <a href="${esc(storyLink)}">${esc(s.title)}</a>
+              </h3>
+            </article>
+          `;
+        }).join('');
+
+        moreList.innerHTML = moreStories.map(s => {
+          const storyLink = url('cau-chuyen', s.id);
+          return `
+            <article class="story-more-item reveal is-visible">
+              <a class="story-more-thumb" href="${esc(storyLink)}">
+                <img
+                  src="${esc(s.image)}"
+                  alt="${esc(s.title)}"
+                  loading="lazy"
+                >
+              </a>
+              <div class="story-more-body">
+                <p class="story-kicker">${esc(s.category)}</p>
+                <h3 class="story-more-title">
+                  <a href="${esc(storyLink)}">${esc(s.title)}</a>
+                </h3>
+              </div>
+            </article>
+          `;
+        }).join('');
+      } else {
+        grid.innerHTML = stories.map(s => card(
+          s.image,
+          `Hình minh họa ${s.title}`,
+          s.category,
+          s.title,
+          s.description,
+          url('cau-chuyen', s.id),
+          'Đọc câu chuyện'
+        )).join('');
+      }
     }
 
     installImageFallback(grid);
@@ -200,10 +271,7 @@
   }
 
   /* =====================================================
-     CHI TIẾT NGHỆ NHÂN (BỐ CỤC MỚI)
-     - Trang đầu: Cột trái (Ảnh, tên, nút Xem sản phẩm + Yêu thích) | Cột phải (Hành trình & Kỹ năng)
-     - Trang tiếp theo: Video YouTube
-     - Phía dưới: Album 5 ảnh (< >) bên trái | Khung Trải nghiệm cùng nghệ nhân bên phải
+     CHI TIẾT NGHỆ NHÂN
   ===================================================== */
   function renderArtistDetail() {
     const artist = findById('artists', requestedId());
@@ -239,7 +307,6 @@
       ? url('trai-nghiem', experience.id)
       : './trai-nghiem.html';
 
-    // 1. CỘT TRÁI TRANG ĐẦU: Đổi nút thành "Xem sản phẩm"
     side.innerHTML = `
       <img
         class="detail-portrait"
@@ -258,7 +325,6 @@
       </div>
     `;
 
-    // 2. CỘT PHẢI TRANG ĐẦU: Hành trình & Kỹ năng
     content.innerHTML = `
       <h2>
         ${esc(artist.headline)}
@@ -274,7 +340,6 @@
       ${artist.quote ? `<blockquote class="pull-quote">“${esc(artist.quote)}”</blockquote>` : ''}
     `;
 
-    // 3. TẦNG TIẾP THEO (VIDEO YOUTUBE) & TẦNG DƯỚI (ALBUM 5 ẢNH + TRẢI NGHIỆM)
     let extraContainer = document.getElementById('artist-extra-sections');
     if (!extraContainer) {
       const detailLayout = document.querySelector('.detail-layout');
@@ -300,7 +365,6 @@
       const youtubeEmbed = toYoutubeEmbedUrl(artist.youtubeUrl);
 
       extraContainer.innerHTML = `
-        <!-- VIDEO YOUTUBE -->
         <div class="artist-youtube-section" aria-label="Video giới thiệu nghệ nhân ${esc(artist.name)}">
           <div class="artist-youtube-frame">
             <iframe
@@ -314,9 +378,7 @@
             ></iframe>
           </div>
         </div>
-        
 
-        <!-- HÀNG DƯỚI: TRÁI = ALBUM 5 ẢNH (< >) | PHẢI = KHUNG PHẦN TRẢI NGHIỆM -->
         <div class="artist-bottom-row">
 
           <div
@@ -375,7 +437,6 @@
         </p>
       `;
 
-      // Gắn sự kiện chuyển ảnh bằng 2 nút < (◀) và > (▶) cho Album nghệ nhân
       const albumEl = extraContainer.querySelector('#artist-album');
       if (albumEl) {
         const slides = Array.from(albumEl.querySelectorAll('.artist-album-slide'));
@@ -408,10 +469,7 @@
   }
 
   /* =====================================================
-     CHI TIẾT SẢN PHẨM (ÁP DỤNG ĐỘNG CHO CẢ 10 SẢN PHẨM)
-     - Hàng 1: Ảnh chính (trái) + Tên & Nội dung mô tả (phải)
-     - Hàng 2: Thông tin chi tiết & Nút bấm (trái) + Album 5 ảnh < > (phải)
-     - Hàng 3: Video của sản phẩm
+     CHI TIẾT SẢN PHẨM
   ===================================================== */
   function renderProductDetail() {
     const product = findById('products', requestedId());
@@ -431,7 +489,6 @@
 
     const personText = artist ? artist.name : 'Chưa cập nhật';
 
-    // Lấy danh sách 5 ảnh album riêng của sản phẩm từ content-data.js
     const albumImages = Array.isArray(product.album) && product.album.length
       ? product.album
       : [
@@ -445,7 +502,6 @@
     const videoSrc = product.video || `../images/video-san-pham-${product.id}.mp4`;
 
     area.innerHTML = `
-      <!-- HÀNG 1 (TRANG ĐẦU): TRÁI = ẢNH CHÍNH | PHẢI = TÊN + NỘI DUNG MÔ TẢ -->
       <div class="product-top-row">
 
         <div class="product-image">
@@ -463,7 +519,6 @@
 
       </div>
 
-      <!-- HÀNG 2 (TRANG DƯỚI): TRÁI = THÔNG TIN ĐÃ CÓ + NÚT | PHẢI = ALBUM 5 HÌNH CÓ NÚT < > -->
       <div class="product-middle-row">
 
         <div class="product-info-col">
@@ -501,7 +556,6 @@
                 `
                 : ''
             }
-            <!-- luutam.js chèn nút Yêu thích vào đây -->
             <div class="product-favorite-slot"></div>
           </div>
 
@@ -547,7 +601,6 @@
 
       </div>
 
-      <!-- HÀNG 3 (PHÍA DƯỚI): VIDEO CỦA SẢN PHẨM -->
       <div class="product-video-section" aria-label="Video giới thiệu ${esc(product.shortName)}">
         <div class="product-video-frame">
           <video
@@ -565,7 +618,6 @@
       </div>
     `;
 
-    // Gắn sự kiện chuyển ảnh bằng 2 nút < (◀) và > (▶) cho Album
     const albumEl = area.querySelector('#product-album');
     if (albumEl) {
       const slides = Array.from(albumEl.querySelectorAll('.product-album-slide'));
@@ -593,7 +645,6 @@
       }
     }
 
-    // Nếu trang vẫn còn thẻ .timeline thì cập nhật, không có cũng không lỗi
     const timeline = document.querySelector('.timeline');
     if (timeline && Array.isArray(product.steps)) {
       timeline.innerHTML = product.steps.map(([heading, description], index) => `
@@ -610,6 +661,9 @@
     installImageFallback(document.querySelector('main'), product.image);
   }
 
+  /* =====================================================
+     CHI TIẾT CÂU CHUYỆN (BỐ CỤC 2 CỘT)
+  ===================================================== */
   function renderStoryDetail() {
     const story = findById('stories', requestedId());
     if (!story) return pageMissing('câu chuyện', './cau-chuyen-van-hoa.html');
@@ -620,39 +674,166 @@
     if (!root) return;
 
     const artist = story.artistId ? findById('artists', story.artistId) : null;
+    const product = story.artistId
+      ? (Array.isArray(data.products)
+          ? data.products.find(item => Number(item.artistId) === Number(story.artistId))
+          : null)
+      : null;
 
-    const sections = story.sections.map(s => `
-      <section class="story-section">
-        <h3>${esc(s.title)}</h3><p>${esc(s.text)}</p>
-        ${s.imageAfter ? `<figure class="article-figure story-inline-figure">
-          <img src="${esc(story.inlineImage)}" alt="Hình minh họa ${esc(story.category.toLowerCase())}" loading="lazy">
-          <figcaption>Hình ảnh minh họa cho câu chuyện.</figcaption>
-        </figure>` : ''}
-      </section>`).join('');
+    const sections = Array.isArray(story.sections) ? story.sections : [];
+    const image1 = story.image;
+    const image2 = story.inlineImage || (product ? product.image : story.image);
+
+    let content1HTML = '';
+    let content2HTML = '';
+    let content3HTML = '';
+
+    if (sections.length >= 3) {
+      content1HTML = `
+        <div class="story-content-block">
+          <p class="article-lead">${esc(story.lead)}</p>
+          <p>${esc(story.opening)}</p>
+          <h3>${esc(sections[0].title)}</h3>
+          <p>${esc(sections[0].text)}</p>
+        </div>
+      `;
+
+      content2HTML = `
+        <div class="story-content-block">
+          <h3>${esc(sections[1].title)}</h3>
+          <p>${esc(sections[1].text)}</p>
+        </div>
+      `;
+
+      content3HTML = `
+        <div class="story-content-block">
+          ${sections.slice(2).map(s => `
+            <h3>${esc(s.title)}</h3>
+            <p>${esc(s.text)}</p>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      content1HTML = `
+        <div class="story-content-block">
+          <p class="article-lead">${esc(story.lead)}</p>
+          <p>${esc(story.opening)}</p>
+        </div>
+      `;
+
+      content2HTML = sections[0]
+        ? `
+          <div class="story-content-block">
+            <h3>${esc(sections[0].title)}</h3>
+            <p>${esc(sections[0].text)}</p>
+          </div>
+        `
+        : '';
+
+      content3HTML = sections[1]
+        ? `
+          <div class="story-content-block">
+            <h3>${esc(sections[1].title)}</h3>
+            <p>${esc(sections[1].text)}</p>
+          </div>
+        `
+        : '';
+    }
+
+    const sourcesHTML = Array.isArray(story.sources) && story.sources.length
+      ? `
+        <div class="story-sources">
+          <h3>Nguồn tham khảo</h3>
+          <ul class="story-source-list">
+            ${story.sources.map(src => `
+              <li>
+                <a href="${esc(src.url)}" target="_blank" rel="noopener noreferrer">
+                  ${esc(src.title)}
+                </a>
+                <span class="story-source-publisher">${esc(src.publisher)}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `
+      : '';
 
     root.innerHTML = `
       <header class="article-header">
-        <p class="card-kicker">${esc(story.category)} · Nội dung minh họa</p>
-        <h2 class="article-title">${esc(story.title)}</h2>
-        <p class="article-lead">${esc(story.lead)}</p>
+        <p class="card-kicker">${esc(story.category)}</p>
+        <h1 class="article-title">${esc(story.title)}</h1>
+        <div class="article-meta">
+          <span class="article-meta-dot" aria-hidden="true"></span>
+          <span>${artist ? `Nghệ nhân ${esc(artist.name)} · ${esc(artist.place)}` : esc(story.category)}</span>
+        </div>
       </header>
-      <figure class="article-figure article-cover-wrap">
-        <img class="article-cover" src="${esc(story.image)}" alt="Hình minh họa ${esc(story.title)}" loading="eager">
-        <figcaption>Hình ảnh minh họa, không phải tư liệu đã xác minh.</figcaption>
-      </figure>
-      <div class="article-body">
-        <p class="article-opening">${esc(story.opening)}</p>
-        ${sections}
-        <blockquote class="pull-quote">“${esc(story.quote)}”</blockquote>
-        ${artist ? `<aside class="story-related" aria-label="Thông tin liên quan">
-          <div><p class="related-label">Khám phá thêm</p><h3>Thông tin liên quan</h3>
-          <p>Nghệ nhân minh họa: <strong>${esc(artist.name)}</strong> · Nghề: ${esc(artist.craft.toLowerCase())}.</p></div>
-          <a class="card-link" href="${url('nghe-nhan', artist.id)}">Xem hồ sơ nghệ nhân <span aria-hidden="true">↗</span></a>
-        </aside>` : ''}
-        <p class="back-link"><a href="./cau-chuyen-van-hoa.html">← Quay lại danh sách câu chuyện</a></p>
-      </div>`;
 
-    installImageFallback(root);
+      <div class="article-body">
+        ${content1HTML}
+
+        <figure class="article-figure">
+          <img src="${esc(image1)}" alt="Hình minh họa 1: ${esc(story.title)}" loading="eager">
+          <figcaption>${artist ? `Hình ảnh gắn với câu chuyện nghề của nghệ nhân ${esc(artist.name)}.` : `Hình ảnh minh họa câu chuyện ${esc(story.shortTitle)}.`}</figcaption>
+        </figure>
+
+        ${content2HTML}
+
+        <figure class="article-figure">
+          <img src="${esc(image2)}" alt="Hình minh họa 2: ${esc(story.title)}" loading="lazy">
+          <figcaption>${product ? `Sản phẩm thủ công tiêu biểu: ${esc(product.name)}.` : `Không gian thực hành và gìn giữ nghề truyền thống.`}</figcaption>
+        </figure>
+
+        ${content3HTML}
+
+        ${story.quote ? `<blockquote class="pull-quote">“${esc(story.quote)}”</blockquote>` : ''}
+
+        ${artist ? `
+          <aside class="story-related" aria-label="Thông tin liên quan">
+            <div>
+              <p class="related-label">Khám phá thêm</p>
+              <h3>Nhân vật trong câu chuyện</h3>
+              <p>Nghệ nhân: <strong>${esc(artist.name)}</strong> · Nghề: ${esc(artist.craft.toLowerCase())}.</p>
+            </div>
+            <a class="card-link" href="${url('nghe-nhan', artist.id)}">
+              Xem hồ sơ nghệ nhân <span aria-hidden="true">↗</span>
+            </a>
+          </aside>
+        ` : ''}
+
+        ${sourcesHTML}
+
+        <p class="back-link">
+          <a href="./cau-chuyen-van-hoa.html">← Quay lại danh sách câu chuyện</a>
+        </p>
+      </div>
+    `;
+
+    const moreContainer = document.getElementById('story-detail-more');
+    if (moreContainer && Array.isArray(data.stories)) {
+      const otherStories = data.stories.filter(item => item.id !== story.id);
+      moreContainer.innerHTML = otherStories.map(s => {
+        const storyLink = url('cau-chuyen', s.id);
+        return `
+          <article class="story-more-item reveal is-visible">
+            <a class="story-more-thumb" href="${esc(storyLink)}">
+              <img
+                src="${esc(s.image)}"
+                alt="${esc(s.title)}"
+                loading="lazy"
+              >
+            </a>
+            <div class="story-more-body">
+              <p class="story-kicker">${esc(s.category)}</p>
+              <h3 class="story-more-title">
+                <a href="${esc(storyLink)}">${esc(s.title)}</a>
+              </h3>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    installImageFallback(document.querySelector('main'), story.image);
   }
 
   /* DANH SÁCH TRẢI NGHIỆM */
@@ -683,7 +864,9 @@
     installImageFallback(grid);
   }
 
-  /* CHI TIẾT TRẢI NGHIỆM: HIỂN THỊ THEO ?id=... */
+  /* =====================================================
+     CHI TIẾT TRẢI NGHIỆM (LIỀN MẠCH + POPUP ĐÁNH GIÁ CỦA BẠN)
+  ===================================================== */
   function renderExperienceDetail() {
     const experience = findById('experiences', requestedId());
 
@@ -699,19 +882,11 @@
     const map = document.getElementById('experience-map');
     const mapLink = document.getElementById('experience-map-link');
     const heroDescription = document.querySelector('.page-hero p:not(.eyebrow)');
-    const placeBadge = document.getElementById('experience-place-badge');
-    const durationBadge = document.getElementById('experience-duration-badge');
+    const reviewsSection = document.getElementById('experience-reviews-section');
+    const nearbySection = document.getElementById('experience-nearby-section');
 
     if (heroDescription) {
       heroDescription.textContent = experience.summary;
-    }
-
-    if (placeBadge) {
-      placeBadge.textContent = experience.place;
-    }
-
-    if (durationBadge) {
-      durationBadge.textContent = experience.duration;
     }
 
     if (cover) {
@@ -725,42 +900,28 @@
 
     const guide = artist ? artist.name : 'Chưa cập nhật';
 
-    const sources = Array.isArray(experience.sources) && experience.sources.length
-      ? `
-        <h3>Nguồn tham khảo</h3>
-        <ul class="source-list">
-          ${experience.sources.map(source => `
-            <li>
-              <a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">
-                <strong>${esc(source.publisher)}</strong><br>
-                ${esc(source.title)}
-              </a>
-            </li>
-          `).join('')}
-        </ul>
-      `
-      : '';
+    const baseExp =
+      (Array.isArray(data.experiences)
+        ? data.experiences.find(
+            item =>
+              Number(item.artistId) === Number(experience.artistId) &&
+              Array.isArray(item.reviews) &&
+              item.nearby
+          )
+        : null) || data.experiences[0];
 
+    // 1. TẦNG 1 BÊN PHẢI: NỘI DUNG LIỀN MẠCH
     if (content) {
       content.innerHTML = `
-        <p class="eyebrow">
-          <span></span>
-          Hoạt động trải nghiệm
-        </p>
-        <h2>
-          ${esc(experience.headline)}
-          <br>
-          <em>${esc(experience.accent)}</em>
-        </h2>
         <p class="experience-intro">${esc(experience.intro)}</p>
         <h3>Bạn sẽ trải nghiệm gì?</h3>
         <ul class="check-list">
           ${experience.activities.map(item => `<li>${esc(item)}</li>`).join('')}
         </ul>
-        ${sources}
       `;
     }
 
+    // 2. TẦNG 2 BÊN TRÁI: GIỮ KHUNG THÔNG TIN CHUYẾN ĐI + 2 NÚT BÊN DƯỚI
     const actionsHTML = `
       <div class="experience-actions">
         <button class="button button-dark" type="button" id="show-booking">
@@ -777,7 +938,7 @@
               stroke-linejoin="round"
             ></path>
           </svg>
-          <span>Yêu thích</span>
+          <span>Thêm vào yêu thích</span>
         </button>
       </div>
       <p class="experience-notice" id="experience-notice" hidden></p>
@@ -785,7 +946,7 @@
 
     if (tripPanel) {
       tripPanel.innerHTML = `
-        <div class="trip-panel-inner">
+        <div class="trip-panel-card">
           <p class="trip-kicker">Thông tin chuyến đi</p>
           <h2>Trải nghiệm làng nghề</h2>
           <dl class="trip-facts">
@@ -811,14 +972,9 @@
               `
               : ''
           }
-          <p class="trip-note">
-            * Lịch tổ chức và khả năng tham gia cần được xác nhận với cơ sở trước khi xem là lịch đặt thực tế.
-          </p>
-          ${actionsHTML}
         </div>
+        ${actionsHTML}
       `;
-    } else if (content) {
-      content.insertAdjacentHTML('beforeend', actionsHTML);
     }
 
     if (map && experience.mapQuery) {
@@ -828,6 +984,283 @@
 
     if (mapLink && experience.mapQuery) {
       mapLink.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(experience.mapQuery)}`;
+    }
+
+    // 3. TẦNG 3: PHẦN ĐÁNH GIÁ CỦA DU KHÁCH + POPUP "ĐÁNH GIÁ CỦA BẠN"
+    if (reviewsSection) {
+      const REVIEW_STORAGE_KEY = `ngheNhanViet.reviews.exp.${experience.id}`;
+
+      const getSavedUserReviews = () => {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(REVIEW_STORAGE_KEY) || '[]');
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (err) {
+          return [];
+        }
+      };
+
+      const saveUserReviews = list => {
+        try {
+          localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(list));
+        } catch (err) {
+          console.warn('Không lưu được đánh giá:', err);
+        }
+      };
+
+      const defaultReviews = Array.isArray(experience.reviews) && experience.reviews.length
+        ? experience.reviews
+        : (baseExp && Array.isArray(baseExp.reviews) ? baseExp.reviews : []);
+
+      let userReviews = getSavedUserReviews();
+      let reviewsList = [...userReviews, ...defaultReviews];
+
+      const baseScoreText = String(experience.rating || (baseExp && baseExp.rating) || '9,7');
+      const ratingLabel = experience.reviewLabel || (baseExp && baseExp.reviewLabel) || 'Xuất sắc';
+      const baseCount = Number(experience.reviewCount || (baseExp && baseExp.reviewCount) || 161);
+
+      let startIdx = 0;
+
+      const formatScore = val => {
+        if (val === undefined || val === null || val === '') return '';
+        const num = Number(String(val).replace(',', '.'));
+        if (Number.isNaN(num)) return String(val);
+        return Number.isInteger(num) ? String(num) : num.toFixed(1).replace('.', ',');
+      };
+
+      const renderReviewCards = () => {
+        if (!reviewsList.length) return '';
+        const visible = [];
+        const total = Math.min(3, reviewsList.length);
+        for (let i = 0; i < total; i += 1) {
+          visible.push(reviewsList[(startIdx + i) % reviewsList.length]);
+        }
+
+        return visible.map(rev => {
+          const initial = String(rev.name || 'K').trim().charAt(0).toUpperCase();
+          const scoreBadge = rev.score
+            ? `<span class="review-item-score">${esc(formatScore(rev.score))}</span>`
+            : '';
+
+          return `
+            <article class="review-card">
+              <div class="review-user">
+                <div class="review-user-left">
+                  <span class="review-avatar" aria-hidden="true">${esc(initial)}</span>
+                  <div class="review-user-meta">
+                    <strong>${esc(rev.name)}</strong>
+                  </div>
+                </div>
+                ${scoreBadge}
+              </div>
+              <p class="review-quote">“${esc(rev.comment)}”</p>
+            </article>
+          `;
+        }).join('');
+      };
+
+      const updateReviewsUI = () => {
+        const totalCount = baseCount + userReviews.length;
+        reviewsSection.innerHTML = `
+          <h2 class="reviews-section-title">Đánh giá của du khách</h2>
+          <div class="reviews-summary-bar">
+            <span class="reviews-score-badge">${esc(baseScoreText)}</span>
+            <span class="reviews-summary-text">
+              ${esc(ratingLabel)} · <span class="reviews-summary-count">${esc(totalCount)} đánh giá</span>
+            </span>
+            <button class="reviews-read-all" type="button">Đọc tất cả đánh giá</button>
+          </div>
+          <div class="reviews-carousel-wrap">
+            <div class="reviews-grid" id="reviews-grid-list">
+              ${renderReviewCards()}
+            </div>
+            <button
+              class="reviews-next-btn"
+              id="reviews-next-btn"
+              type="button"
+              aria-label="Xem đánh giá tiếp theo"
+            >
+              ›
+            </button>
+          </div>
+          <div class="reviews-bottom-actions">
+            <button
+              class="review-write-btn"
+              id="open-review-modal"
+              type="button"
+            >
+              Đánh giá của bạn
+            </button>
+          </div>
+        `;
+
+        const nextReviewBtn = reviewsSection.querySelector('#reviews-next-btn');
+        const readAllBtn = reviewsSection.querySelector('.reviews-read-all');
+        const gridListEl = reviewsSection.querySelector('#reviews-grid-list');
+        const openModalBtn = reviewsSection.querySelector('#open-review-modal');
+
+        const cycleReviews = () => {
+          if (!gridListEl || !reviewsList.length) return;
+          startIdx = (startIdx + 1) % reviewsList.length;
+          gridListEl.innerHTML = renderReviewCards();
+        };
+
+        if (nextReviewBtn) nextReviewBtn.addEventListener('click', cycleReviews);
+        if (readAllBtn) readAllBtn.addEventListener('click', cycleReviews);
+        if (openModalBtn) openModalBtn.addEventListener('click', openReviewModal);
+      };
+
+      // Xử lý đóng/mở và gửi form trong Pop-up "Đánh giá của bạn" (#review-modal)
+      const reviewModal = document.getElementById('review-modal');
+      const reviewForm = document.getElementById('review-form');
+      const reviewExpName = document.getElementById('review-experience-name');
+
+      if (reviewExpName) {
+        reviewExpName.textContent = experience.title;
+      }
+
+      function openReviewModal() {
+        if (!reviewModal) return;
+        reviewModal.hidden = false;
+        document.body.classList.add('modal-open');
+        requestAnimationFrame(() => {
+          reviewForm?.querySelector('input[name="reviewerName"]')?.focus();
+        });
+      }
+
+      function closeReviewModal() {
+        if (!reviewModal) return;
+        reviewModal.hidden = true;
+        document.body.classList.remove('modal-open');
+      }
+
+      if (reviewModal && !reviewModal.dataset.bound) {
+        reviewModal.dataset.bound = '1';
+
+        reviewModal.querySelectorAll('[data-review-close]').forEach(btn => {
+          btn.addEventListener('click', closeReviewModal);
+        });
+
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && !reviewModal.hidden) {
+            closeReviewModal();
+          }
+        });
+
+        reviewForm?.addEventListener('submit', event => {
+          event.preventDefault();
+          if (!reviewForm.checkValidity()) {
+            reviewForm.reportValidity();
+            return;
+          }
+
+          const formData = new FormData(reviewForm);
+          const name = String(formData.get('reviewerName') || '').trim();
+          const scoreRaw = String(formData.get('reviewerScore') || '10').trim();
+          const comment = String(formData.get('reviewerComment') || '').trim();
+
+          if (!name || !comment) return;
+
+          const newReview = {
+            name,
+            score: scoreRaw,
+            comment
+          };
+
+          userReviews.unshift(newReview);
+          saveUserReviews(userReviews);
+          reviewsList = [...userReviews, ...defaultReviews];
+          startIdx = 0;
+
+          reviewForm.reset();
+          closeReviewModal();
+          updateReviewsUI();
+        });
+      }
+
+      updateReviewsUI();
+    }
+
+    // 4. TẦNG 4: ĐỊA ĐIỂM XUNG QUANH LÀNG NGHỀ
+    if (nearbySection) {
+      const nearbyData = experience.nearby || (baseExp && baseExp.nearby) || {
+        around: [],
+        dining: [],
+        topAttractions: [],
+        scenic: [],
+        transport: []
+      };
+
+      const renderPlaceItems = items =>
+        (items || []).map(([placeName, dist]) => `
+          <li>
+            <span class="nearby-place-name">${esc(placeName)}</span>
+            <span class="nearby-place-dist">${esc(dist)}</span>
+          </li>
+        `).join('');
+
+      nearbySection.innerHTML = `
+        <h2 class="nearby-main-title">Địa điểm xung quanh làng nghề</h2>
+
+        <div class="nearby-columns">
+
+          <div class="nearby-col">
+            <div class="nearby-group">
+              <h3 class="nearby-group-title">
+                <span class="nearby-icon" aria-hidden="true">🚶</span>
+                Xung quanh có gì?
+              </h3>
+              <ul class="nearby-list">
+                ${renderPlaceItems(nearbyData.around)}
+              </ul>
+            </div>
+          </div>
+
+          <div class="nearby-col">
+            <div class="nearby-group">
+              <h3 class="nearby-group-title">
+                <span class="nearby-icon" aria-hidden="true">🍴</span>
+                Nhà hàng &amp; quán cà phê
+              </h3>
+              <ul class="nearby-list">
+                ${renderPlaceItems(nearbyData.dining)}
+              </ul>
+            </div>
+
+            <div class="nearby-group">
+              <h3 class="nearby-group-title">
+                <span class="nearby-icon" aria-hidden="true">🏛️</span>
+                Địa điểm tham quan hàng đầu
+              </h3>
+              <ul class="nearby-list">
+                ${renderPlaceItems(nearbyData.topAttractions)}
+              </ul>
+            </div>
+          </div>
+
+          <div class="nearby-col">
+            <div class="nearby-group">
+              <h3 class="nearby-group-title">
+                <span class="nearby-icon" aria-hidden="true">🌿</span>
+                Không gian cảnh quan trong khu vực
+              </h3>
+              <ul class="nearby-list">
+                ${renderPlaceItems(nearbyData.scenic)}
+              </ul>
+            </div>
+
+            <div class="nearby-group">
+              <h3 class="nearby-group-title">
+                <span class="nearby-icon" aria-hidden="true">🚌</span>
+                Phương tiện công cộng &amp; di chuyển
+              </h3>
+              <ul class="nearby-list">
+                ${renderPlaceItems(nearbyData.transport)}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      `;
     }
 
     installImageFallback(document.querySelector('main'));

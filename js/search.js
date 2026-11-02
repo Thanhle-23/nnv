@@ -1,7 +1,20 @@
 (() => {
   'use strict';
 
-  // Dữ liệu đầy đủ đồng bộ với content-data.js
+  // Tự động kiểm tra trang hiện tại đang nằm ở thư mục gốc (index.html) hay trong thư mục /html/
+  function isRootPage(form) {
+    const action = form ? (form.getAttribute('action') || '') : '';
+    if (action.includes('html/')) return true;
+    const path = window.location.pathname.replace(/\\/g, '/');
+    return !path.includes('/html/');
+  }
+
+  function resolvePageUrl(pageUrl, form) {
+    if (!pageUrl || /^(https?:|\/|\.\.?\/)/i.test(pageUrl)) return pageUrl;
+    return isRootPage(form) ? `./html/${pageUrl}` : pageUrl;
+  }
+
+  // Dữ liệu đầy đủ đồng bộ với content-data.js (dùng khi trang không nhúng content-data.js như index.html)
   const fallbackSearchData = [
 
     // =========================
@@ -12,7 +25,7 @@
       title: 'Phan Thị Thuận – Nghệ nhân dệt lụa',
       description: 'Gìn giữ nghề dệt Phùng Xá và phát triển sản phẩm lụa từ tơ sen.',
       url: 'chi-tiet-nghe-nhan.html?id=1',
-      image: '../images/artisans/phan-thi-thuan/portrait.webp',
+      image: '../images/thuan.jpg',
       keywords: 'phan thị thuận phan thi thuan dệt lụa tơ sen phùng xá mỹ đức hà nội nghệ nhân'
     },
     {
@@ -20,7 +33,7 @@
       title: 'Nguyễn Tấn Phát – Nghệ nhân sơn mài',
       description: 'Thực hành và giới thiệu nghệ thuật sơn mài tại làng cổ Đường Lâm.',
       url: 'chi-tiet-nghe-nhan.html?id=2',
-      image: '../images/artisans/nguyen-tan-phat/portrait.webp',
+      image: '../images/phat.jpg',
       keywords: 'nguyễn tấn phát nguyen tan phat sơn mài đường lâm sơn tây hà nội nghệ nhân'
     },
     {
@@ -28,7 +41,7 @@
       title: 'Nguyễn Thị Oanh – Nghệ nhân tranh Đông Hồ',
       description: 'Gìn giữ kỹ thuật làm tranh dân gian Đông Hồ và các giá trị văn hóa Kinh Bắc.',
       url: 'chi-tiet-nghe-nhan.html?id=3',
-      image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
+      image: '../images/oanh.jpg',
       keywords: 'nguyễn thị oanh nguyen thi oanh tranh đông hồ thuận thành bắc ninh nghệ nhân tranh dân gian'
     },
     {
@@ -36,7 +49,7 @@
       title: 'Huỳnh Sướng – Nghệ nhân mộc Kim Bồng',
       description: 'Gắn bó với nghề mộc và chạm khắc gỗ truyền thống tại làng Kim Bồng.',
       url: 'chi-tiet-nghe-nhan.html?id=4',
-      image: '../images/artisans/huynh-suong/portrait.webp',
+      image: '../images/huynhsuong.jpg',
       keywords: 'huỳnh sướng huynh suong mộc kim bồng chạm khắc gỗ hội an đà nẵng quảng nam nghệ nhân'
     },
     {
@@ -44,7 +57,7 @@
       title: 'Nguyễn Hóa – Nghệ nhân hoa giấy Thanh Tiên',
       description: 'Gìn giữ nghề làm hoa giấy truyền thống gắn với đời sống văn hóa Huế.',
       url: 'chi-tiet-nghe-nhan.html?id=5',
-      image: '../images/artisans/nguyen-hoa/portrait.webp',
+      image: '../images/nguyenhoa.jpg',
       keywords: 'nguyễn hóa nguyen hoa hoa giấy thanh tiên phú vinh huế nghệ nhân nghề truyền thống'
     },
     {
@@ -79,14 +92,6 @@
       image: '../images/artisans/trieu-thi-vui/portrait.webp',
       keywords: 'triệu thị vui trieu thi vui tranh kiếng khmer tranh kính thuận hòa phước thuận cần thơ sóc trăng nghệ nhân'
     },
-    {
-      type: 'Nghệ nhân',
-      title: 'Trương Thị Bạch Thủy – Nghệ nhân mây tre đan',
-      description: 'Gìn giữ và phát triển nghề đan đát Khmer từ tre, trúc và vật liệu tự nhiên.',
-      url: 'chi-tiet-nghe-nhan.html?id=10',
-      image: '../images/artisans/truong-thi-bach-thuy/portrait.webp',
-      keywords: 'trương thị bạch thủy truong thi bach thuy mây tre đan đan lát khmer thuận hòa cần thơ sóc trăng nghệ nhân'
-    },
 
     // =========================
     // 10 SẢN PHẨM
@@ -96,7 +101,7 @@
       title: 'Khăn dệt từ tơ sen',
       description: 'Sản phẩm dệt thủ công từ những sợi tơ rút trực tiếp từ cuống sen tại Phùng Xá, Hà Nội.',
       url: 'chi-tiet-san-pham.html?id=1',
-      image: '../images/products/khan-to-sen/cover.webp',
+      image: '../images/tosen.jpg',
       keywords: 'khăn dệt từ tơ sen khăn tơ sen dệt lụa phùng xá hà nội phan thị thuận sản phẩm'
     },
     {
@@ -104,7 +109,7 @@
       title: 'Tượng trâu sơn mài',
       description: 'Tác phẩm sơn mài trên gỗ mít và đá ong của Nghệ nhân Ưu tú Nguyễn Tấn Phát tại Đường Lâm.',
       url: 'chi-tiet-san-pham.html?id=2',
-      image: '../images/products/tuong-trau-son-mai/cover.webp',
+      image: '../images/trau.jpg',
       keywords: 'tượng trâu sơn mài gỗ mít đá ong đường lâm hà nội nguyễn tấn phát sản phẩm'
     },
     {
@@ -125,11 +130,11 @@
     },
     {
       type: 'Sản phẩm',
-      title: 'Hoa sen giấy Thanh Tiên',
+      title: 'Hoa giấy Thanh Tiên',
       description: 'Sản phẩm hoa sen giấy thủ công truyền thống của gia đình nghệ nhân Nguyễn Hóa tại Huế.',
       url: 'chi-tiet-san-pham.html?id=5',
       image: '../images/products/hoa-sen-giay-thanh-tien/cover.webp',
-      keywords: 'hoa sen giấy thanh tiên hoa giấy huế nguyễn hóa sản phẩm'
+      keywords: 'hoa giấy thanh tiên hoa sen giấy thanh tiên huế nguyễn hóa sản phẩm'
     },
     {
       type: 'Sản phẩm',
@@ -163,24 +168,16 @@
       image: '../images/products/tranh-kieng-khmer/cover.webp',
       keywords: 'tranh kiếng khmer vẽ ngược trên kính phật giáo nam tông cần thơ triệu thị vui sản phẩm'
     },
-    {
-      type: 'Sản phẩm',
-      title: 'Bộ dụng cụ bắt cá truyền thống',
-      description: 'Nhóm sản phẩm đan đát truyền thống đạt OCOP của Hợp tác xã Mây tre đan Thủy Tuyết.',
-      url: 'chi-tiet-san-pham.html?id=10',
-      image: '../images/products/bo-dung-cu-bat-ca/cover.webp',
-      keywords: 'bộ dụng cụ bắt cá truyền thống mây tre đan khmer cần thơ trương thị bạch thủy sản phẩm'
-    },
 
     // =========================
-    // 4 CÂU CHUYỆN VĂN HÓA
+    // 10 CÂU CHUYỆN VĂN HÓA
     // =========================
     {
       type: 'Câu chuyện',
       title: 'Từ cuống sen đến sợi tơ Phùng Xá',
       description: 'Câu chuyện về nghệ nhân Phan Thị Thuận, nghề dệt Phùng Xá và hành trình tạo nên lụa từ tơ sen.',
       url: 'chi-tiet-cau-chuyen.html?id=1',
-      image: '../images/artisans/phan-thi-thuan/portrait.webp',
+      image: '../images/thuan.jpg',
       keywords: 'từ cuống sen đến sợi tơ phùng xá dệt lụa hà nội phan thị thuận câu chuyện văn hóa'
     },
     {
@@ -188,7 +185,7 @@
       title: 'Sơn mài chậm giữa nhịp sống nhanh',
       description: 'Câu chuyện về nghệ nhân Nguyễn Tấn Phát và cách sơn mài truyền thống đến gần hơn với người trẻ.',
       url: 'chi-tiet-cau-chuyen.html?id=2',
-      image: '../images/artisans/nguyen-tan-phat/portrait.webp',
+      image: '../images/phat.jpg',
       keywords: 'sơn mài chậm giữa nhịp sống nhanh nguyễn tấn phát đường lâm hà nội câu chuyện văn hóa'
     },
     {
@@ -196,7 +193,7 @@
       title: 'Giữ sắc màu tranh Đông Hồ qua nhiều thế hệ',
       description: 'Câu chuyện về nghề làm tranh dân gian Đông Hồ, kỹ thuật in ván khắc gỗ và người giữ nghề.',
       url: 'chi-tiet-cau-chuyen.html?id=3',
-      image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
+      image: '../images/oanh.jpg',
       keywords: 'giữ sắc màu tranh đông hồ qua nhiều thế hệ bắc ninh nguyễn thị oanh câu chuyện văn hóa'
     },
     {
@@ -204,10 +201,50 @@
       title: 'Giữ hồn mộc Kim Bồng bên dòng Thu Bồn',
       description: 'Câu chuyện về Nghệ nhân Ưu tú Huỳnh Sướng và hành trình nối dài nghề mộc Kim Bồng.',
       url: 'chi-tiet-cau-chuyen.html?id=4',
-      image: '../images/artisans/huynh-suong/portrait.webp',
+      image: '../images/huynhsuong.jpg',
       keywords: 'giữ hồn mộc kim bồng bên dòng thu bồn huỳnh sướng hội an đà nẵng câu chuyện văn hóa'
     },
-
+    {
+      type: 'Câu chuyện',
+      title: 'Sắc hoa giấy Thanh Tiên bên dòng Hương Giang',
+      description: 'Hành trình phục hồi hoa sen giấy và gìn giữ nét tín ngưỡng dân gian xứ Huế của nghệ nhân Nguyễn Hóa.',
+      url: 'chi-tiet-cau-chuyen.html?id=5',
+      image: '../images/nguyenhoa.jpg',
+      keywords: 'sắc hoa giấy thanh tiên bên dòng hương giang nguyễn hóa huế câu chuyện văn hóa'
+    },
+    {
+      type: 'Câu chuyện',
+      title: 'Giữ lửa nghề chạm bạc Chăm nơi làng cổ',
+      description: 'Câu chuyện về Nghệ nhân Đàng Thị Mỹ Trâm và nỗ lực bảo tồn kỹ thuật chạm khắc bạc truyền thống.',
+      url: 'chi-tiet-cau-chuyen.html?id=6',
+      image: '../images/artisans/dang-thi-my-tram/portrait.webp',
+      keywords: 'giữ lửa nghề chạm bạc chăm nơi làng cổ đàng thị mỹ trâm khánh hòa câu chuyện văn hóa'
+    },
+    {
+      type: 'Câu chuyện',
+      title: 'Nhịp khung cửi thổ cẩm Chăm bên dòng Hậu Giang',
+      description: 'Nghệ nhân Mohamad và hành trình gắn kết nghề dệt thổ cẩm Châu Phong với du lịch cộng đồng.',
+      url: 'chi-tiet-cau-chuyen.html?id=7',
+      image: '../images/artisans/mohamad/portrait.webp',
+      keywords: 'nhịp khung cửi thổ cẩm chăm bên dòng hậu giang mohamad châu phong an giang câu chuyện văn hóa'
+    },
+    {
+      type: 'Câu chuyện',
+      title: 'Người thổi hồn vào mặt nạ và mão cổ Khmer',
+      description: 'Hơn bốn mươi năm gắn bó với nghệ thuật chế tác mặt nạ sân khấu Dù kê, Rô băm của nghệ nhân Lâm Phên.',
+      url: 'chi-tiet-cau-chuyen.html?id=8',
+      image: '../images/artisans/lam-phen/portrait.webp',
+      keywords: 'người thổi hồn vào mặt nạ và mão cổ khmer lâm phên vĩnh long trà vinh câu chuyện văn hóa'
+    },
+    {
+      type: 'Câu chuyện',
+      title: 'Lấp lánh nét vẽ ngược trên tranh kiếng Khmer',
+      description: 'Nghệ nhân Triệu Thị Vui và tâm huyết giữ lại dòng tranh kiếng vẽ ngược độc đáo của đồng bào Khmer Nam Bộ.',
+      url: 'chi-tiet-cau-chuyen.html?id=9',
+      image: '../images/artisans/trieu-thi-vui/portrait.webp',
+      keywords: 'lấp lánh nét vẽ ngược trên tranh kiếng khmer triệu thị vui cần thơ sóc trăng câu chuyện văn hóa'
+    },
+    
     // =========================
     // 10 TRẢI NGHIỆM
     // =========================
@@ -216,7 +253,7 @@
       title: 'Trải nghiệm dệt lụa và làm sợi tơ sen ở Phùng Xá',
       description: 'Tìm hiểu quy trình dệt lụa Phùng Xá, thử thao tác dệt tơ tằm và làm sợi tơ sen.',
       url: 'chi-tiet-trai-nghiem.html?id=1',
-      image: '../images/artisans/phan-thi-thuan/portrait.webp',
+      image: '../images/tosen1.jpg',
       keywords: 'trải nghiệm dệt lụa tơ sen phùng xá mỹ đức hà nội phan thị thuận'
     },
     {
@@ -282,14 +319,6 @@
       url: 'chi-tiet-trai-nghiem.html?id=9',
       image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
       keywords: 'khám phá màu tự nhiên tranh dân gian đông hồ bắc ninh nguyễn thị oanh trải nghiệm'
-    },
-    {
-      type: 'Trải nghiệm',
-      title: 'Từ ván khắc đến bức tranh Đông Hồ hoàn chỉnh',
-      description: 'Theo dõi hành trình hình thành bức tranh Đông Hồ từ bản khắc, giấy điệp đến bản in hoàn chỉnh.',
-      url: 'chi-tiet-trai-nghiem.html?id=10',
-      image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
-      keywords: 'từ ván khắc đến bức tranh đông hồ hoàn chỉnh bắc ninh nguyễn thị oanh trải nghiệm'
     }
   ];
 
@@ -368,13 +397,14 @@
 
   function installSearchImageFallback(scope) {
     if (!scope) return;
+    const fallbackSrc = isRootPage() ? './images/minh-hoa-chung.svg' : '../images/minh-hoa-chung.svg';
     scope.querySelectorAll('img').forEach(img => {
       if (img.dataset.fallbackReady) return;
       img.dataset.fallbackReady = '1';
       img.addEventListener('error', () => {
         if (img.dataset.fallbackUsed) return;
         img.dataset.fallbackUsed = '1';
-        img.src = '../images/minh-hoa-chung.svg';
+        img.src = fallbackSrc;
       });
     });
   }
@@ -481,18 +511,21 @@
           && (!query || normalizeText(`${item.title} ${item.description} ${item.keywords}`).includes(query));
       });
 
-      results.innerHTML = matches.map(item => `
+      results.innerHTML = matches.map(item => {
+        const targetUrl = resolvePageUrl(item.url, form);
+        return `
         <article class="content-card search-result-card reveal is-visible">
-          <a class="content-card-image" href="${item.url}">
+          <a class="content-card-image" href="${targetUrl}">
             <img src="${item.image}" alt="" loading="lazy">
           </a>
           <div class="content-card-body">
             <span class="search-result-type">${item.type}</span>
-            <h2><a href="${item.url}">${item.title}</a></h2>
+            <h2><a href="${targetUrl}">${item.title}</a></h2>
             <p>${item.description}</p>
-            <a class="card-link" href="${item.url}">Xem chi tiết <span>↗</span></a>
+            <a class="card-link" href="${targetUrl}">Xem chi tiết <span>↗</span></a>
           </div>
-        </article>`).join('');
+        </article>`;
+      }).join('');
 
       installSearchImageFallback(results);
 
@@ -597,7 +630,7 @@
         } else {
           matches.forEach((item, index) => {
             const link = element('a', 'search-suggest-item');
-            link.href = item.url;
+            link.href = resolvePageUrl(item.url, form);
             link.id = `${panel.id}-result-${index}`;
             link.setAttribute('role', 'option');
             link.setAttribute('aria-selected', 'false');
@@ -620,7 +653,7 @@
         }
 
         const all = element('a', 'search-suggest-footer', 'Xem tất cả kết quả →');
-        all.href = `tim-kiem.html?q=${encodeURIComponent(input.value.trim())}`;
+        all.href = resolvePageUrl(`tim-kiem.html?q=${encodeURIComponent(input.value.trim())}`, form);
         panel.appendChild(all);
         panel.hidden = false;
         input.setAttribute('aria-expanded', 'true');

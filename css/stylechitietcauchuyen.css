@@ -1,15 +1,11 @@
 body {
     opacity: 1;
-    transform: translateY(0);
-    transition:
-        opacity 0.22s ease,
-        transform 0.22s ease;
+    transition: opacity 0.22s ease;
 }
 
 /* Khi chuẩn bị chuyển sang trang khác */
 body.page-leaving {
     opacity: 0;
-    transform: translateY(8px);
 }
 
 /* Hiệu ứng khi trang mới vừa mở */
@@ -18,15 +14,8 @@ body.page-entering {
 }
 
 @keyframes pageEnter {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Tôn trọng người dùng không muốn animation */
@@ -35,7 +24,6 @@ body.page-entering {
     body.page-entering {
         transition: none;
         animation: none;
-        transform: none;
     }
 }
 
@@ -46,23 +34,14 @@ body.page-entering {
 html { scroll-behavior: smooth; }
 
 body {
-
     margin: 0;
-
     min-width: 320px;
-
     background: #faf7f1;
-
     color: #2d2824;
-
     font-family: "DM Sans", Arial, sans-serif;
-
     font-size: 15px;
-
     line-height: 1.65;
-
     -webkit-font-smoothing: antialiased;
-
 }
 
 a { color: inherit; text-decoration: none; }
@@ -78,47 +57,27 @@ button { cursor: pointer; }
 .container { width: min(1320px, calc(100% - 56px)); margin-inline: auto; }
 
 .visually-hidden {
-
     position: absolute;
-
     width: 1px;
-
     height: 1px;
-
     margin: -1px;
-
     padding: 0;
-
     overflow: hidden;
-
     clip: rect(0, 0, 0, 0);
-
     white-space: nowrap;
-
     border: 0;
-
 }
 
 .skip-link {
-
     position: fixed;
-
     z-index: 1000;
-
     top: 8px;
-
     left: 12px;
-
     padding: 10px 15px;
-
     background: #ffffff;
-
     color: #573e32;
-
     border-radius: 10px;
-
     transform: translateY(-160%);
-
 }
 
 .skip-link:focus { transform: translateY(0); }
@@ -128,6 +87,7 @@ button { cursor: pointer; }
     position: relative;
     z-index: 50;
     background: #faf7f1;
+    border-bottom: 1px solid #eadfce;
 }
 .header-inner {
     width: min(1800px, calc(100% - 64px));
@@ -384,461 +344,257 @@ button { cursor: pointer; }
 .search-suggest-footer:hover { color: #6d171c; text-decoration: underline; }
 .menu-toggle { display: none; }
 
-/* 3. BANNER GIỚI THIỆU ----------------------------------- */
-
-.page-hero { padding: 76px 0 79px; background: #f2eadd; border-bottom: 1px solid #e7ddcf; }
-
-.eyebrow {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    margin: 0 0 24px;
-
-    color: #986b43;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.4px;
-
-    text-transform: uppercase;
-
-}
-
-.eyebrow > span:first-child { display: inline-block; flex: 0 0 34px; height: 1px; background: #c99b5b; }
-
-.page-hero h1 {
-
-    max-width: 960px;
-
-    margin: 0 0 16px;
-
-    color: #573e32;
-
-    font: 600 clamp(40px, 4.1vw, 64px)/1.2 "Playfair Display", "Noto Serif", Georgia, serif;
-
-    letter-spacing: -0.5px;
-
-}
-
-.page-hero p:not(.eyebrow) { max-width: 760px; margin: 0; color: #706760; font-size: 16px; line-height: 1.85; }
-
-/* 4. BREADCRUMB ------------------------------------------- */
+/* 3. BREADCRUMB ------------------------------------------- */
 
 .breadcrumb {
-
     display: flex;
-
     align-items: center;
-
     flex-wrap: wrap;
-
     gap: 12px;
-
-    padding-top: 19px;
-
-    padding-bottom: 19px;
-
+    padding-top: 18px;
+    padding-bottom: 10px;
     color: #706760;
-
     font-size: 12px;
-
 }
 
 .breadcrumb a:hover { color: #a12228; }
 
 .breadcrumb [aria-current="page"] { color: #a12228; font-weight: 600; }
 
-/* 5. BÀI VIẾT CHI TIẾT --------------------------------------- */
+/* 4. BỐ CỤC 2 CỘT: CỘT 1 (BÀI VIẾT) & CỘT 2 (ĐỌC THÊM) ---- */
 
-/* Tiêu đề, ảnh bìa, thân bài dùng chung cùng một trục và chiều rộng. */
-
-.section-pad { padding: 34px 0 100px; }
-
-.story-article.container {
-
-    width: min(920px, calc(100% - 56px));
-
-    margin-inline: auto;
-
+.section-pad {
+    padding: 16px 0 90px;
 }
 
-.article-header,
-
-.article-cover-wrap,
-
-.article-body {
-
-    width: 100%;
-
-    max-width: none;
-
-    margin-inline: 0;
-
+.story-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.85fr) minmax(320px, 1fr);
+    align-items: start;
+    gap: 36px;
 }
 
+.story-article {
+    min-width: 0;
+}
+
+/* --- PHẦN TIÊU ĐỀ BÀI VIẾT --- */
 .article-header {
-
-    padding-bottom: 29px;
-
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #e5d8c7;
 }
 
 .card-kicker {
-
-    margin: 0 0 15px;
-
-    color: #986b43;
-
+    margin: 0 0 10px;
+    color: #a12228;
     font-size: 11px;
-
     font-weight: 700;
-
-    letter-spacing: 1.25px;
-
-    line-height: 1.6;
-
+    letter-spacing: 1.1px;
     text-transform: uppercase;
-
 }
 
 .article-title {
+    margin: 0 0 14px;
+    color: #231c18;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(28px, 2.7vw, 38px);
+    font-weight: 700;
+    line-height: 1.26;
+}
 
-    margin: 0 0 16px;
-
-    color: #382921;
-
-    font-family: "Playfair Display", "Noto Serif", Georgia, serif;
-
-    font-size: clamp(34px, 3.3vw, 49px);
-
+.article-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #6b5e54;
+    font-size: 13px;
     font-weight: 600;
+}
 
-    line-height: 1.3;
+.article-meta-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a12228;
+}
 
-    letter-spacing: 0;
+/* --- CÁC KHỐI NỘI DUNG 1, 2, 3 VÀ HÌNH ẢNH 1, 2 --- */
+.article-body {
+    color: #3d352e;
+    font-size: 16px;
+    line-height: 1.88;
+}
 
-    text-wrap: pretty;
+.story-content-block {
+    margin-bottom: 26px;
+}
 
+.story-content-block h3 {
+    margin: 0 0 12px;
+    color: #382921;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(22px, 1.9vw, 26px);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.story-content-block p {
+    margin: 0 0 16px;
+}
+
+.story-content-block p:last-child {
+    margin-bottom: 0;
 }
 
 .article-lead {
-
-    margin: 0;
-
-    color: #8a6753;
-
-    font-family: "Playfair Display", "Noto Serif", Georgia, serif;
-
-    font-size: clamp(18px, 1.7vw, 22px);
-
-    font-style: italic;
-
-    line-height: 1.75;
-
+    margin: 0 0 16px !important;
+    color: #231c18;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.78;
 }
 
-.article-figure { margin: 0; }
+/* Khung Hình ảnh 1 & Hình ảnh 2 */
+.article-figure {
+    margin: 26px 0 30px;
+}
 
-.article-cover-wrap { margin-bottom: 34px; }
-
-.article-cover {
-
+.article-figure img {
     display: block;
-
     width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    border-radius: 10px;
-
+    aspect-ratio: 16 / 9.5;
+    max-height: 460px;
+    border-radius: 8px;
+    border: 1px solid #dfd2c2;
     object-fit: cover;
-
+    object-position: center;
     background: #d9cbb9;
-
 }
 
 .article-figure figcaption {
-
-    margin-top: 11px;
-
-    color: #8f8074;
-
-    font-size: 12px;
-
+    margin-top: 9px;
+    color: #82756a;
+    font-size: 12.5px;
     font-style: italic;
-
-    line-height: 1.6;
-
-    text-align: right;
-
-}
-
-.article-body {
-
-    color: #574e47;
-
-    font-size: 16px;
-
-    line-height: 1.95;
-
-}
-
-.article-body p {
-
-    width: 100%;
-
-    max-width: none;
-
-    margin: 0 0 22px;
-
-}
-
-.article-opening {
-
-    margin-bottom: 31px !important;
-
-    padding: 0 0 0 19px;
-
-    border-left: 3px solid #c99b5b;
-
-    color: #514139;
-
-    font-size: 17px;
-
-    line-height: 1.95;
-
-}
-
-.story-section {
-
-    padding-top: 25px;
-
-    margin: 24px 0 0;
-
-    border-top: 1px solid #e6d9c8;
-
-}
-
-.story-section h3,
-
-.story-related h3 {
-
-    margin: 0 0 13px;
-
-    color: #573e32;
-
-    font-family: "Playfair Display", "Noto Serif", Georgia, serif;
-
-    font-size: clamp(25px, 2.2vw, 31px);
-
-    font-weight: 600;
-
-    line-height: 1.4;
-
-    letter-spacing: 0;
-
-}
-
-.story-inline-figure {
-
-    width: 100%;
-
-    margin: 24px 0 31px;
-
-}
-
-.story-inline-figure img {
-
-    display: block;
-
-    width: 100%;
-
-    aspect-ratio: 16 / 8.7;
-
-    border-radius: 10px;
-
-    object-fit: cover;
-
-    object-position: center;
-
-    background: #d9cbb9;
-
+    line-height: 1.5;
+    text-align: center;
 }
 
 .pull-quote {
-
     position: relative;
-
     width: 100%;
-
-    margin: 32px 0 34px;
-
-    padding: 30px 34px;
-
+    margin: 26px 0 30px;
+    padding: 24px 28px;
     border-left: 4px solid #c99b5b;
-
     border-radius: 0 10px 10px 0;
-
     background: #f3ecde;
-
     color: #704a39;
-
-    font-family: "Playfair Display", "Noto Serif", Georgia, serif;
-
-    font-size: clamp(20px, 2.1vw, 27px);
-
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(19px, 1.8vw, 24px);
     font-style: italic;
-
-    line-height: 1.7;
-
+    line-height: 1.65;
 }
 
+/* Khung nghệ nhân liên quan */
 .story-related {
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 22px;
-
-    margin-top: 37px;
-
-    padding: 29px 31px;
-
+    margin-top: 32px;
+    padding: 24px 26px;
     border: 1px solid #e3d5c5;
-
     border-radius: 10px;
-
     background: #f3ecde;
-
 }
 
 .related-label {
-
-    margin: 0 0 6px !important;
-
+    margin: 0 0 5px !important;
     color: #a07046;
-
     font-size: 11px;
-
     font-weight: 700;
-
     letter-spacing: 1.1px;
-
     text-transform: uppercase;
-
 }
 
 .story-related h3 {
-
-    margin-bottom: 7px;
-
-    font-size: 24px;
-
+    margin: 0 0 6px;
+    color: #382921;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 22px;
 }
 
 .story-related p:not(.related-label) {
-
     margin: 0;
-
-    color: #706760;
-
+    color: #6b6159;
     font-size: 14px;
-
-    line-height: 1.75;
-
+    line-height: 1.65;
 }
 
 .story-related strong { color: #573e32; }
 
 .card-link {
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
-    gap: 10px;
-
+    gap: 8px;
     flex: 0 0 auto;
-
     min-height: 42px;
-
-    padding: 10px 14px;
-
+    padding: 10px 16px;
     border-radius: 10px;
-
     background: #573e32;
-
     color: #ffffff;
-
     font-size: 13px;
-
     font-weight: 600;
-
     line-height: 1.4;
-
     transition: background .2s ease;
-
 }
 
-.card-link span { color: #ddb97e; font-size: 17px; }
+.card-link span { color: #ddb97e; font-size: 16px; }
 
 .card-link:hover { background: #382921; }
 
-.back-link {
-
-    margin-top: 33px !important;
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-}
-
-.back-link a { color: #a12228; }
-
-.back-link a:hover { text-decoration: underline; }
-
-/* NGUỒN THAM KHẢO ----------------------------------------- */
+/* Nguồn tham khảo */
 .story-sources {
-    margin-top: 38px;
-    padding-top: 29px;
+    margin-top: 32px;
+    padding-top: 24px;
     border-top: 1px solid #e6d9c8;
 }
+
 .story-sources h3 {
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     color: #573e32;
-    font: 600 25px/1.4 "Playfair Display", Georgia, serif;
+    font: 600 22px/1.4 "Playfair Display", Georgia, serif;
 }
+
 .story-source-list {
     display: grid;
-    gap: 11px;
+    gap: 10px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
+
 .story-source-list li {
-    padding: 13px 15px;
+    padding: 12px 15px;
     border: 1px solid #e3d5c5;
-    border-radius: 10px;
+    border-radius: 8px;
     background: #fffaf3;
 }
+
 .story-source-list a {
     color: #573e32;
     font-size: 13px;
     font-weight: 700;
-    line-height: 1.55;
+    line-height: 1.5;
 }
-.story-source-list a:hover { color: #a12228; text-decoration: underline; }
+
+.story-source-list a:hover {
+    color: #a12228;
+    text-decoration: underline;
+}
+
 .story-source-publisher {
     display: block;
     margin-top: 3px;
@@ -846,11 +602,162 @@ button { cursor: pointer; }
     font-size: 11px;
     font-weight: 500;
 }
-.story-source-note {
-    margin: 13px 0 0 !important;
-    color: #8b8179;
-    font-size: 12px;
-    font-style: italic;
+
+.back-link {
+    margin-top: 28px !important;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.back-link a { color: #a12228; }
+
+.back-link a:hover { text-decoration: underline; }
+
+/* 5. CỘT 2: ĐỌC THÊM (GIỐNG TRANG CÂU CHUYỆN VĂN HÓA) ----- */
+
+.story-col-more {
+    position: sticky;
+    top: 24px;
+    min-width: 0;
+    padding-left: 26px;
+    border-left: 1px solid #e6dacb;
+}
+
+.story-section-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e3d6c5;
+}
+
+.story-col-heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #b51f24;
+    font: 700 18px/1.2 "Playfair Display", Georgia, serif;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.story-more-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-more-item {
+    display: grid;
+    grid-template-columns: 136px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e5d9c9;
+}
+
+.story-more-item:first-child {
+    padding-top: 0;
+}
+
+.story-more-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.story-more-thumb {
+    display: block;
+    width: 136px;
+    height: 88px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #d8cfc3;
+    border: 1px solid #dfd2c2;
+}
+
+.story-more-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .38s ease;
+}
+
+.story-more-item:hover .story-more-thumb img {
+    transform: scale(1.05);
+}
+
+.story-more-body {
+    min-width: 0;
+}
+
+.story-kicker {
+    margin: 0 0 4px;
+    color: #9c6e49;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.story-more-title {
+    margin: 0;
+    color: #231c18;
+    font: 700 15px/1.38 "Playfair Display", Georgia, serif;
+}
+
+.story-more-title a:hover {
+    color: #a12228;
+}
+
+/* NÚT QUAY LẠI GHIM THEO MÀN HÌNH */
+.floating-back {
+    position: fixed;
+    z-index: 70;
+    top: 105px;
+    left: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid #d8ccbc;
+    border-radius: 10px;
+    background: rgba(255, 252, 246, .97);
+    color: #573e32;
+    box-shadow: 0 6px 20px rgba(57, 43, 30, .10);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-10px);
+    transition:
+        opacity .25s ease,
+        visibility .25s ease,
+        transform .25s ease,
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease;
+}
+
+.floating-back.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.floating-back span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.floating-back:hover {
+    border-color: #573e32;
+    background: #573e32;
+    color: #ffffff;
 }
 
 /* 6. FOOTER ----------------------------------------------- */
@@ -882,37 +789,21 @@ button { cursor: pointer; }
 /* 7. LÊN ĐẦU TRANG ---------------------------------------- */
 
 .back-to-top {
-
     position: fixed;
-
     z-index: 45;
-
     right: 24px;
-
     bottom: 24px;
-
     width: 46px;
-
     height: 46px;
-
     border: 1px solid #a12228;
-
     border-radius: 10px;
-
     background: #a12228;
-
     color: #ffffff;
-
     font-size: 24px;
-
     opacity: 0;
-
     pointer-events: none;
-
     transform: translateY(8px);
-
     transition: opacity .25s ease, transform .25s ease;
-
 }
 
 .back-to-top.is-visible, .back-to-top.visible, .back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
@@ -989,6 +880,28 @@ button { cursor: pointer; }
     .footer-main { grid-template-columns: 1.5fr 1fr 1fr; }
     .footer-contact { grid-column: 2 / 4; }
 }
+@media (max-width: 1020px) {
+    .story-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .story-col-more {
+        position: static;
+        padding-left: 0;
+        border-left: 0;
+    }
+
+    .story-more-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 24px;
+    }
+
+    .story-more-item {
+        padding: 0 0 14px;
+    }
+}
 @media (max-width: 760px) {
     .container { width: calc(100% - 36px); }
     .header-inner {
@@ -1008,52 +921,37 @@ button { cursor: pointer; }
     .header-me svg { width: 18px; height: 18px; }
     .header-search input { font-size: 12px; }
     .header-search button { flex-basis: 46px; }
-    .page-hero { padding: 55px 0; }
-    .page-hero h1 { font-size: clamp(33px, 6.6vw, 45px); }
-    .page-hero p:not(.eyebrow) { font-size: 14px; }
-    .story-article.container { width: calc(100% - 36px); }
-    .section-pad { padding-top: 26px; padding-bottom: 72px; }
-    .article-header { padding-bottom: 21px; }
-    .article-cover-wrap { margin-bottom: 24px; }
-    .article-body { font-size: 15px; line-height: 1.9; }
-    .story-related { flex-direction: column; align-items: flex-start; padding: 24px; }
+    .floating-back {
+        top: auto;
+        left: 16px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+    .section-pad { padding-top: 16px; padding-bottom: 68px; }
+    .article-body { font-size: 15px; line-height: 1.85; }
+    .story-related { flex-direction: column; align-items: flex-start; padding: 22px; }
+    .story-more-list { grid-template-columns: 1fr; gap: 0; }
+    .story-more-item { padding: 14px 0; }
     .footer-main { grid-template-columns: repeat(2,minmax(0,1fr)); }
     .footer-brand { grid-column: 1 / -1; }
     .footer-contact { grid-column: auto; }
 }
 @media (max-width: 540px) {
-    .container, .story-article.container { width: calc(100% - 30px); }
+    .container { width: calc(100% - 30px); }
     .brand { gap: 8px; }
     .brand-mark-image { width: 40px; height: 40px; }
     .brand-copy strong { font-size: 16px; }
     .brand-copy small { font-size: 7px; letter-spacing: 1px; }
     .menu-toggle { width: 40px; height: 40px; }
-    .page-hero { padding: 45px 0 50px; }
-    .page-hero h1 { font-size: clamp(31px, 8vw, 39px); letter-spacing: 0; }
-    .eyebrow { font-size: 10px; letter-spacing: .8px; }
     .breadcrumb { font-size: 11px; }
-    .article-title { font-size: 33px; line-height: 1.32; }
-    .article-lead { font-size: 17px; }
-    .article-cover { aspect-ratio: 4 / 3; }
-    .story-inline-figure img { aspect-ratio: 4 / 3; }
-    .article-opening { font-size: 15px; padding-left: 13px; }
-    .story-section h3 { font-size: 25px; }
-    .pull-quote { margin: 26px 0; padding: 22px 19px; font-size: 19px; }
-    .story-related { padding: 21px 19px; }
-    .story-source-list li { padding: 12px 13px; }
+    .article-title { font-size: 26px; line-height: 1.3; }
+    .article-figure img { aspect-ratio: 4 / 3; }
+    .pull-quote { margin: 22px 0; padding: 20px 18px; font-size: 18px; }
+    .story-related { padding: 20px 18px; }
+    .story-more-item { grid-template-columns: 116px minmax(0, 1fr); gap: 12px; }
+    .story-more-thumb { width: 116px; height: 78px; }
     .footer-main { gap: 28px; padding: 55px 0; }
     .footer-contact { grid-column: 1 / -1; }
     .footer-bottom { align-items: flex-start; flex-direction: column; }
-}
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-}
-.pull-quote footer {
-    margin-top: 10px;
-    color: #8c796b;
-    font-family: "DM Sans", Arial, sans-serif;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 600;
 }

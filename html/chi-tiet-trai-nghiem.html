@@ -27,7 +27,7 @@
 <header class="site-header" id="top">
 <div class="container header-inner">
 
-<a class="brand" href="./index.html" aria-label="Nghệ nhân Việt - Trang chủ">
+<a class="brand" href="../index.html" aria-label="Nghệ nhân Việt - Trang chủ">
 <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
 <span class="brand-copy">
 <strong>Nghệ nhân Việt</strong>
@@ -40,12 +40,12 @@
 </button>
 
 <nav class="primary-nav" id="primary-nav" aria-label="Điều hướng chính">
-<a class="nav-link" href="./index.html">Trang chủ</a>
+<a class="nav-link" href="../index.html">Trang chủ</a>
 <a class="nav-link" href="./nghe-nhan.html">Nghệ nhân</a>
 <a class="nav-link" href="./san-pham.html">Sản phẩm &amp; Nghề</a>
 <a class="nav-link" href="./cau-chuyen-van-hoa.html">Câu chuyện</a>
 <a class="nav-link active" href="./trai-nghiem.html" aria-current="page">Trải nghiệm</a>
-<a class="nav-link" href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
+<a class="nav-link" href="./thong-tin-chi-tiet.html">Thông tin chi tiết</a>
 </nav>
 
 <div class="header-search-wrap">
@@ -84,35 +84,22 @@ onclick="if (history.length > 1) { history.back(); } else { window.location.href
 
 <main id="main">
 
-<!-- 1. BREADCRUMB ĐƯỢC ĐƯA LÊN TRƯỚC TIÊU ĐỀ -->
 <nav class="breadcrumb container" aria-label="Đường dẫn trang">
-<a href="./index.html">Trang chủ</a>
+<a href="../index.html">Trang chủ</a>
 <span aria-hidden="true">›</span>
 <a href="./trai-nghiem.html">Trải nghiệm</a>
 <span aria-hidden="true">›</span>
 <span aria-current="page">Chi tiết trải nghiệm</span>
 </nav>
 
-<!-- 2. TIÊU ĐỀ NẰM SAU BREADCRUMB -->
-<section class="page-hero experience-hero">
-<div class="container experience-hero-grid">
-
-<div>
-<p class="eyebrow"><span></span>Du lịch làng nghề · Trải nghiệm cùng nghệ nhân</p>
-<h1>Chi tiết trải nghiệm</h1>
-</div>
-
-<p class="experience-hero-summary">
-Khám phá hoạt động, nghệ nhân đồng hành và không gian làng nghề.
-</p>
-
-</div>
-</section>
-
 <section class="section-pad">
 <div class="container">
 
-<!-- ẢNH LỚN -->
+<!-- =====================================================
+     TẦNG 1: TRÁI = ẢNH LỚN | PHẢI = TIÊU ĐỀ + NỘI DUNG
+===================================================== -->
+<div class="experience-top-row">
+
 <figure class="experience-cover-shell">
 <img
 id="experience-cover"
@@ -120,40 +107,42 @@ class="detail-cover"
 src="../images/minh-hoa-chung.svg"
 alt=""
 >
-
-<div class="experience-cover-meta" aria-label="Thông tin nhanh">
-<span id="experience-place-badge">Địa điểm</span>
-<span id="experience-duration-badge">Thời lượng</span>
-</div>
 </figure>
 
-<!-- NỘI DUNG + THÔNG TIN CHUYẾN ĐI -->
-<div class="detail-columns">
+<div class="experience-right-col">
+
+<header class="page-hero experience-title-box">
+<p class="eyebrow"><span></span>Du lịch làng nghề · Trải nghiệm cùng nghệ nhân</p>
+<h1>Chi tiết trải nghiệm</h1>
+<p class="experience-hero-summary">
+Khám phá hoạt động, nghệ nhân đồng hành và không gian làng nghề.
+</p>
+</header>
 
 <article
 class="experience-info"
 id="experience-info"
 ></article>
 
+</div>
+
+</div>
+
+<!-- =====================================================
+     TẦNG 2: TRÁI = KHUNG THÔNG TIN CHUYẾN ĐI + 2 NÚT | PHẢI = MAP
+===================================================== -->
+<div class="experience-middle-row">
+
 <aside
-class="experience-trip-panel"
+class="experience-trip-col"
 id="experience-trip-panel"
-aria-label="Thông tin trải nghiệm"
+aria-label="Thông tin chuyến đi và đăng ký"
 ></aside>
 
-</div>
+<section class="experience-map-col" aria-labelledby="location-title">
 
-<!-- BẢN ĐỒ -->
-<section class="experience-location" aria-labelledby="location-title">
-
-<div class="location-heading">
-
-<div>
-<p class="eyebrow"><span></span>Tìm hiểu khu vực</p>
-<h2 id="location-title">Bản đồ tham khảo</h2>
-<p>Vị trí trên bản đồ được tạo từ địa danh trong dữ liệu trải nghiệm.</p>
-</div>
-
+<div class="map-box-header">
+<h2 id="location-title">Bản đồ khu vực làng nghề</h2>
 <a
 class="map-link"
 id="experience-map-link"
@@ -163,7 +152,6 @@ rel="noopener noreferrer"
 >
 Xem trên Google Maps ↗
 </a>
-
 </div>
 
 <div class="map-frame">
@@ -177,6 +165,26 @@ referrerpolicy="no-referrer-when-downgrade"
 
 </section>
 
+</div>
+
+<!-- =====================================================
+     TẦNG 3: PHẦN ĐÁNH GIÁ CỦA DU KHÁCH
+===================================================== -->
+<section
+class="experience-reviews-section"
+id="experience-reviews-section"
+aria-label="Đánh giá của du khách"
+></section>
+
+<!-- =====================================================
+     TẦNG 4: ĐỊA ĐIỂM XUNG QUANH LÀNG NGHỀ
+===================================================== -->
+<section
+class="experience-nearby-section"
+id="experience-nearby-section"
+aria-label="Địa điểm tham quan và ăn uống xung quanh làng nghề"
+></section>
+
 <p class="back-link">
 <a href="./trai-nghiem.html">← Quay lại danh sách trải nghiệm</a>
 </p>
@@ -187,8 +195,7 @@ referrerpolicy="no-referrer-when-downgrade"
 </main>
 
 <!-- =====================================================
-     MODAL ĐĂNG KÝ
-     Không hiển thị cố định trên trang.
+     MODAL ĐĂNG KÝ TRẢI NGHIỆM
 ===================================================== -->
 <div
 class="booking-modal"
@@ -319,11 +326,112 @@ Hoàn thành đăng ký
 </section>
 </div>
 
+<!-- =====================================================
+     MODAL ĐÁNH GIÁ CỦA BẠN
+===================================================== -->
+<div
+class="booking-modal"
+id="review-modal"
+hidden
+>
+
+<div
+class="booking-modal-backdrop"
+data-review-close
+></div>
+
+<section
+class="booking-dialog"
+role="dialog"
+aria-modal="true"
+aria-labelledby="review-modal-title"
+>
+
+<button
+class="booking-close"
+type="button"
+aria-label="Đóng biểu mẫu đánh giá"
+data-review-close
+>
+×
+</button>
+
+<p class="form-kicker">CHIA SẺ CẢM NHẬN</p>
+
+<h2 id="review-modal-title">
+Đánh giá của bạn
+</h2>
+
+<p class="booking-experience-name" id="review-experience-name"></p>
+
+<form class="booking-form" id="review-form">
+
+<div class="booking-form-grid">
+
+<label>
+<span>Tên của bạn</span>
+<input
+type="text"
+name="reviewerName"
+autocomplete="name"
+placeholder="Nhập tên của bạn"
+required
+>
+</label>
+
+<label>
+<span>Điểm số (thang điểm 10)</span>
+<input
+type="number"
+name="reviewerScore"
+min="1"
+max="10"
+step="0.1"
+value="10"
+placeholder="Ví dụ: 9.8"
+required
+>
+</label>
+
+<label class="booking-note-field">
+<span>Nội dung đánh giá</span>
+<textarea
+name="reviewerComment"
+rows="4"
+placeholder="Chia sẻ trải nghiệm của bạn tại làng nghề..."
+required
+></textarea>
+</label>
+
+</div>
+
+<div class="booking-form-actions">
+<button
+class="button button-outline"
+type="button"
+data-review-close
+>
+Hủy
+</button>
+
+<button
+class="button button-blue"
+type="submit"
+>
+Hoàn thành
+</button>
+</div>
+
+</form>
+
+</section>
+</div>
+
 <footer class="site-footer" id="footer">
 <div class="container footer-main">
 
 <div class="footer-brand">
-<a class="brand brand-light" href="./index.html">
+<a class="brand brand-light" href="../index.html">
 <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
 <span class="brand-copy">
 <strong>Nghệ nhân Việt</strong>
@@ -345,8 +453,8 @@ Hoàn thành đăng ký
 <div class="footer-column">
 <h3>Thông tin</h3>
 <a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
-<a href="./huong-dan-van-hoa.html">Ứng xử văn hóa</a>
-<a href="./index.html#about">Giới thiệu</a>
+<a href="./thong-tin-chi-tiet.html">Thông tin chi tiết</a>
+<a href="../index.html#about">Giới thiệu</a>
 </div>
 
 <div class="footer-column footer-contact">
