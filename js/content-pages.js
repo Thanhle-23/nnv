@@ -24,10 +24,65 @@
   const normalize = value => String(value ?? '').normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '').replace(/đ/gi, 'd').toLowerCase().trim();
 
-  // Tự động chuẩn hóa mọi link YouTube sang dạng nhúng /embed/
-  function toYoutubeEmbedUrl(rawUrl) {
-    const text = String(rawUrl || '').trim();
-    if (!text) return 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+  // Bảng link YouTube chuẩn của 9 nghệ nhân (dự phòng khi trình duyệt/GitHub Pages còn lưu cache cũ)
+  const ARTIST_YOUTUBE_MAP = {
+    1: 'https://www.youtube.com/embed/gXBVfkN9h9o?si=sd3w53_77BVYMTZT',
+    2: 'https://www.youtube.com/embed/JWaSG_7hXeo?si=qCcwhPKQtbirW3Hi',
+    3: 'https://www.youtube.com/embed/x0Vc-Pe6U3c?si=EAKR_iDKhtVM9K4n',
+    4: 'https://www.youtube.com/embed/qNNP6K1b_Xg?si=TQuEwpPLAiwlWWeC',
+    5: 'https://www.youtube.com/embed/ZUBzHfzI6sk?si=evd5BYsW5ZnsxbKb',
+    6: 'https://www.youtube.com/embed/X69ThChAfJM?si=C_h3JF0QZdlxLMO1',
+    7: 'https://www.youtube.com/embed/xM0Ux4Iq-SE?si=xhVIrsZV6ng1ytY2',
+    8: 'https://www.youtube.com/embed/9wfQlhxPfTQ?si=ksGOVfKb2zZUUBpb',
+    9: 'https://www.youtube.com/embed/gU1bqRk-ohE?si=OMhWyhn4QVS-adih'
+  };
+
+  // Bảng ảnh đại diện và album chuẩn của 9 nghệ nhân
+  const ARTIST_MEDIA_MAP = {
+    1: {
+      image: '../images/thuan.jpg',
+      album: ['../images/thuan0.jpg', '../images/thuan1.jpg', '../images/thuan2.jpg', '../images/thuan3.jpg', '../images/thuan4.jpg']
+    },
+    2: {
+      image: '../images/phat.jpg',
+      album: ['../images/phat0.jpg', '../images/phat1.jpg', '../images/phat2.jpg', '../images/phat3.jpg', '../images/phat4.jpg']
+    },
+    3: {
+      image: '../images/oanh.jpg',
+      album: ['../images/oanh0.jpg', '../images/oanh1.jpg', '../images/oanh2.jpg', '../images/oanh3.jpg', '../images/oanh4.jpg']
+    },
+    4: {
+      image: '../images/huynhsuong.jpg',
+      album: ['../images/suong0.jpg', '../images/suong1.jpg', '../images/suong2.jpg', '../images/suong3.jpg', '../images/suong4.jpg']
+    },
+    5: {
+      image: '../images/nguyenhoa.jpg',
+      album: ['../images/hoa0.jpg', '../images/hoa1.jpg', '../images/hoa2.jpg', '../images/hoa3.jpg', '../images/hoa4.jpg']
+    },
+    6: {
+      image: '../images/tram.jpg',
+      album: ['../images/tram0.jpg', '../images/tram1.jpg', '../images/tram2.jpg', '../images/tram3.jpg', '../images/tram4.jpg']
+    },
+    7: {
+      image: '../images/moha.jpg',
+      album: ['../images/moha0.jpg', '../images/moha1.jpg', '../images/moha2.jpg', '../images/moha3.jpg', '../images/moha4.jpg']
+    },
+    8: {
+      image: '../images/phen.jpg',
+      album: ['../images/phen0.jpg', '../images/phen1.jpg', '../images/phen2.jpg', '../images/phen3.jpg', '../images/phen4.jpg']
+    },
+    9: {
+      image: '../images/mai.jpg',
+      album: ['../images/mai0.jpg', '../images/mai1.jpg', '../images/mai2.jpg', '../images/mai3.jpg', '../images/mai4.jpg']
+    }
+  };
+
+  // Tự động chuẩn hóa mọi link YouTube sang dạng nhúng /embed/ (bỏ hẳn link mẫu dQw4w9WgXcQ)
+  function toYoutubeEmbedUrl(rawUrl, artistId) {
+    let text = String(rawUrl || '').trim();
+    if (!text || text.includes('dQw4w9WgXcQ')) {
+      text = ARTIST_YOUTUBE_MAP[Number(artistId)] || ARTIST_YOUTUBE_MAP[1];
+    }
     if (text.includes('youtube.com/embed/')) return text;
 
     const shortMatch = text.match(/youtu\.be\/([a-zA-Z0-9_-]{6,})/);
@@ -56,10 +111,30 @@
 
   function installImageFallback(scope, customFallback) {
     if (!scope) return;
+    const altExtensions = ['.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.webp'];
+
     scope.querySelectorAll('img').forEach(img => {
       if (img.dataset.fallbackReady) return;
       img.dataset.fallbackReady = '1';
-      img.addEventListener('error', () => {
+
+      const handleImgError = () => {
+        const currentAttr = img.getAttribute('src') || '';
+        const baseMatch = currentAttr.match(/^(.*)\.(jpg|jpeg|png|webp|jpgg)$/i);
+
+        // Thử lần lượt các đuôi .JPG, .png, .PNG, .jpeg, .webp nếu trên GitHub Pages lệch hoa/thường hoặc khác đuôi
+        if (baseMatch) {
+          const basePath = baseMatch[1];
+          const tryIdx = Number(img.dataset.extTryIndex || '0');
+          if (tryIdx < altExtensions.length) {
+            img.dataset.extTryIndex = String(tryIdx + 1);
+            const candidate = basePath + altExtensions[tryIdx];
+            if (candidate !== currentAttr) {
+              img.src = candidate;
+              return;
+            }
+          }
+        }
+
         if (img.dataset.fallbackStage === '2') return;
         if (!img.dataset.fallbackStage && customFallback && img.src !== customFallback) {
           img.dataset.fallbackStage = '1';
@@ -68,7 +143,12 @@
         }
         img.dataset.fallbackStage = '2';
         img.src = '../images/minh-hoa-chung.svg';
-      });
+      };
+
+      img.addEventListener('error', handleImgError);
+      if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) {
+        handleImgError();
+      }
     });
   }
 
@@ -147,7 +227,7 @@
 
     if (group === 'artists') {
       grid.innerHTML = data.artists.map(a => card(
-        a.image,
+        (a.image && !String(a.image).includes('/artisans/')) ? a.image : (ARTIST_MEDIA_MAP[Number(a.id)]?.image || a.image),
         `Minh họa nghề ${a.craft.toLowerCase()} của ${a.name}`,
         `${a.craft} · ${a.place}`,
         a.name,
@@ -337,10 +417,15 @@
       ? url('trai-nghiem', experience.id)
       : './trai-nghiem.html';
 
+    const portraitSrc =
+      (artist.image && !String(artist.image).includes('/artisans/'))
+        ? artist.image
+        : (ARTIST_MEDIA_MAP[Number(artist.id)]?.image || artist.image);
+
     side.innerHTML = `
       <img
         class="detail-portrait"
-        src="${esc(artist.image)}"
+        src="${esc(portraitSrc)}"
         alt="Minh họa về nghề ${esc(artist.craft.toLowerCase())} của ${esc(artist.name)}"
       >
       <p class="card-kicker">
@@ -385,17 +470,16 @@
     }
 
     if (extraContainer) {
-      const albumImages = Array.isArray(artist.album) && artist.album.length
+      const mappedMedia = ARTIST_MEDIA_MAP[Number(artist.id)];
+      const rawAlbum = Array.isArray(artist.album) && artist.album.length
         ? artist.album
-        : [
-            artist.image,
-            product ? product.image : artist.image,
-            artist.image,
-            product ? product.image : artist.image,
-            artist.image
-          ];
+        : (mappedMedia ? mappedMedia.album : []);
+      const hasOldPlaceholderAlbum = rawAlbum.some(p => String(p).includes('/artisans/'));
+      const albumImages = (!hasOldPlaceholderAlbum && rawAlbum.length)
+        ? rawAlbum
+        : (mappedMedia && mappedMedia.album ? mappedMedia.album : [artist.image]);
 
-      const youtubeEmbed = toYoutubeEmbedUrl(artist.youtubeUrl);
+      const youtubeEmbed = toYoutubeEmbedUrl(artist.youtubeUrl, artist.id);
 
       extraContainer.innerHTML = `
         <div class="artist-youtube-section" aria-label="Video giới thiệu nghệ nhân ${esc(artist.name)}">
