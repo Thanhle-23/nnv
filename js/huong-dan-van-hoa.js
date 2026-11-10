@@ -1,15 +1,62 @@
-/* HƯỚNG DẪN VĂN HÓA — chỉ phụ trách FAQ và câu hỏi demo.
- * Không can thiệp vào script.js hoặc content-pages.js.
- * Câu hỏi chỉ nằm trong localStorage, KHÔNG gửi đến máy chủ.
+/* THÔNG TIN CHI TIẾT & HƯỚNG DẪN VĂN HÓA
+ * 1. Chuyển đổi 4 tab menu bên trái (Giới thiệu, Lưu ý văn hóa, Câu hỏi thường gặp, Gửi câu hỏi)
+ * 2. Tìm kiếm và lọc câu hỏi thường gặp (FAQ)
+ * 3. Lưu câu hỏi minh họa trên localStorage
  */
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
+
+  // 0. Chuyển đổi giữa 4 tab bên trái giống trang Tôi
+  const tabButtons = Array.from(document.querySelectorAll('[data-info-tab]'));
+  const tabPanels = Array.from(document.querySelectorAll('[data-info-panel]'));
+
+  function activateInfoTab(tabName) {
+    if (!tabName) return;
+
+    tabButtons.forEach(btn => {
+      const isCurrent = btn.dataset.infoTab === tabName;
+      btn.classList.toggle('is-active', isCurrent);
+      btn.setAttribute('aria-selected', String(isCurrent));
+    });
+
+    tabPanels.forEach(panel => {
+      const isCurrent = panel.dataset.infoPanel === tabName;
+      panel.hidden = !isCurrent;
+      panel.classList.toggle('is-active', isCurrent);
+    });
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activateInfoTab(btn.dataset.infoTab);
+    });
+  });
+
+  document.querySelectorAll('[data-switch-info-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.dataset.switchInfoTab;
+      activateInfoTab(targetTab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Tự động mở đúng tab nếu URL có hash (#giai-dap, #dat-cau-hoi, #guide-title...)
+  const hashMap = {
+    '#gioi-thieu-website': 'about',
+    '#guide-title': 'notes',
+    '#giai-dap': 'faq',
+    '#dat-cau-hoi': 'ask',
+    '#question-form': 'ask'
+  };
+  if (window.location.hash && hashMap[window.location.hash]) {
+    activateInfoTab(hashMap[window.location.hash]);
+  }
 
   const normalize = value => String(value ?? '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/gi, 'd').toLowerCase().trim();
 
-  // 1. Tìm kiếm và lọc câu hỏi thường gặp.
+  // 1. Tìm kiếm và lọc câu hỏi thường gặp
   const search = document.getElementById('faq-search');
   const topic = document.getElementById('faq-filter');
   const items = [...document.querySelectorAll('#faq-list .faq-item')];
@@ -42,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }));
   filterFaqs();
 
-  // 2. Form câu hỏi mẫu — KHÔNG lưu thông tin liên hệ / KHÔNG gửi qua mạng.
+  // 2. Form câu hỏi mẫu — lưu vào localStorage
   const STORAGE_KEY = 'nepVietDemoQuestions';
   const form = document.getElementById('question-form');
   const textarea = document.getElementById('question-text');
@@ -121,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (question.length < 10 || question.length > 500 || !allowedTopics.includes(topicValue)) {
       if (status) {
-        status.textContent = 'M hãy nhập câu hỏi dài từ 10 đến 500 ký tự và chọn chủ đề phù hợp.';
+        status.textContent = 'Vui lòng nhập câu hỏi dài từ 10 đến 500 ký tự và chọn chủ đề phù hợp.';
         status.className = 'question-status is-error';
       }
       textarea.focus();
@@ -138,12 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCounter();
       renderSaved();
       if (status) {
-        status.textContent = 'Đã lưu câu hỏi demo trên trình duyệt này. Câu hỏi chưa được gửi đến người quản trị hoặc nghệ nhân.';
+        status.textContent = 'Đã lưu câu hỏi thành công trên trình duyệt này!';
         status.className = 'question-status is-success';
       }
     } catch {
       if (status) {
-        status.textContent = 'Không thể lưu câu hỏi trên trình duyệt này. Hãy kiểm tra quyền lưu trữ hoặc thử mở website bằng máy chủ cục bộ.';
+        status.textContent = 'Không thể lưu câu hỏi trên trình duyệt này.';
         status.className = 'question-status is-error';
       }
     }

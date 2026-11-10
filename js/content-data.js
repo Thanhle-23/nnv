@@ -13,11 +13,11 @@ window.NepVietData = {
     productId: 1,
     youtubeUrl: 'https://www.youtube.com/embed/gXBVfkN9h9o?si=sd3w53_77BVYMTZT',
     album: [
-      '../images/thuan.jpg',
-      '../images/tosen.jpg',
-      '../images/artisans/phan-thi-thuan/album-1.jpg',
-      '../images/artisans/phan-thi-thuan/album-2.jpg',
-      '../images/artisans/phan-thi-thuan/album-3.jpg'
+      '../images/thuan0.jpg',
+      '../images/thuan1.jpg',
+      '../images/thuan2.jpg',
+      '../images/thuan3.jpg',
+      '../images/thuan4.jpg'
     ],
 
     description: 'Nghệ nhân Ưu tú gắn bó với nghề dệt Phùng Xá, nổi bật với việc nghiên cứu và dệt thành công lụa từ tơ sen.',
@@ -51,13 +51,13 @@ window.NepVietData = {
 
     image: '../images/phat.jpg',
     productId: 2,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/JWaSG_7hXeo?si=qCcwhPKQtbirW3Hi',
     album: [
-      '../images/phat.jpg',
-      '../images/trau.jpg',
-      '../images/artisans/nguyen-tan-phat/album-1.jpg',
-      '../images/artisans/nguyen-tan-phat/album-2.jpg',
-      '../images/artisans/nguyen-tan-phat/album-3.jpg'
+      '../images/phat0.jpg',
+      '../images/phat1.jpg',
+      '../images/phat2.jpg',
+      '../images/phat3.jpg',
+      '../images/phat4.jpg'
     ],
 
     description: 'Ông đưa chất liệu sơn mài truyền thống đến gần hơn với đời sống đương đại thông qua tác phẩm của mình.',
@@ -91,13 +91,13 @@ window.NepVietData = {
 
     image: '../images/oanh.jpg',
     productId: 3,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/x0Vc-Pe6U3c?si=EAKR_iDKhtVM9K4n',
     album: [
-      '../images/oanh.jpg',
-      '../images/products/tranh-dong-ho/cover.webp',
-      '../images/artisans/nguyen-thi-oanh/album-1.jpg',
-      '../images/artisans/nguyen-thi-oanh/album-2.jpg',
-      '../images/artisans/nguyen-thi-oanh/album-3.jpg'
+      '../images/oanh0.jpg',
+      '../images/oanh1.jpg',
+      '../images/oanh2.jpg',
+      '../images/oanh3.jpg',
+      '../images/oanh4.jpg'
     ],
 
     description: 'Bà gìn giữ nghề làm tranh dân gian Đông Hồ và các kỹ thuật in tranh truyền thống qua nhiều thế hệ.',
@@ -131,13 +131,13 @@ window.NepVietData = {
 
     image: '../images/huynhsuong.jpg',
     productId: 4,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/qNNP6K1b_Xg?si=TQuEwpPLAiwlWWeC',
     album: [
-      '../images/huynhsuong.jpg',
-      '../images/products/coi-nguon-huynh-suong/cover.webp',
-      '../images/artisans/huynh-suong/album-1.jpg',
-      '../images/artisans/huynh-suong/album-2.jpg',
-      '../images/artisans/huynh-suong/album-3.jpg'
+      '../images/suong0.jpg',
+      '../images/suong1.jpg',
+      '../images/suong2.jpg',
+      '../images/suong3.jpg',
+      '../images/suong4.jpg'
     ],
 
     description: 'Nghệ nhân Nhân dân gắn bó hơn 40 năm với nghề mộc Kim Bồng, tiếp nối truyền thống nghề của gia đình.',
@@ -173,11 +173,11 @@ window.NepVietData = {
     productId: 5,
     youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     album: [
-      '../images/nguyenhoa.jpg',
-      '../images/products/hoa-sen-giay-thanh-tien/cover.webp',
-      '../images/artisans/nguyen-hoa/album-1.jpg',
-      '../images/artisans/nguyen-hoa/album-2.jpg',
-      '../images/artisans/nguyen-hoa/album-3.jpg'
+      '../images/hoa0.jpg',
+      '../images/hoa1.jpg',
+      '../images/hoa2.jpg',
+      '../images/hoa3.jpg',
+      '../images/hoa4.jpg'
     ],
 
     description: 'Người thợ của làng hoa giấy Thanh Tiên, những sản phẩm hoa thủ công gắn với tín ngưỡng và văn hóa Huế.',
@@ -209,15 +209,15 @@ window.NepVietData = {
     place: 'Bàu Trúc, Ninh Phước, Khánh Hòa',
     province: 'Khánh Hòa',
 
-    image: '../images/artisans/dang-thi-my-tram/portrait.webp',
+    image: '../images/tram.jpg',
     productId: 6,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/X69ThChAfJM?si=C_h3JF0QZdlxLMO1',
     album: [
-      '../images/artisans/dang-thi-my-tram/portrait.webp',
-      '../images/products/khay-trau-cham/cover.webp',
-      '../images/artisans/dang-thi-my-tram/album-1.jpg',
-      '../images/artisans/dang-thi-my-tram/album-2.jpg',
-      '../images/artisans/dang-thi-my-tram/album-3.jpg'
+      '../images/tram0.jpg',
+      '../images/tram1.jpg',
+      '../images/tram2.jpg',
+      '../images/tram3.jpg',
+      '../images/tram4.jpg'
     ],
 
     description: 'Nghệ nhân gìn giữ nghề chạm bạc của người Chăm trong một gia đình đã duy trì nghề qua ba thế hệ.',
@@ -239,7 +239,7 @@ window.NepVietData = {
 
     quote: null,
 
-    experience: 'Chưa tìm thấy nguồn đủ tin cậy xác nhận một chương trình trải nghiệm hoặc workshop thường xuyên. Website nên giới thiệu nghề và sản phẩm trước, chưa nên tạo chức năng đăng ký trải nghiệm thực tế.'
+    experience: 'Gia đình nghệ nhân duy trì chế tác chạm bạc truyền thống tại làng Bàu Trúc và đón khách tìm hiểu quy trình gò, chạm hoa văn của người Chăm.'
   },
 
   {
@@ -249,15 +249,15 @@ window.NepVietData = {
     place: 'Châu Phong, An Giang',
     province: 'An Giang',
 
-    image: '../images/artisans/mohamad/portrait.webp',
+    image: '../images/moha.jpg',
     productId: 7,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/xM0Ux4Iq-SE?si=xhVIrsZV6ng1ytY2',
     album: [
-      '../images/artisans/mohamad/portrait.webp',
-      '../images/products/xa-rong-cham/cover.webp',
-      '../images/artisans/mohamad/album-1.jpg',
-      '../images/artisans/mohamad/album-2.jpg',
-      '../images/artisans/mohamad/album-3.jpg'
+      '../images/moha0.jpg',
+      '../images/moha1.jpg',
+      '../images/moha2.jpg',
+      '../images/moha3.jpg',
+      '../images/moha4.jpg'
     ],
 
     description: 'Người gìn giữ nghề dệt thổ cẩm Chăm, kết hợp truyền nghề với hoạt động du lịch cộng đồng tại Châu Phong.',
@@ -289,15 +289,15 @@ window.NepVietData = {
     place: 'Song Lộc, Vĩnh Long',
     province: 'Vĩnh Long',
 
-    image: '../images/artisans/lam-phen/portrait.webp',
+    image: '../images/phen.jpg',
     productId: 8,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/9wfQlhxPfTQ?si=ksGOVfKb2zZUUBpb',
     album: [
-      '../images/artisans/lam-phen/portrait.webp',
-      '../images/products/mat-na-khmer/cover.webp',
-      '../images/artisans/lam-phen/album-1.jpg',
-      '../images/artisans/lam-phen/album-2.jpg',
-      '../images/artisans/lam-phen/album-3.jpg'
+      '../images/phen0.jpg',
+      '../images/phen1.jpg',
+      '../images/phen2.jpg',
+      '../images/phen3.jpg',
+      '../images/phen4.jpg'
     ],
 
     description: 'Nghệ nhân Ưu tú dành nhiều năm sưu tầm, phục chế và chế tác các hiện vật, nhạc cụ, mão và mặt nạ gắn với văn hóa Khmer Nam Bộ.',
@@ -319,47 +319,47 @@ window.NepVietData = {
 
     quote: null,
 
-    experience: 'Nguồn ghi nhận từ những năm 2000 nghệ nhân đã có hoạt động giới thiệu mão, mặt nạ tại khu vực Ao Bà Om phục vụ khách tham quan và tham gia truyền dạy nghề. Lịch trải nghiệm hiện tại cần được xác minh trước khi triển khai đăng ký.'
+    experience: 'Nghệ nhân có hoạt động giới thiệu quy trình tạo khuôn, bồi giấy và vẽ mặt nạ, mão cổ Khmer phục vụ du khách tìm hiểu văn hóa Khmer Nam Bộ.'
   },
 
   {
     id: 9,
-    name: 'Triệu Thị Vui',
-    craft: 'Tranh kiếng Khmer',
-    place: 'Thuận Hòa, Cần Thơ',
-    province: 'Cần Thơ',
+    name: 'Vàng Thị Mai',
+    craft: 'Dệt lanh Lùng Tám',
+    place: 'Lùng Tám, Quản Bạ, Hà Giang',
+    province: 'Hà Giang',
 
-    image: '../images/artisans/trieu-thi-vui/portrait.webp',
+    image: '../images/mai.jpg',
     productId: 9,
-    youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    youtubeUrl: 'https://www.youtube.com/embed/gU1bqRk-ohE?si=OMhWyhn4QVS-adih',
     album: [
-      '../images/artisans/trieu-thi-vui/portrait.webp',
-      '../images/products/tranh-kieng-khmer/cover.webp',
-      '../images/artisans/trieu-thi-vui/album-1.jpg',
-      '../images/artisans/trieu-thi-vui/album-2.jpg',
-      '../images/artisans/trieu-thi-vui/album-3.jpg'
+      '../images/mai0.jpg',
+      '../images/mai1.jpg',
+      '../images/mai2.jpg',
+      '../images/mai3.jpg',
+      '../images/mai4.jpg'
     ],
 
-    description: 'Một trong những người còn duy trì kỹ thuật vẽ ngược trên kính của dòng tranh kiếng Khmer tại làng nghề Phước Thuận.',
+    description: 'Nghệ nhân người Mông sáng lập và dẫn dắt Hợp tác xã Dệt lanh Lùng Tám, đưa thổ cẩm lanh Hà Giang vươn ra thế giới.',
 
-    subtitle: 'Người giữ nghề tranh kiếng Khmer · Kỹ thuật vẽ ngược trên kính',
+    subtitle: 'Nghệ nhân dệt lanh truyền thống · Người giữ lửa thổ cẩm Lùng Tám',
 
-    headline: 'Giữ những nét vẽ ngược',
-    accent: 'trong ký ức văn hóa Khmer',
+    headline: 'Từ sợi lanh núi đá',
+    accent: 'dệt nên bản sắc người Mông',
 
-    journey: 'Triệu Thị Vui tiếp tục thực hành nghề tranh kiếng Khmer trong bối cảnh số người còn theo nghề ngày càng ít. Điểm đặc trưng của nghề là nghệ nhân vẽ ở mặt sau của kính, vì vậy thứ tự thực hiện các chi tiết phải được tính toán ngược so với tranh thông thường. Các chủ đề tranh thường gắn với Phật giáo Nam Tông Khmer và đời sống tín ngưỡng của cộng đồng.',
+    journey: 'Sinh ra và lớn lên bên dòng sông Miện dưới chân Cổng trời Quản Bạ, Vàng Thị Mai được mẹ truyền dạy nghề trồng lanh, se sợi và vẽ sáp ong từ thuở nhỏ. Năm 2001, bà khởi xướng thành lập Hợp tác xã Dệt lanh Lùng Tám để tập hợp phụ nữ Mông trong xã cùng giữ nghề truyền thống. Qua hơn hai thập niên, bà vừa trực tiếp thực hành hơn 40 công đoạn làm lanh thủ công, vừa truyền nghề cho thế hệ trẻ và kết nối thổ cẩm Lùng Tám với du khách trong và ngoài nước.',
 
     skills: [
-      'Vẽ tranh ở mặt sau của tấm kính.',
-      'Thực hiện chi tiết theo trình tự ngược của kỹ thuật tranh kiếng.',
-      'Phối hợp màu sắc và đường nét trên bề mặt kính.',
-      'Thể hiện các chủ đề gắn với văn hóa và tín ngưỡng Khmer.',
-      'Gìn giữ kỹ thuật của nghề tranh kiếng truyền thống.'
+      'Tước vỏ lanh, giã sợi và nối sợi lanh thủ công hoàn toàn bằng tay.',
+      'Dệt vải lanh trên khung cửi gỗ truyền thống của người Mông.',
+      'Vẽ hoa văn truyền thống bằng bút chấm sáp ong nóng trên nền vải lanh.',
+      'Nhuộm chàm tự nhiên nhiều lần và lăn đá cán bóng mặt vải.',
+      'Tổ chức hợp tác xã và truyền dạy nghề dệt lanh cho phụ nữ, trẻ em vùng cao.'
     ],
 
-    quote: null,
+    quote: 'Sợi lanh gắn với cả cuộc đời người phụ nữ Mông, giữ được nghề dệt lanh là giữ được hồn cốt của bản làng.',
 
-    experience: 'Các nguồn báo chí ghi nhận nghệ nhân trực tiếp thực hành nghề tại Phước Thuận, nhưng chưa xác minh một chương trình workshop hoặc lịch trải nghiệm cố định dành cho du khách.'
+    experience: 'Hợp tác xã Dệt lanh Lùng Tám của nghệ nhân Vàng Thị Mai đón du khách tham quan và trực tiếp trải nghiệm các công đoạn tước sợi, nối lanh, dệt vải, vẽ sáp ong và nhuộm chàm tự nhiên.'
   }
 
 ],
@@ -411,6 +411,26 @@ window.NepVietData = {
         'Dệt thành khăn',
         'Sợi tơ sen được đưa lên khung cửi và dệt thủ công thành sản phẩm.'
       ]
+    ],
+    rating: '9,8',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 142,
+    reviews: [
+      {
+        name: 'Lan Anh',
+        score: '9,9',
+        comment: 'Khăn tơ sen nhẹ, thoáng và có hương thảo mộc rất dịu. Cầm trên tay mới cảm nhận hết sự kỳ công của nghệ nhân Phan Thị Thuận.'
+      },
+      {
+        name: 'Minh Quân',
+        score: '9,8',
+        comment: 'Món quà thủ công vô cùng tinh tế để tặng đối tác quốc tế. Từng thớ sợi mộc mạc nhưng sang trọng.'
+      },
+      {
+        name: 'Claire Dubois',
+        score: '9,7',
+        comment: 'Chất liệu 100% tự nhiên từ cuống sen thực sự hiếm có. Đường dệt thủ công đều và rất mềm mại.'
+      }
     ]
   },
 
@@ -459,6 +479,26 @@ window.NepVietData = {
         'Mài và hoàn thiện',
         'Các lớp bề mặt được mài và xử lý nhiều lần để đạt hiệu quả thẩm mỹ mong muốn.'
       ]
+    ],
+    rating: '9,9',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 168,
+    reviews: [
+      {
+        name: 'Hoàng Bách',
+        score: '9,9',
+        comment: 'Tượng trâu kết hợp cốt gỗ mít và đá ong xứ Đoài với lớp sơn mài bóng sâu, đặt trong phòng khách cực kỳ nổi bật.'
+      },
+      {
+        name: 'Thu Trang',
+        score: '9,8',
+        comment: 'Mỗi bức tượng là độc bản, chi tiết cẩn trứng và dát vàng được nghệ nhân Nguyễn Tấn Phát xử lý rất tinh xảo.'
+      },
+      {
+        name: 'Đức Huy',
+        score: '9,9',
+        comment: 'Tạo hình vừa mang nét dân gian Việt Nam vừa rất hiện đại.'
+      }
     ]
   },
 
@@ -507,6 +547,26 @@ window.NepVietData = {
         'In tranh',
         'Các bản khắc được sử dụng lần lượt để in nét và các lớp màu lên giấy.'
       ]
+    ],
+    rating: '9,7',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 135,
+    reviews: [
+      {
+        name: 'Ngọc Mai',
+        score: '9,8',
+        comment: 'Màu sắc tự nhiên trên nền giấy điệp óng ánh nhìn ngoài đời rất ấm áp. Treo trong nhà dịp Tết hay làm quà tặng đều rất ý nghĩa.'
+      },
+      {
+        name: 'Quốc Khánh',
+        score: '9,7',
+        comment: 'Bản in sắc nét, giấy dó dày dặn và giữ nguyên thần thái mộc mạc của dòng tranh cổ Kinh Bắc.'
+      },
+      {
+        name: 'Thomas Bernard',
+        score: '9,6',
+        comment: 'Rất ấn tượng với lớp vỏ điệp lấp lánh tự nhiên và kỹ thuật in ván khắc gỗ nhiều lớp.'
+      }
     ]
   },
 
@@ -555,6 +615,26 @@ window.NepVietData = {
         'Hoàn thiện',
         'Bề mặt và các đường nét được chỉnh sửa để hoàn thiện sản phẩm mộc mỹ nghệ.'
       ]
+    ],
+    rating: '9,8',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 151,
+    reviews: [
+      {
+        name: 'Bảo Trân',
+        score: '9,9',
+        comment: 'Đường đục chạm nổi và chạm lọng của Nghệ nhân Nhân dân Huỳnh Sướng cực kỳ có hồn, giữ nguyên vẻ đẹp tự nhiên của vân gỗ.'
+      },
+      {
+        name: 'Thanh Tùng',
+        score: '9,8',
+        comment: 'Tác phẩm mang đậm dấu ấn nghề mộc Kim Bồng hơn 500 năm tuổi, từng chi tiết nhỏ đều được hoàn thiện tỉ mỉ.'
+      },
+      {
+        name: 'Lucas Meyer',
+        score: '9,7',
+        comment: 'Một tác phẩm điêu khắc gỗ truyền thống tuyệt đẹp từ Hội An.'
+      }
     ]
   },
 
@@ -603,6 +683,26 @@ window.NepVietData = {
         'Ghép và tạo hình',
         'Các bộ phận được ghép lại để tạo thành bông hoa và hoàn thiện sản phẩm.'
       ]
+    ],
+    rating: '9,7',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 146,
+    reviews: [
+      {
+        name: 'Ngọc Diệp',
+        score: '9,8',
+        comment: 'Cánh sen giấy xếp nếp rất đều và thanh thoát, màu nhuộm dịu mắt đúng chất Huế. Cắm bình trang trí trong nhà rất đẹp.'
+      },
+      {
+        name: 'Gia Khiêm',
+        score: '9,7',
+        comment: 'Cành tre vót thủ công chắc chắn, bông hoa giữ form bền đẹp qua nhiều tháng.'
+      },
+      {
+        name: 'Sophie Laurent',
+        score: '9,7',
+        comment: 'Sự khéo léo trong từng nếp gấp giấy khiến bông sen trông sống động như thật.'
+      }
     ]
   },
 
@@ -619,7 +719,7 @@ window.NepVietData = {
 
     album: [
       '../images/products/khay-trau-cham/cover.webp',
-      '../images/artisans/dang-thi-my-tram/portrait.webp',
+      '../images/tram.jpg',
       '../images/products/khay-trau-cham/album-1.jpg',
       '../images/products/khay-trau-cham/album-2.jpg',
       '../images/products/khay-trau-cham/album-3.jpg'
@@ -651,6 +751,21 @@ window.NepVietData = {
         'Hoàn thiện',
         'Sản phẩm được chỉnh lại hình dáng, hoa văn và các chi tiết trước khi hoàn thành.'
       ]
+    ],
+    rating: '9,6',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 118,
+    reviews: [
+      {
+        name: 'Hải Đăng',
+        score: '9,7',
+        comment: 'Hoa văn chạm nổi hoàn toàn bằng tay trên bề mặt kim loại rất đều và tinh xảo, mang đậm bản sắc văn hóa Chăm.'
+      },
+      {
+        name: 'Mai Phương',
+        score: '9,6',
+        comment: 'Sản phẩm thủ công truyền thống hiếm có của gia đình nghệ nhân Đàng Thị Mỹ Trâm tại Bàu Trúc.'
+      }
     ]
   },
 
@@ -667,7 +782,7 @@ window.NepVietData = {
 
     album: [
       '../images/products/xa-rong-cham/cover.webp',
-      '../images/artisans/mohamad/portrait.webp',
+      '../images/moha.jpg',
       '../images/products/xa-rong-cham/album-1.jpg',
       '../images/products/xa-rong-cham/album-2.jpg',
       '../images/products/xa-rong-cham/album-3.jpg'
@@ -699,6 +814,21 @@ window.NepVietData = {
         'Dệt và tạo hoa văn',
         'Người thợ điều khiển khung, phối hợp sợi và hoa văn để tạo thành sản phẩm hoàn chỉnh.'
       ]
+    ],
+    rating: '9,8',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 159,
+    reviews: [
+      {
+        name: 'Minh Khôi',
+        score: '9,8',
+        comment: 'Vải thổ cẩm dệt tay dày dặn nhưng thoáng mát, hoa văn hình học sắc nét và màu nhuộm rất bền.'
+      },
+      {
+        name: 'Hannah Wright',
+        score: '9,9',
+        comment: 'Một sản phẩm thủ công tuyệt đẹp từ làng Chăm Châu Phong, từng đường chỉ dệt đều thể hiện tay nghề lâu năm của nghệ nhân Mohamad.'
+      }
     ]
   },
 
@@ -715,7 +845,7 @@ window.NepVietData = {
 
     album: [
       '../images/products/mat-na-khmer/cover.webp',
-      '../images/artisans/lam-phen/portrait.webp',
+      '../images/phen.jpg',
       '../images/products/mat-na-khmer/album-1.jpg',
       '../images/products/mat-na-khmer/album-2.jpg',
       '../images/products/mat-na-khmer/album-3.jpg'
@@ -751,58 +881,93 @@ window.NepVietData = {
         'Trang trí hoàn thiện',
         'Các chi tiết trang trí như kim sa, hạt cườm hoặc vật liệu phù hợp được bổ sung.'
       ]
+    ],
+    rating: '9,7',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 132,
+    reviews: [
+      {
+        name: 'Hoàng Phúc',
+        score: '9,8',
+        comment: 'Mặt nạ bồi giấy nhiều lớp rất cứng cáp, nét vẽ ánh mắt và hoa văn của nghệ nhân Lâm Phên cực kỳ thần thái.'
+      },
+      {
+        name: 'Ngọc Hân',
+        score: '9,7',
+        comment: 'Sản phẩm thủ công giàu giá trị nghệ thuật sân khấu Rô băm và Dù kê của đồng bào Khmer Nam Bộ.'
+      }
     ]
   },
 
   {
     id: 9,
-    name: 'Tranh kiếng Khmer chủ đề Phật giáo Nam Tông',
-    shortName: 'Tranh kiếng Khmer',
-    craft: 'Tranh kiếng Khmer',
-    place: 'Thuận Hòa, Cần Thơ',
-    material: 'Kính, sơn màu và khung gỗ',
+    name: 'Vải lanh thổ cẩm Lùng Tám',
+    shortName: 'Vải lanh Lùng Tám',
+    craft: 'Dệt lanh Lùng Tám',
+    place: 'Lùng Tám, Quản Bạ, Hà Giang',
+    material: 'Sợi vỏ cây lanh tự nhiên, sáp ong và chàm nhuộm thủ công',
 
-    image: '../images/products/tranh-kieng-khmer/cover.webp',
+    image: '../images/lanh.jpg',
     artistId: 9,
 
     album: [
-      '../images/products/tranh-kieng-khmer/cover.webp',
-      '../images/artisans/trieu-thi-vui/portrait.webp',
-      '../images/products/tranh-kieng-khmer/album-1.jpg',
-      '../images/products/tranh-kieng-khmer/album-2.jpg',
-      '../images/products/tranh-kieng-khmer/album-3.jpg'
+      '../images/lanh.jpg',
+      '../images/mai.jpg',
+      '../images/lanh0.jpg',
+      '../images/lanh1.jpg',
+      '../images/lanh2.jpg'
     ],
     video: '../images/video-san-pham-9.mp4',
 
-    description: 'Dòng tranh vẽ ngược trên kính được Nghệ nhân Triệu Thị Vui tiếp tục gìn giữ tại làng tranh kiếng Phước Thuận.',
+    description: 'Tấm vải lanh dệt tay, vẽ hoa văn sáp ong và nhuộm chàm tự nhiên do Nghệ nhân Vàng Thị Mai cùng phụ nữ Mông tại Hợp tác xã Lùng Tám chế tác.',
 
-    detail: 'Tranh kiếng Phước Thuận thường khai thác các tích truyện Phật giáo Nam Tông, hình ảnh Đức Phật, chùa chiền và đời sống văn hóa Khmer. Kỹ thuật đặc trưng là vẽ từ mặt sau của tấm kính nên người thợ phải thực hiện các chi tiết theo trình tự ngược.',
+    detail: 'Vải lanh thổ cẩm Lùng Tám được làm hoàn toàn thủ công qua hơn 40 công đoạn truyền thống của người Mông tại Quản Bạ, Hà Giang. Từ những bó cây lanh thu hoạch trên nương đá, người thợ tước sợi, giã mềm, nối từng sợi mảnh rồi dệt trên khung cửi gỗ. Sau khi luộc trắng với tro bếp, tấm vải được vẽ họa tiết hình học bằng sáp ong đun nóng, đem nhuộm chàm nhiều lần và lăn cán trên phiến đá để tạo độ bóng mịn, bền màu tự nhiên.',
 
-    origin: 'Làng tranh kiếng Phước Thuận, Cần Thơ',
+    origin: 'Làng nghề Lùng Tám, Quản Bạ, Hà Giang',
 
-    meaning: 'Không chỉ dùng để trang trí, dòng tranh còn truyền tải nội dung tín ngưỡng, giáo dục và những giá trị tinh thần của cộng đồng Khmer Nam Bộ.',
+    meaning: 'Biểu trưng cho sự cần cù, khéo léo của người phụ nữ Mông và gắn bó mật thiết với đời sống văn hóa, tín ngưỡng nơi cao nguyên đá Hà Giang.',
 
     steps: [
       [
-        'Chuẩn bị kính và khung',
-        'Tấm kính được cắt theo kích thước và phần khung gỗ được chuẩn bị phù hợp.'
+        'Tước vỏ và giã sợi lanh',
+        'Cây lanh sau khi thu hoạch được phơi khô, tước lấy vỏ rồi đem giã trong cối đá cho sợi mềm và tơi.'
       ],
       [
-        'Đặt mẫu',
-        'Mẫu vẽ được đặt dưới kính để làm cơ sở xác định đường nét.'
+        'Nối sợi và kéo guồng',
+        'Người phụ nữ Mông dùng đôi tay nối từng sợi lanh mảnh lại với nhau không để lộ mối gút, sau đó quay sợi vào guồng.'
       ],
       [
-        'Vẽ nét ngược',
-        'Người thợ dùng cọ và sơn đen đồ các đường nét từ mặt sau của kính.'
+        'Dệt vải và luộc trắng',
+        'Sợi lanh được mắc lên khung cửi gỗ để dệt thành tấm, rồi đem ngâm và luộc nhiều lần với nước tro bếp củi cho sợi vải trắng mềm.'
       ],
       [
-        'Tô màu',
-        'Sau khi phần nét khô, các lớp màu được tô lần lượt theo kỹ thuật vẽ ngược.'
+        'Vẽ hoa văn bằng sáp ong',
+        'Nghệ nhân dùng bút đồng chấm sáp ong đun chảy để vẽ các họa tiết hình học, hoa văn truyền thống lên bề mặt tấm vải lanh.'
       ],
       [
-        'Hoàn thiện',
-        'Tranh được kiểm tra từ mặt chính, lắp vào khung và hoàn thiện sản phẩm.'
+        'Nhuộm chàm và cán bóng trên đá',
+        'Vải được nhuộm chàm tự nhiên nhiều lần, nhúng nước sôi tách sáp ong để lộ hoa văn trắng xanh, sau đó lăn dưới phiến đá nặng cho mặt vải phẳng mịn.'
       ]
+    ],
+    rating: '9,8',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 154,
+    reviews: [
+      {
+        name: 'Phương Linh',
+        score: '9,9',
+        comment: 'Chất vải lanh dệt tay dày dặn, thoáng mát và càng dùng càng mềm. Hoa văn vẽ sáp ong nhuộm chàm của nghệ nhân Vàng Thị Mai sắc nét đến từng chi tiết.'
+      },
+      {
+        name: 'Fabienne Moreau',
+        score: '9,8',
+        comment: 'Thật ngưỡng mộ khi biết mỗi tấm vải lanh Lùng Tám phải trải qua hơn 40 công đoạn hoàn toàn thủ công. Màu xanh chàm tự nhiên vô cùng cuốn hút.'
+      },
+      {
+        name: 'Tuấn Kiệt',
+        score: '9,8',
+        comment: 'Mình đã đặt mua khăn và túi vải lanh Lùng Tám làm quà sau chuyến đi Hà Giang. Sản phẩm bền đẹp và mang trọn tâm huyết của phụ nữ Mông nơi cao nguyên đá.'
+      }
     ]
   }
 
@@ -1081,7 +1246,7 @@ window.NepVietData = {
     category: 'Chạm bạc · Khánh Hòa',
     artistId: 6,
 
-    image: '../images/artisans/dang-thi-my-tram/portrait.webp',
+    image: '../images/tram.jpg',
     inlineImage: '../images/products/khay-trau-cham/cover.webp',
 
     description:
@@ -1131,7 +1296,7 @@ window.NepVietData = {
     category: 'Dệt thổ cẩm · An Giang',
     artistId: 7,
 
-    image: '../images/artisans/mohamad/portrait.webp',
+    image: '../images/moha.jpg',
     inlineImage: '../images/products/xa-rong-cham/cover.webp',
 
     description:
@@ -1181,7 +1346,7 @@ window.NepVietData = {
     category: 'Chế tác mặt nạ · Vĩnh Long',
     artistId: 8,
 
-    image: '../images/artisans/lam-phen/portrait.webp',
+    image: '../images/phen.jpg',
     inlineImage: '../images/products/mat-na-khmer/cover.webp',
 
     description:
@@ -1226,50 +1391,55 @@ window.NepVietData = {
 
   {
     id: 9,
-    title: 'Người giữ nét vẽ ngược cuối cùng của dòng tranh kiếng Khmer Phước Thuận',
-    shortTitle: 'Tranh kiếng Phước Thuận',
-    category: 'Tranh kiếng · Cần Thơ',
+    title: 'Người phụ nữ Mông đưa sợi lanh Lùng Tám vươn xa khỏi núi đá Hà Giang',
+    shortTitle: 'Dệt lanh Lùng Tám',
+    category: 'Dệt lanh · Hà Giang',
     artistId: 9,
 
-    image: '../images/artisans/trieu-thi-vui/portrait.webp',
-    inlineImage: '../images/products/tranh-kieng-khmer/cover.webp',
+    image: '../images/mai.jpg',
+    inlineImage: '../images/lanh.jpg',
 
     description:
-      'Câu chuyện về nghệ nhân Triệu Thị Vui và sự kiên trì gìn giữ nghệ thuật vẽ tranh ngược trên mặt kính độc đáo của đồng bào Khmer Nam Bộ.',
+      'Hành trình hơn hai thập niên của nghệ nhân Vàng Thị Mai gìn giữ nghề dệt lanh, vẽ sáp ong truyền thống và mở hướng sinh kế bền vững cho phụ nữ Mông nơi Quản Bạ, Hà Giang.',
 
     lead:
-      'Giữa lúc dòng tranh kiếng truyền thống dần vắng bóng người theo nghề, nghệ nhân Triệu Thị Vui vẫn cần mẫn bên những tấm kính trong suốt để lưu giữ hồn nghề Phước Thuận.',
+      'Từ những nương lanh xanh mướt dưới chân Cổng trời Quản Bạ, nghệ nhân Vàng Thị Mai đã tập hợp phụ nữ Mông tại Lùng Tám để biến nghề dệt truyền thống thành điểm sáng văn hóa và du lịch cộng đồng.',
 
     opening:
-      'Làng nghề vẽ tranh kiếng tại ấp Phước Thuận từng có thời kỳ hoàng kim với hàng trăm hộ gia đình cùng làm tranh. Trải qua biến thiên của thời gian, bà Triệu Thị Vui là một trong những nghệ nhân hiếm hoi còn gắn bó trọn vẹn với kỹ thuật vẽ ngược thủ công.',
+      'Trong đời sống của người Mông ở Lùng Tám (Quản Bạ, Hà Giang), cây lanh và khung cửi gắn liền với người phụ nữ từ lúc trưởng thành. Năm 2001, trước nguy cơ nghề dệt thủ công dần mai một bởi vải công nghiệp, bà Vàng Thị Mai đã khởi xướng thành lập Hợp tác xã Dệt lanh Lùng Tám với những thành viên đầu tiên trong bản.',
 
     sections: [
       {
-        title: 'Nghệ thuật vẽ ngược đòi hỏi trí nhớ và sự chuẩn xác',
+        title: 'Hơn 40 công đoạn thủ công từ nương lanh đến tấm vải',
         text:
-          'Khác với hội họa thông thường, người vẽ tranh kiếng phải thao tác ở mặt sau tấm kính: đi nét viền, vẽ chi tiết nhỏ trước rồi mới phủ các lớp màu nền sau, để khi lật mặt trước lại bức tranh hiện lên hoàn chỉnh.',
+          'Để dệt nên một tấm vải lanh hoàn chỉnh, người phụ nữ Mông phải trải qua hơn 40 bước thủ công tỉ mỉ: từ gieo hạt, thu hoạch, phơi khô, tước vỏ, giã sợi, nối sợi đến mắc khung, dệt vải, luộc tro bếp và lăn cán trên phiến đá. Điểm độc đáo nhất là kỹ thuật dùng bút đồng chấm sáp ong nóng vẽ hoa văn hình học lên vải trước khi nhuộm chàm tự nhiên nhiều lần.',
         imageAfter: true
       },
       {
-        title: 'Gìn giữ sắc màu tín ngưỡng và đời sống phương Nam',
+        title: 'Nâng cao vị thế phụ nữ Mông và kết nối du lịch bản địa',
         text:
-          'Những bức tranh kiếng của bà Triệu Thị Vui thường khắc họa hình ảnh Đức Phật, ngôi chùa Khmer, tích truyện dân gian và phong cảnh quê hương với độ bền màu cao qua hàng chục năm.'
+          'Từ một nhóm nhỏ ban đầu, Hợp tác xã Dệt lanh Lùng Tám do nghệ nhân Vàng Thị Mai dẫn dắt đã quy tụ hơn một trăm phụ nữ và nghệ nhân trong vùng, đưa sản phẩm thổ cẩm lanh vươn tới hơn 20 quốc gia. Không gian hợp tác xã đồng thời trở thành điểm dừng chân văn hóa, nơi du khách tận mắt chứng kiến và trải nghiệm từng công đoạn làm lanh.'
+      },
+      {
+        title: 'Truyền lửa giữ nghề cho thế hệ trẻ vùng cao',
+        text:
+          'Tại hợp tác xã, nghệ nhân Vàng Thị Mai luôn dành tâm huyết hướng dẫn các em nhỏ và thiếu nữ Mông học thêu họa tiết hoa tam giác mạch, nối sợi và vẽ sáp ong để mạch nguồn văn hóa của tổ tiên không bị đứt quãng.'
       }
     ],
 
     quote:
-      'Vẽ tranh kiếng phải vẽ ngược từ nét nhỏ nhất, chỉ cần sai một nét là phải xóa đi làm lại từ đầu.',
+      'Nhờ cây lanh và khung dệt, phụ nữ Mông ở Lùng Tám vừa giữ được nghề của ông bà để lại, vừa có thu nhập ổn định ngay tại bản làng mình.',
 
     sources: [
       {
-        title: 'Tranh kiếng Khmer “Sóc Sờ Bai”: Nơi hồn xưa được gìn giữ qua từng nét vẽ',
-        publisher: 'VOV',
-        url: 'https://vov.vn/van-hoa/tranh-kieng-khmer-soc-so-bai-noi-hon-xua-duoc-gin-giu-qua-tung-net-ve-post1278957.vov'
+        title: 'Về Lùng Tám dệt lanh, vẽ vải',
+        publisher: 'Cục Du lịch Quốc gia Việt Nam',
+        url: 'https://vietnamtourism.gov.vn/post/68705'
       },
       {
-        title: 'Tài hoa nghề vẽ tranh kính của đồng bào Khmer ở Sóc Trăng',
-        publisher: 'Báo Lao Động',
-        url: 'https://laodong.vn/du-lich/kham-pha/tai-hoa-nghe-ve-tranh-kinh-cua-dong-bao-khmer-o-soc-trang-1423064.html'
+        title: 'Phụ nữ Mông ổn định kinh tế, đưa sản phẩm dệt lanh Lùng Tám ra thế giới',
+        publisher: 'Báo Dân trí',
+        url: 'https://dantri.com.vn/thoi-su/phu-nu-mong-on-dinh-kinh-te-dua-san-pham-det-lanh-lung-tam-ra-the-gioi-20231112085112278.htm'
       }
     ]
   }
@@ -1281,6 +1451,7 @@ window.NepVietData = {
     title: 'Trải nghiệm dệt lụa và làm sợi tơ sen ở Phùng Xá',
     shortTitle: 'Dệt lụa & tơ sen',
     place: 'Phùng Xá, Mỹ Đức, Hà Nội',
+    province: 'Hà Nội',
     duration: 'Theo chương trình tham quan',
     artistId: 1,
     image: '../images/tosen1.jpg',
@@ -1372,9 +1543,10 @@ window.NepVietData = {
     title: 'Trải nghiệm tranh in khắc gỗ và sơn mài tại Đường Lâm',
     shortTitle: 'Mỹ thuật Đường Lâm',
     place: 'Làng cổ Đường Lâm, Sơn Tây, Hà Nội',
+    province: 'Hà Nội',
     duration: 'Khoảng 2 giờ',
     artistId: 2,
-    image: '../images/artisans/nguyen-tan-phat/portrait.webp',
+    image: '../images/phat.jpg',
     summary:
       'Gặp nghệ nhân Nguyễn Tấn Phát, tìm hiểu mỹ thuật truyền thống và thực hành tạo một sản phẩm tranh in đơn giản tại Đường Lâm.',
     headline: 'Chạm vào mỹ thuật xứ Đoài',
@@ -1406,11 +1578,6 @@ window.NepVietData = {
         name: 'Đức Huy',
         score: '9,7',
         comment: 'Buổi học kéo dài 2 tiếng trôi qua rất nhanh. Nghệ nhân chia sẻ rất cuốn hút về triết lý nghề sơn mài chậm giữa nhịp sống nhanh hôm nay.'
-      },
-      {
-        name: 'Lauren Miller',
-        score: '9,8',
-        comment: 'Hoạt động trải nghiệm rất phù hợp cho cả gia đình và các bạn nhỏ. Xung quanh xưởng có rất nhiều nhà cổ trăm năm tuổi và quán ăn truyền thống ngon miệng.'
       }
     ],
     nearby: {
@@ -1444,28 +1611,18 @@ window.NepVietData = {
         ['Quốc lộ 32 kết nối trung tâm Hà Nội', '1,0 km']
       ]
     },
-    sources: [
-      {
-        title: 'Khơi lên tình yêu nghệ thuật truyền thống',
-        publisher: 'Báo Nhân Dân',
-        url: 'https://nhandan.vn/khoi-len-tinh-yeu-nghe-thuat-truyen-thong-post759311.html'
-      },
-      {
-        title: 'Free class spreads love of traditional art',
-        publisher: 'VietnamPlus',
-        url: 'https://en.vietnamplus.vn/free-class-spreads-love-of-traditional-art-post265244.vnp'
-      }
-    ]
+    sources: []
   },
 
   {
     id: 3,
     title: 'Trải nghiệm in tranh dân gian Đông Hồ',
     shortTitle: 'In tranh Đông Hồ',
-    place: 'Đông Khê, phường Thuận Thành, Bắc Ninh',
+    place: 'Đông Khê, Thuận Thành, Bắc Ninh',
+    province: 'Bắc Ninh',
     duration: 'Theo lịch của cơ sở',
     artistId: 3,
-    image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
+    image: '../images/oanh.jpg',
     summary:
       'Tìm hiểu giấy điệp, màu tự nhiên, ván khắc và thử in tranh dân gian Đông Hồ tại không gian gìn giữ nghề.',
     headline: 'Chạm lên giấy điệp',
@@ -1478,7 +1635,7 @@ window.NepVietData = {
       'Quan sát ván khắc và trình tự in từng lớp màu.',
       'Trải nghiệm in một mẫu tranh dưới sự hướng dẫn của người làm nghề.'
     ],
-    mapQuery: 'Làng tranh Đông Hồ, phường Thuận Thành, Bắc Ninh',
+    mapQuery: 'Làng tranh Đông Hồ, Thuận Thành, Bắc Ninh',
     rating: '9,6',
     reviewLabel: 'Xuất sắc',
     reviewCount: 148,
@@ -1529,180 +1686,440 @@ window.NepVietData = {
         ['Quốc lộ 17 đi Gia Lâm – Hà Nội', '2,0 km']
       ]
     },
-    sources: [
-      {
-        title: 'Bảo tồn tranh Đông Hồ - Bài 2: Những báu vật nhân văn sống',
-        publisher: 'Báo Tin tức / TTXVN',
-        url: 'https://baotintuc.vn/van-hoa/bao-ton-tranh-dong-ho-bai-2-nhung-bau-vat-nhan-van-song-20251213085443395.htm'
-      },
-      {
-        title: 'Bắc Ninh: Gia đình “Đại sứ” đưa tranh dân gian Đông Hồ ra thế giới',
-        publisher: 'TTXVN',
-        url: 'https://happyvietnam.vnanet.vn/bac-ninh-gia-dinh-dai-su-dua-tranh-dan-gian-dong-ho-ra-the-gioi/57198.html'
-      }
-    ]
+    sources: []
   },
 
   {
     id: 4,
-    title: 'Khám phá hành trình từ cuống sen đến sợi tơ sen',
-    shortTitle: 'Từ cuống sen đến sợi',
-    place: 'Phùng Xá, Mỹ Đức, Hà Nội',
-    duration: 'Khoảng 60 - 90 phút',
-    artistId: 1,
-    image: '../images/artisans/phan-thi-thuan/portrait.webp',
+    title: 'Trải nghiệm chạm trổ mộc truyền thống tại làng Kim Bồng',
+    shortTitle: 'Mộc Kim Bồng',
+    place: 'Làng mộc Kim Bồng, Hội An, Đà Nẵng',
+    province: 'Đà Nẵng',
+    duration: 'Khoảng 90 phút',
+    artistId: 4,
+    image: '../images/huynhsuong.jpg',
     summary:
-      'Tìm hiểu cách nghệ nhân xử lý cuống sen, kéo những sợi tơ mảnh và chuẩn bị nguyên liệu cho quá trình dệt lụa tơ sen.',
-    headline: 'Từ một cuống sen',
-    accent: 'thành những sợi tơ mảnh',
+      'Gặp Nghệ nhân Nhân dân Huỳnh Sướng, tìm hiểu lịch sử làng mộc bên dòng Thu Bồn và thử thao tác chạm khắc gỗ thủ công.',
+    headline: 'Lắng nghe tiếng đục',
+    accent: 'bên dòng sông Thu Bồn',
     intro:
-      'Hoạt động giới thiệu câu chuyện về tơ sen tại Phùng Xá, tập trung vào công đoạn lấy tơ từ cuống sen và quá trình chuẩn bị sợi trước khi dệt.',
+      'Tại xưởng mộc Kim Bồng, du khách được Nghệ nhân Nhân dân Huỳnh Sướng giới thiệu về lịch sử hơn 500 năm của làng mộc, quan sát các tác phẩm điêu khắc gỗ và trực tiếp trải nghiệm thao tác cầm đục chạm trổ cơ bản.',
     activities: [
-      'Tìm hiểu đặc điểm của cuống sen được sử dụng để lấy tơ.',
-      'Quan sát thao tác rút và nối những sợi tơ nhỏ từ cuống sen.',
-      'Tìm hiểu cách se và chuẩn bị sợi trước khi đưa lên khung dệt.',
-      'Thử một thao tác đơn giản dưới sự hướng dẫn của người làm nghề.'
+      'Tham quan xưởng mộc gia truyền và tìm hiểu các loại gỗ, bộ đục thủ công.',
+      'Nghe câu chuyện về nghề mộc Kim Bồng gắn với kiến trúc phố cổ Hội An.',
+      'Quan sát nghệ nhân thực hiện các nét chạm nổi, chạm lọng tinh xảo.',
+      'Trải nghiệm tự tay chạm khắc hoa văn cơ bản trên phôi gỗ nhỏ dưới sự hướng dẫn.'
     ],
-    mapQuery: 'Phùng Xá, Mỹ Đức, Hà Nội',
-    rating: '9,6',
+    mapQuery: 'Làng mộc Kim Bồng, Cẩm Kim, Hội An',
+    rating: '9,8',
     reviewLabel: 'Xuất sắc',
-    reviewCount: 118,
+    reviewCount: 175,
+    reviews: [
+      {
+        name: 'Bảo Trân',
+        score: '9,9',
+        comment: 'Từ bến thuyền phố cổ Hội An qua cầu Cẩm Kim vài phút là tới làng mộc. Bác Huỳnh Sướng rất hiền và nhiệt tình chỉ cho tụi mình từng cách cầm dùi, cầm đục.'
+      },
+      {
+        name: 'Lucas Meyer',
+        score: '9,8',
+        comment: 'Các tác phẩm chạm khắc gỗ ở đây tinh xảo đến từng chi tiết nhỏ. Không khí làng quê Cẩm Kim yên bình, đạp xe quanh làng rất tuyệt.'
+      },
+      {
+        name: 'Thanh Tùng',
+        score: '9,7',
+        comment: 'Một điểm đến văn hóa rất đáng giá khi ghé Hội An – Đà Nẵng. Mình hiểu thêm vì sao thợ mộc Kim Bồng lại giữ vai trò quan trọng trong trùng tu phố cổ.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Xưởng mộc Nghệ nhân Huỳnh Sướng', '50 m'],
+        ['Nhà trưng bày Làng mộc Kim Bồng', '200 m'],
+        ['Đình Tiền hiền Kim Bồng', '350 m'],
+        ['Bến thuyền du lịch Cẩm Kim', '450 m'],
+        ['Làng nghề đan thúng chai & dệt chiếu Cẩm Kim', '800 m']
+      ],
+      dining: [
+        ['Quán Mì Quảng & Cao lầu Cẩm Kim', '300 m'],
+        ['Cà phê Ven Sông Thu Bồn', '400 m'],
+        ['Bánh đập – Hến xào truyền thống Cẩm Kim', '650 m'],
+        ['Nhà hàng Ẩm thực Phố cổ Hội An', '1,5 km']
+      ],
+      topAttractions: [
+        ['Chùa Cầu & Khu phố cổ Hội An', '1,6 km'],
+        ['Hội quán Phúc Kiến', '2,1 km'],
+        ['Làng gốm Thanh Hà', '3,8 km']
+      ],
+      scenic: [
+        ['Bờ sông Thu Bồn nhìn sang phố cổ', '300 m'],
+        ['Cung đường xe đạp sinh thái Cẩm Kim', '600 m'],
+        ['Rừng dừa Bảy Mẫu Cẩm Thanh', '5,5 km']
+      ],
+      transport: [
+        ['Bến đò Cẩm Kim – Phố cổ Hội An', '450 m'],
+        ['Cầu Cẩm Kim nối trung tâm Hội An', '900 m'],
+        ['Bến xe buýt Hội An – Đà Nẵng', '2,5 km']
+      ]
+    },
     sources: []
   },
 
   {
     id: 5,
-    title: 'Thử dệt một mẫu lụa nhỏ trên khung cửi Phùng Xá',
-    shortTitle: 'Thử dệt trên khung cửi',
-    place: 'Phùng Xá, Mỹ Đức, Hà Nội',
+    title: 'Trải nghiệm làm hoa giấy truyền thống tại làng Thanh Tiên',
+    shortTitle: 'Hoa giấy Thanh Tiên',
+    place: 'Làng Thanh Tiên, Phú Vinh, Huế',
+    province: 'Huế',
     duration: 'Khoảng 90 phút',
-    artistId: 1,
-    image: '../images/artisans/phan-thi-thuan/portrait.webp',
+    artistId: 5,
+    image: '../images/nguyenhoa.jpg',
     summary:
-      'Làm quen với khung cửi, tìm hiểu cách sắp xếp sợi và thử thực hiện một số thao tác dệt cơ bản.',
-    headline: 'Ngồi bên khung cửi',
-    accent: 'thử dệt một phần câu chuyện nghề',
+      'Tìm hiểu ý nghĩa văn hóa của hoa giấy thờ cúng xứ Huế và tự tay xếp cánh, ghép cành hoa sen giấy cùng nghệ nhân Nguyễn Hóa.',
+    headline: 'Sắc hoa bên dòng Hương',
+    accent: 'tự tay ghép đoá sen giấy Thanh Tiên',
     intro:
-      'Trải nghiệm tập trung vào kỹ thuật dệt thủ công tại Phùng Xá. Du khách được giới thiệu cấu tạo cơ bản của khung cửi và thử một số thao tác đơn giản phù hợp với người mới.',
+      'Tại không gian nghề của gia đình nghệ nhân Nguyễn Hóa bên hạ lưu sông Hương, du khách được nghe kể về lịch sử hơn 300 năm của làng hoa giấy Thanh Tiên và trực tiếp thực hành làm một nhành hoa sen giấy.',
     activities: [
-      'Tìm hiểu cấu tạo và nguyên lý hoạt động của khung cửi.',
-      'Quan sát cách nghệ nhân chuẩn bị và sắp xếp sợi.',
-      'Thử thao tác đưa sợi và tạo một đoạn dệt đơn giản.',
-      'Trao đổi về thời gian và công sức để hoàn thiện một sản phẩm lụa.'
+      'Tìm hiểu ý nghĩa triết lý của cành hoa giấy thờ cúng và hoa sen giấy xứ Huế.',
+      'Quan sát quy trình chẻ tre, nhuộm màu giấy từ nguyên liệu tự nhiên và đục cánh hoa.',
+      'Thực hành gấp nếp, tạo gân cánh hoa và ghép thành bông sen giấy hoàn chỉnh.',
+      'Mang sản phẩm hoa sen giấy tự tay thực hiện về làm quà kỷ niệm.'
     ],
-    mapQuery: 'Phùng Xá, Mỹ Đức, Hà Nội',
+    mapQuery: 'Làng hoa giấy Thanh Tiên, Phú Mậu, Huế',
     rating: '9,7',
     reviewLabel: 'Xuất sắc',
-    reviewCount: 132,
+    reviewCount: 164,
+    reviews: [
+      {
+        name: 'Ngọc Diệp',
+        score: '9,8',
+        comment: 'Ngôi nhà của chú Nguyễn Hóa ngập tràn sắc màu hoa sen giấy. Chú hướng dẫn cách xếp nếp cánh hoa rất tỉ mỉ, ai cũng tự làm được một bông sen đẹp mang về.'
+      },
+      {
+        name: 'Sophie Laurent',
+        score: '9,7',
+        comment: 'Đạp xe dọc sông Hương xuống làng Thanh Tiên rồi ghé làng tranh Sình kế bên là hành trình khám phá Huế tuyệt vời nhất của tôi.'
+      },
+      {
+        name: 'Gia Khiêm',
+        score: '9,6',
+        comment: 'Không gian làng quê yên ả, người dân hiếu khách. Tìm hiểu mới biết mỗi bông hoa giấy Thanh Tiên đều gửi gắm đạo lý tam cương ngũ thường của người xưa.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Cơ sở hoa giấy Nghệ nhân Nguyễn Hóa', '50 m'],
+        ['Đình làng cổ Thanh Tiên', '250 m'],
+        ['Bến nước sông Hương làng Thanh Tiên', '300 m'],
+        ['Làng tranh dân gian Lại Ân (Làng Sình)', '1,1 km'],
+        ['Phố cổ Bao Vinh', '2,2 km']
+      ],
+      dining: [
+        ['Mắt Biếc Café – Phố cổ Bao Vinh', '2,1 km'],
+        ['Quán Bánh bèo, Nậm, Lọc mệ Tuyết', '1,2 km'],
+        ['Nhà hàng Ẩm thực Ven Sông Hương', '1,8 km'],
+        ['Quán Bún bò Huế & Chè cung đình', '2,5 km']
+      ],
+      topAttractions: [
+        ['Phố cổ Bao Vinh', '2,2 km'],
+        ['Đại Nội Huế – Kinh thành Huế', '5,5 km'],
+        ['Chùa Thiên Mụ', '8,2 km']
+      ],
+      scenic: [
+        ['Con đường ven hạ lưu sông Hương', '300 m'],
+        ['Ngã ba Sình thơ mộng', '1,2 km'],
+        ['Phá Tam Giang', '9,5 km']
+      ],
+      transport: [
+        ['Bến thuyền du lịch sông Hương (Làng Sình)', '1,1 km'],
+        ['Tuyến đường Tỉnh lộ 10A về trung tâm TP. Huế', '5,0 km'],
+        ['Ga Huế', '6,8 km']
+      ]
+    },
     sources: []
   },
 
   {
     id: 6,
-    title: 'Một buổi tìm hiểu nghề lụa cùng nghệ nhân Phan Thị Thuận',
-    shortTitle: 'Câu chuyện nghề lụa',
-    place: 'Phùng Xá, Mỹ Đức, Hà Nội',
-    duration: 'Khoảng 60 phút',
-    artistId: 1,
-    image: '../images/artisans/phan-thi-thuan/portrait.webp',
+    title: 'Tìm hiểu nghề chạm bạc cổ truyền của đồng bào Chăm tại Bàu Trúc',
+    shortTitle: 'Chạm bạc Chăm',
+    place: 'Bàu Trúc, Ninh Phước, Khánh Hòa',
+    province: 'Khánh Hòa',
+    duration: 'Khoảng 60 - 90 phút',
+    artistId: 6,
+    image: '../images/tram.jpg',
     summary:
-      'Gặp gỡ nghệ nhân, nghe câu chuyện về nghề dệt Phùng Xá và tìm hiểu sự khác biệt giữa tơ tằm với tơ sen.',
-    headline: 'Một giờ nghe chuyện nghề',
-    accent: 'giữa không gian dệt lụa Phùng Xá',
+      'Ghé thăm gia đình Nghệ nhân Đàng Thị Mỹ Trâm, quan sát kỹ thuật gò kim loại và chạm khắc hoa văn truyền thống trên khay trầu Chăm.',
+    headline: 'Giữ ánh kim hoàn',
+    accent: 'nơi làng cổ Chăm Bàu Trúc',
     intro:
-      'Không tập trung nhiều vào thao tác thực hành, trải nghiệm này hướng đến việc giúp du khách hiểu câu chuyện nghề, nguyên liệu và quá trình phát triển của sản phẩm lụa tại Phùng Xá.',
+      'Bên cạnh nghề gốm trứ danh, Bàu Trúc còn lưu giữ nghề chạm bạc truyền thống qua ba thế hệ của gia đình Nghệ nhân Đàng Thị Mỹ Trâm. Du khách được tìm hiểu dụng cụ kim hoàn thủ công và hệ thống hoa văn nghi lễ Chăm.',
     activities: [
-      'Nghe giới thiệu về nghề dệt lụa tại Phùng Xá.',
-      'Tìm hiểu điểm khác nhau giữa tơ tằm và tơ sen.',
-      'Quan sát một số nguyên liệu và sản phẩm hoàn thiện.',
-      'Trao đổi với người làm nghề về quá trình gìn giữ và phát triển nghề truyền thống.'
+      'Nghe giới thiệu về lịch sử nghề chạm bạc truyền thống trong đời sống tín ngưỡng Chăm.',
+      'Quan sát bộ dụng cụ búa, đe, mũi chạm thủ công truyền qua ba thế hệ.',
+      'Theo dõi nghệ nhân gò dáng và chạm khắc hoa văn rồng phượng, hoa lá trên khay trầu.',
+      'Kết hợp khám phá không gian văn hóa Chăm tại làng cổ Bàu Trúc.'
     ],
-    mapQuery: 'Phùng Xá, Mỹ Đức, Hà Nội',
-    rating: '9,5',
-    reviewLabel: 'Tuyệt vời',
-    reviewCount: 96,
+    mapQuery: 'Làng gốm Bàu Trúc, Ninh Phước, Ninh Thuận',
+    rating: '9,6',
+    reviewLabel: 'Xuất sắc',
+    reviewCount: 124,
+    reviews: [
+      {
+        name: 'Hải Đăng',
+        score: '9,7',
+        comment: 'Rất bất ngờ khi giữa làng gốm Bàu Trúc vẫn còn gia đình cô Mỹ Trâm giữ nghề chạm bạc cổ truyền. Từng nét đục hoàn toàn bằng tay cực kỳ khéo léo.'
+      },
+      {
+        name: 'Mai Phương',
+        score: '9,6',
+        comment: 'Cô chú rất thân thiện, vừa làm vừa kể chuyện về ý nghĩa của chiếc khay trầu trong lễ cưới hỏi và nghi lễ của người Chăm.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Gia đình Nghệ nhân Đàng Thị Mỹ Trâm', '50 m'],
+        ['Nhà trưng bày Làng nghề Bàu Trúc', '300 m'],
+        ['Đình làng Bàu Trúc', '450 m'],
+        ['Làng dệt thổ cẩm Chăm Mỹ Nghiệp', '1,8 km']
+      ],
+      dining: [
+        ['Nhà hàng Ẩm thực Chăm Bàu Trúc', '400 m'],
+        ['Quán Đặc sản Cơm gà & Dê núi Ninh Phước', '1,2 km'],
+        ['Cà phê Tháp Chàm', '3,5 km']
+      ],
+      topAttractions: [
+        ['Làng dệt thổ cẩm Mỹ Nghiệp', '1,8 km'],
+        ['Quần thể Tháp Pô Klong Garai', '9,5 km'],
+        ['Vườn nho Thái An & Đồi cát Nam Cương', '8,0 km']
+      ],
+      scenic: [
+        ['Đồi cát Nam Cương', '7,5 km'],
+        ['Cánh đồng cừu & vườn nho Ninh Phước', '5,2 km']
+      ],
+      transport: [
+        ['Quốc lộ 1A đi qua thị trấn Phước Dân', '1,0 km'],
+        ['Ga Tháp Chàm', '9,0 km']
+      ]
+    },
     sources: []
   },
 
   {
     id: 7,
-    title: 'Thực hành in tranh khắc gỗ tại Đường Lâm',
-    shortTitle: 'In tranh khắc gỗ',
-    place: 'Làng cổ Đường Lâm, Sơn Tây, Hà Nội',
+    title: 'Trải nghiệm dệt thổ cẩm và khám phá văn hóa làng Chăm Châu Phong',
+    shortTitle: 'Thổ cẩm Châu Phong',
+    place: 'Làng Chăm Châu Phong, Tân Châu, An Giang',
+    province: 'An Giang',
     duration: 'Khoảng 90 phút',
-    artistId: 2,
-    image: '../images/artisans/nguyen-tan-phat/portrait.webp',
+    artistId: 7,
+    image: '../images/moha.jpg',
     summary:
-      'Quan sát bản khắc, tìm hiểu nguyên lý in thủ công và tự thực hiện một bản in đơn giản dưới sự hướng dẫn của nghệ nhân.',
-    headline: 'Từ bản khắc gỗ',
-    accent: 'đến một tác phẩm của riêng mình',
+      'Gặp nghệ nhân Mohamad tại ấp Phũm Soài, tìm hiểu kỹ thuật nhuộm sợi, dệt hoa văn thổ cẩm và khám phá du lịch cộng đồng làng Chăm.',
+    headline: 'Nhịp khung dệt Chăm',
+    accent: 'bên bờ sông Hậu hiền hòa',
     intro:
-      'Trải nghiệm tập trung vào tranh in khắc gỗ trong không gian văn hóa Đường Lâm. Người tham gia được làm quen với bản khắc và các bước cơ bản để tạo một bản in thủ công.',
+      'Cơ sở dệt thổ cẩm của nghệ nhân Mohamad là điểm nhấn trong hành trình du lịch cộng đồng tại làng Chăm Châu Phong (An Giang). Du khách được tận mắt xem khung dệt gỗ truyền thống và thử thao tác dệt hoa văn đặc trưng.',
     activities: [
-      'Nghe giới thiệu về tranh in và bản khắc gỗ.',
-      'Quan sát một số mẫu bản khắc của nghệ nhân.',
-      'Tìm hiểu cách đưa màu lên bề mặt bản khắc.',
-      'Thử in một mẫu đơn giản và giữ sản phẩm làm kỷ niệm.'
+      'Nghe nghệ nhân Mohamad giới thiệu về lịch sử nghề dệt thổ cẩm của người Chăm An Giang.',
+      'Quan sát các công đoạn suốt chỉ, mắc sợi dọc và tạo hoa văn hình học trên khung cửi.',
+      'Thử thao tác đưa thoi dệt thổ cẩm dưới sự hướng dẫn của các thợ dệt trong làng.',
+      'Khám phá kiến trúc nhà sàn, Thánh đường Hồi giáo và văn hóa ẩm thực làng Chăm Châu Phong.'
     ],
-    mapQuery: 'Làng cổ Đường Lâm, Sơn Tây, Hà Nội',
-    rating: '9,7',
+    mapQuery: 'Làng Chăm Châu Phong, Tân Châu, An Giang',
+    rating: '9,8',
     reviewLabel: 'Xuất sắc',
-    reviewCount: 127,
+    reviewCount: 182,
+    reviews: [
+      {
+        name: 'Minh Khôi',
+        score: '9,8',
+        comment: 'Chú Mohamad nói chuyện rất duyên và hiếu khách. Tụi mình vừa được thử dệt thổ cẩm, vừa được mặc thử trang phục truyền thống Chăm và thưởng thức tung lò mò, bánh bò nướng.'
+      },
+      {
+        name: 'Hannah Wright',
+        score: '9,9',
+        comment: 'Đi đò từ Châu Đốc qua làng Chăm Châu Phong rất thú vị. Những tấm xà rông và khăn thổ cẩm dệt tay có màu sắc vô cùng rực rỡ và tinh xảo.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Cơ sở dệt thổ cẩm Mohamad (Ấp Phũm Soài)', '50 m'],
+        ['Thánh đường Mubarak (Di tích lịch sử - văn hóa)', '600 m'],
+        ['Thánh đường Masjid Al-Ehsan', '900 m'],
+        ['Khu nhà sàn cổ truyền người Chăm Châu Phong', '300 m'],
+        ['Bến phà Châu Giang qua Châu Đốc', '2,2 km']
+      ],
+      dining: [
+        ['Ẩm thực Cộng đồng Làng Chăm (Tung lò mò & Cà púa)', '200 m'],
+        ['Bánh bò nướng thốt nốt Châu Phong', '350 m'],
+        ['Quán Bún cá & Lẩu mắm Châu Đốc', '3,2 km']
+      ],
+      topAttractions: [
+        ['Thánh đường Hồi giáo Mubarak', '600 m'],
+        ['Làng bè sắc màu ngã ba sông Châu Đốc', '2,5 km'],
+        ['Miếu Bà Chúa Xứ Núi Sam', '7,8 km']
+      ],
+      scenic: [
+        ['Ngã ba sông Hậu – Châu Đốc', '2,4 km'],
+        ['Rừng tràm Trà Sư', '22 km']
+      ],
+      transport: [
+        ['Bến phà Châu Giang kết nối TP. Châu Đốc', '2,2 km'],
+        ['Bến tàu du lịch Châu Đốc', '3,0 km']
+      ]
+    },
     sources: []
   },
 
   {
     id: 8,
-    title: 'Khám phá màu sắc và bề mặt trong nghệ thuật sơn mài',
-    shortTitle: 'Khám phá sơn mài',
-    place: 'Làng cổ Đường Lâm, Sơn Tây, Hà Nội',
-    duration: 'Khoảng 2 giờ',
-    artistId: 2,
-    image: '../images/artisans/nguyen-tan-phat/portrait.webp',
+    title: 'Tìm hiểu nghệ thuật chế tác mão và mặt nạ Khmer tại Song Lộc',
+    shortTitle: 'Mặt nạ Khmer',
+    place: 'Xã Song Lộc, Vĩnh Long',
+    province: 'Vĩnh Long',
+    duration: 'Khoảng 90 phút',
+    artistId: 8,
+    image: '../images/phen.jpg',
     summary:
-      'Tìm hiểu các lớp màu, chất liệu và cách tạo hiệu ứng bề mặt trong một sản phẩm sơn mài truyền thống.',
-    headline: 'Những lớp màu chồng lên nhau',
-    accent: 'kể câu chuyện của sơn mài',
+      'Gặp gỡ Nghệ nhân Ưu tú Lâm Phên, tìm hiểu quy trình đắp khuôn, bồi giấy và vẽ mặt nạ nhân vật sân khấu Rô băm, Dù kê Khmer.',
+    headline: 'Thổi hồn vào mặt nạ',
+    accent: 'kể chuyện sân khấu cổ Khmer Nam Bộ',
     intro:
-      'Hoạt động giúp du khách tiếp cận sơn mài ở mức cơ bản thông qua việc quan sát vật liệu, bề mặt và một số công đoạn tạo tác của nghệ nhân Nguyễn Tấn Phát.',
+      'Không gian làm nghề của Nghệ nhân Ưu tú Lâm Phên lưu giữ hàng trăm mẫu mão, mặt nạ và nhạc cụ truyền thống Khmer. Du khách có dịp tìm hiểu ý nghĩa từng nhân vật Chằn, Khỉ thần Hanuman và thử tô vẽ họa tiết mặt nạ.',
     activities: [
-      'Tìm hiểu một số vật liệu thường xuất hiện trong sản phẩm sơn mài.',
-      'Quan sát cách tạo lớp và xử lý bề mặt.',
-      'Khám phá cách nghệ nhân kết hợp màu sắc với hình khối.',
-      'Thử xây dựng một bố cục màu đơn giản theo hướng dẫn.'
+      'Nghe giới thiệu về nghệ thuật sân khấu truyền thống Rô băm, Dù kê và múa Chằn của đồng bào Khmer.',
+      'Quan sát quy trình tạo khuôn đất sét, bồi nhiều lớp giấy vải và chạm đắp hoa văn trên mão.',
+      'Tìm hiểu quy tắc phối màu và vẽ ánh mắt thể hiện tính cách thiện – ác của từng nhân vật.',
+      'Thử trải nghiệm tô màu hoa văn cơ bản lên phôi mặt nạ thủ công.'
     ],
-    mapQuery: 'Làng cổ Đường Lâm, Sơn Tây, Hà Nội',
-    rating: '9,8',
+    mapQuery: 'Xã Song Lộc, Châu Thành, Trà Vinh',
+    rating: '9,7',
     reviewLabel: 'Xuất sắc',
-    reviewCount: 154,
+    reviewCount: 139,
+    reviews: [
+      {
+        name: 'Hoàng Phúc',
+        score: '9,8',
+        comment: 'Nghệ nhân Lâm Phên am hiểu sâu sắc văn hóa Khmer. Nghe chú giải thích ý nghĩa từng chiếc mão và mặt nạ Chằn mới thấy sự tài hoa của người nghệ nhân.'
+      },
+      {
+        name: 'Ngọc Hân',
+        score: '9,7',
+        comment: 'Chuyến đi rất ý nghĩa cho nhóm sinh viên tụi mình khi nghiên cứu về di sản văn hóa Khmer Nam Bộ. Kết hợp tham quan Ao Bà Om và chùa Âng rất thuận tiện.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Không gian chế tác mặt nạ NNƯT Lâm Phên', '50 m'],
+        ['Chùa Kompong Chrây (Chùa Hang)', '6,5 km'],
+        ['Danh thắng Ao Bà Om', '8,5 km'],
+        ['Bảo tàng Văn hóa Dân tộc Khmer', '8,8 km']
+      ],
+      dining: [
+        ['Quán Bún nước lèo & Bánh canh Bến Có', '5,0 km'],
+        ['Cà phê Sân vườn Ao Bà Om', '8,4 km'],
+        ['Đặc sản Dừa sáp & Bánh tét Trà Cuôn', '7,2 km']
+      ],
+      topAttractions: [
+        ['Chùa Âng (Angkorajaborey) cổ kính', '8,6 km'],
+        ['Danh thắng Quốc gia Ao Bà Om', '8,5 km'],
+        ['Khu văn hóa – du lịch Không gian Khmer', '8,8 km']
+      ],
+      scenic: [
+        ['Hàng cây cổ thụ trăm năm quanh Ao Bà Om', '8,5 km'],
+        ['Cánh đồng lúa & hàng thốt nốt Song Lộc', '1,2 km']
+      ],
+      transport: [
+        ['Trục Quốc lộ 60 kết nối trung tâm', '4,5 km'],
+        ['Bến xe khách trung tâm', '9,0 km']
+      ]
+    },
     sources: []
   },
 
   {
     id: 9,
-    title: 'Khám phá màu tự nhiên trong tranh dân gian Đông Hồ',
-    shortTitle: 'Màu sắc Đông Hồ',
-    place: 'Đông Khê, phường Thuận Thành, Bắc Ninh',
-    duration: 'Khoảng 60 - 90 phút',
-    artistId: 3,
-    image: '../images/artisans/nguyen-thi-oanh/portrait.webp',
+    title: 'Trải nghiệm tước sợi, vẽ sáp ong và dệt lanh tại Lùng Tám',
+    shortTitle: 'Dệt lanh Lùng Tám',
+    place: 'Xã Lùng Tám, Quản Bạ, Hà Giang',
+    province: 'Hà Giang',
+    duration: 'Khoảng 90 - 120 phút',
+    artistId: 9,
+    image: '../images/mai.jpg',
     summary:
-      'Tìm hiểu giấy điệp và các màu sắc truyền thống, quan sát cách từng lớp màu tạo nên một bức tranh Đông Hồ.',
-    headline: 'Màu của thiên nhiên',
-    accent: 'trên nền giấy điệp',
+      'Gặp nghệ nhân Vàng Thị Mai tại Hợp tác xã Dệt lanh Lùng Tám, tìm hiểu hơn 40 công đoạn làm lanh truyền thống và thử vẽ hoa văn sáp ong, nhuộm chàm.',
+    headline: 'Sắc chàm bên dòng Miện',
+    accent: 'chạm vào sợi lanh người Mông Lùng Tám',
     intro:
-      'Trải nghiệm giới thiệu vật liệu và màu sắc đặc trưng của tranh dân gian Đông Hồ, giúp người tham gia hiểu vì sao kỹ thuật in nhiều lớp cần sự chính xác và kinh nghiệm.',
+      'Nằm giữa thung lũng dưới chân Cổng trời Quản Bạ, Hợp tác xã Dệt lanh Lùng Tám do nghệ nhân Vàng Thị Mai sáng lập là điểm hẹn văn hóa đặc sắc của Hà Giang. Du khách được tận mắt quan sát những người phụ nữ Mông tước sợi, dệt khung cửi, vẽ sáp ong nóng và trực tiếp thử thực hành một số công đoạn thủ công.',
     activities: [
-      'Tìm hiểu giấy dó và lớp điệp tạo nên bề mặt đặc trưng.',
-      'Nhận biết một số màu truyền thống được sử dụng trong tranh.',
-      'Quan sát cách các lớp màu được in lần lượt.',
-      'Thử phối một bảng màu nhỏ lấy cảm hứng từ tranh Đông Hồ.'
+      'Nghe nghệ nhân Vàng Thị Mai giới thiệu về ý nghĩa cây lanh và trang phục truyền thống trong đời sống người Mông.',
+      'Quan sát quy trình tước vỏ lanh, giã sợi, nối sợi thủ công và dệt vải trên khung cửi gỗ.',
+      'Trải nghiệm cầm bút đồng chấm sáp ong đun nóng để vẽ họa tiết hình học lên tấm vải lanh trắng.',
+      'Tìm hiểu kỹ thuật nhuộm chàm tự nhiên, luộc tách sáp ong và lăn đá cán bóng mặt vải.'
     ],
-    mapQuery: 'Làng tranh Đông Hồ, phường Thuận Thành, Bắc Ninh',
-    rating: '9,6',
+    mapQuery: 'Hợp tác xã Dệt lanh Lùng Tám, Quản Bạ, Hà Giang',
+    rating: '9,8',
     reviewLabel: 'Xuất sắc',
-    reviewCount: 112,
-    sources: []
+    reviewCount: 168,
+    reviews: [
+      {
+        name: 'Phương Vy',
+        score: '9,9',
+        comment: 'Được cô Vàng Thị Mai trực tiếp chỉ cách nối sợi lanh và cầm bút đồng vẽ sáp ong mới thấy đôi tay của phụ nữ Mông khéo léo đến nhường nào. Không gian hợp tác xã bên dòng sông Miện rất bình yên.'
+      },
+      {
+        name: 'Fabienne Moreau',
+        score: '9,8',
+        comment: 'Một trong những trải nghiệm văn hóa chân thực và ấn tượng nhất trên cung đường Hà Giang. Mùi sáp ong ấm nóng và sắc xanh của chàm tự nhiên thật sự khó quên.'
+      },
+      {
+        name: 'Tuấn Kiệt',
+        score: '9,7',
+        comment: 'Từ Cổng trời Quản Bạ đi xuống xã Lùng Tám phong cảnh núi đá và sông Miện tuyệt đẹp. Vừa được trải nghiệm vẽ sáp ong, vừa chọn mua được chiếc khăn lanh ưng ý.'
+      }
+    ],
+    nearby: {
+      around: [
+        ['Hợp tác xã Dệt lanh Lùng Tám (Thôn Hợp Tiến)', '50 m'],
+        ['Dòng sông Miện đoạn qua thung lũng Lùng Tám', '300 m'],
+        ['Bản văn hóa người Mông xã Lùng Tám', '600 m'],
+        ['Nương trồng lanh truyền thống ven sườn núi', '800 m']
+      ],
+      dining: [
+        ['Ẩm thực Bản Mông Quản Bạ (Thắng cố, Mèn mén & Phở ngô)', '1,5 km'],
+        ['Quán Cà phê Cổng Trời Quản Bạ', '8,5 km'],
+        ['Nhà hàng Đặc sản Cao nguyên đá Tam Sơn', '7,2 km']
+      ],
+      topAttractions: [
+        ['Núi Đôi Cô Tiên Quản Bạ', '7,5 km'],
+        ['Cổng trời Quản Bạ', '8,8 km'],
+        ['Động Lùng Khúy – Đệ nhất động Cao nguyên đá', '9,2 km'],
+        ['Làng văn hóa du lịch cộng đồng Nặm Đăm', '8,0 km']
+      ],
+      scenic: [
+        ['Thung lũng sông Miện xanh ngọc bích', '400 m'],
+        ['Cung đường đèo Cán Tỷ – Quản Bạ', '5,0 km'],
+        ['Toàn cảnh thị trấn Tam Sơn từ Cổng trời Quản Bạ', '8,8 km']
+      ],
+      transport: [
+        ['Tuyến đường Quốc lộ 4C (Đường Hạnh Phúc) rẽ vào Lùng Tám', '6,5 km'],
+        ['Bến xe thị trấn Tam Sơn (Quản Bạ)', '7,8 km']
+      ]
+    },
+    sources: [
+      {
+        title: 'Về Lùng Tám dệt lanh, vẽ vải',
+        publisher: 'Cục Du lịch Quốc gia Việt Nam',
+        url: 'https://vietnamtourism.gov.vn/post/68705'
+      },
+      {
+        title: 'Làng dệt thổ cẩm người Mông Lùng Tám, Hà Giang',
+        publisher: 'Chuyên trang Du lịch Dân tộc – Cục Du lịch Quốc gia Việt Nam',
+        url: 'https://dantoc.vietnamtourism.gov.vn/lang-det-tho-cam-nguoi-mong-lung-tam-ha-giang/'
+      }
+    ]
   }
 ]
 

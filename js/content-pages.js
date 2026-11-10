@@ -80,6 +80,26 @@
 
     if (!search || !craft || !province) return;
 
+    // Tự động đồng bộ danh sách Nghề và Tỉnh/Thành phố trong bộ lọc theo dữ liệu content-data.js
+    const uniqueCrafts = [...new Set(data.artists.map(a => a.craft).filter(Boolean))];
+    const uniqueProvinces = [...new Set(data.artists.map(a => a.province).filter(Boolean))];
+
+    if (uniqueCrafts.length) {
+      const currentCraft = craft.value;
+      craft.innerHTML =
+        '<option value="">Tất cả nghề thủ công</option>' +
+        uniqueCrafts.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      craft.value = uniqueCrafts.includes(currentCraft) ? currentCraft : '';
+    }
+
+    if (uniqueProvinces.length) {
+      const currentProv = province.value;
+      province.innerHTML =
+        '<option value="">Tất cả địa phương</option>' +
+        uniqueProvinces.map(p => `<option value="${esc(p)}">${esc(p)}</option>`).join('');
+      province.value = uniqueProvinces.includes(currentProv) ? currentProv : '';
+    }
+
     function applyFilters() {
       const q = normalize(search.value);
       const c = normalize(craft.value);
@@ -299,6 +319,16 @@
       ? url('san-pham', product.id)
       : './san-pham.html';
 
+    const story =
+      (artist.storyId ? findById('stories', artist.storyId) : null) ||
+      (Array.isArray(data.stories)
+        ? data.stories.find(item => Number(item.artistId) === Number(artist.id))
+        : null);
+
+    const storyHref = story
+      ? url('cau-chuyen', story.id)
+      : './cau-chuyen-van-hoa.html';
+
     const experience = Array.isArray(data.experiences)
       ? data.experiences.find(item => Number(item.artistId) === Number(artist.id))
       : null;
@@ -321,6 +351,9 @@
       <div class="artist-actions">
         <a class="button button-dark" href="${esc(productHref)}">
           Xem sản phẩm <span aria-hidden="true">↗</span>
+        </a>
+        <a class="button button-dark" href="${esc(storyHref)}">
+          Xem câu chuyện văn hóa <span aria-hidden="true">↗</span>
         </a>
       </div>
     `;
@@ -469,7 +502,7 @@
   }
 
   /* =====================================================
-     CHI TIẾT SẢN PHẨM
+     CHI TIẾT SẢN PHẨM (ĐÃ THÊM NÚT ĐĂNG KÝ MUA HÀNG + ĐÁNH GIÁ)
   ===================================================== */
   function renderProductDetail() {
     const product = findById('products', requestedId());
@@ -556,8 +589,18 @@
                 `
                 : ''
             }
+            <button
+              class="product-action-button product-action-order"
+              type="button"
+              id="show-product-order"
+            >
+              Đăng ký mua hàng
+              <span aria-hidden="true">↗</span>
+            </button>
             <div class="product-favorite-slot"></div>
           </div>
+
+          <p class="product-order-notice" id="product-order-notice" hidden></p>
 
         </div>
 
@@ -623,7 +666,7 @@
       const slides = Array.from(albumEl.querySelectorAll('.product-album-slide'));
       const prevBtn = albumEl.querySelector('.product-album-prev');
       const nextBtn = albumEl.querySelector('.product-album-next');
-      const counterEl = albumEl.querySelector('.product-album-counter');
+      const counterEl = albumEl.querySelector('.artist-album-counter, .product-album-counter');
       let currentIndex = 0;
 
       const showSlide = nextIndex => {
@@ -656,6 +699,228 @@
           </div>
         </li>
       `).join('');
+    }
+
+    // PHẦN ĐÁNH GIÁ SẢN PHẨM + POPUP "ĐÁNH GIÁ CỦA BẠN" (GIỐNG TRANG TRẢI NGHIỆM)
+    const reviewsSection = document.getElementById('product-reviews-section');
+    if (reviewsSection) {
+      const REVIEW_STORAGE_KEY = `ngheNhanViet.reviews.prod.${product.id}`;
+
+      const getSavedUserReviews = () => {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(REVIEW_STORAGE_KEY) || '[]');
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (err) {
+          return [];
+        }
+      };
+
+      const saveUserReviews = list => {
+        try {
+          localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(list));
+        } catch (err) {
+          console.warn('Không lưu được đánh giá sản phẩm:', err);
+        }
+      };
+
+      const relatedExp =
+        (Array.isArray(data.experiences)
+          ? data.experiences.find(
+              item =>
+                Number(item.artistId) === Number(product.artistId) &&
+                Array.isArray(item.reviews) &&
+                item.reviews.length
+            )
+          : null) ||
+        (Array.isArray(data.experiences) ? data.experiences[0] : null);
+
+      const defaultReviews = Array.isArray(product.reviews) && product.reviews.length
+        ? product.reviews
+        : [
+            {
+              name: 'Ngọc Hân',
+              score: '9,8',
+              comment: `${product.shortName || product.name} được chế tác rất tỉ mỉ, chất liệu ${product.material.toLowerCase()} cầm chắc tay và giàu giá trị truyền thống.`
+            },
+            {
+              name: 'Minh Quân',
+              score: '9,7',
+              comment: `Đường nét thủ công của nghệ nhân ${personText} rất có hồn, nhìn thực tế bên ngoài còn sắc sảo và đẹp hơn trên hình.`
+            },
+            {
+              name: 'Thanh Thảo',
+              score: '9,6',
+              comment: `Mình rất ấn tượng với nguồn gốc từ ${product.origin}. Sản phẩm vừa dùng bền vừa mang câu chuyện văn hóa ý nghĩa.`
+            },
+            ...(relatedExp && Array.isArray(relatedExp.reviews) ? relatedExp.reviews : [])
+          ];
+
+      let userReviews = getSavedUserReviews();
+      let reviewsList = [...userReviews, ...defaultReviews];
+
+      const baseScoreText = String(product.rating || (relatedExp && relatedExp.rating) || '9,7');
+      const ratingLabel = product.reviewLabel || (relatedExp && relatedExp.reviewLabel) || 'Xuất sắc';
+      const baseCount = Number(product.reviewCount || (relatedExp && relatedExp.reviewCount) || 128);
+
+      let startIdx = 0;
+
+      const formatScore = val => {
+        if (val === undefined || val === null || val === '') return '';
+        const num = Number(String(val).replace(',', '.'));
+        if (Number.isNaN(num)) return String(val);
+        return Number.isInteger(num) ? String(num) : num.toFixed(1).replace('.', ',');
+      };
+
+      const renderReviewCards = () => {
+        if (!reviewsList.length) return '';
+        const visible = [];
+        const total = Math.min(3, reviewsList.length);
+        for (let i = 0; i < total; i += 1) {
+          visible.push(reviewsList[(startIdx + i) % reviewsList.length]);
+        }
+
+        return visible.map(rev => {
+          const initial = String(rev.name || 'K').trim().charAt(0).toUpperCase();
+          const scoreBadge = rev.score
+            ? `<span class="review-item-score">${esc(formatScore(rev.score))}</span>`
+            : '';
+
+          return `
+            <article class="review-card">
+              <div class="review-user">
+                <div class="review-user-left">
+                  <span class="review-avatar" aria-hidden="true">${esc(initial)}</span>
+                  <div class="review-user-meta">
+                    <strong>${esc(rev.name)}</strong>
+                  </div>
+                </div>
+                ${scoreBadge}
+              </div>
+              <p class="review-quote">“${esc(rev.comment)}”</p>
+            </article>
+          `;
+        }).join('');
+      };
+
+      const updateReviewsUI = () => {
+        const totalCount = baseCount + userReviews.length;
+        reviewsSection.innerHTML = `
+          <h2 class="reviews-section-title">Đánh giá sản phẩm</h2>
+          <div class="reviews-summary-bar">
+            <span class="reviews-score-badge">${esc(baseScoreText)}</span>
+            <span class="reviews-summary-text">
+              ${esc(ratingLabel)} · <span class="reviews-summary-count">${esc(totalCount)} đánh giá</span>
+            </span>
+            <button class="reviews-read-all" type="button">Đọc tất cả đánh giá</button>
+          </div>
+          <div class="reviews-carousel-wrap">
+            <div class="reviews-grid" id="reviews-grid-list">
+              ${renderReviewCards()}
+            </div>
+            <button
+              class="reviews-next-btn"
+              id="reviews-next-btn"
+              type="button"
+              aria-label="Xem đánh giá tiếp theo"
+            >
+              ›
+            </button>
+          </div>
+          <div class="reviews-bottom-actions">
+            <button
+              class="review-write-btn"
+              id="open-review-modal"
+              type="button"
+            >
+              Đánh giá của bạn
+            </button>
+          </div>
+        `;
+
+        const nextReviewBtn = reviewsSection.querySelector('#reviews-next-btn');
+        const readAllBtn = reviewsSection.querySelector('.reviews-read-all');
+        const gridListEl = reviewsSection.querySelector('#reviews-grid-list');
+        const openModalBtn = reviewsSection.querySelector('#open-review-modal');
+
+        const cycleReviews = () => {
+          if (!gridListEl || !reviewsList.length) return;
+          startIdx = (startIdx + 1) % reviewsList.length;
+          gridListEl.innerHTML = renderReviewCards();
+        };
+
+        if (nextReviewBtn) nextReviewBtn.addEventListener('click', cycleReviews);
+        if (readAllBtn) readAllBtn.addEventListener('click', cycleReviews);
+        if (openModalBtn) openModalBtn.addEventListener('click', openReviewModal);
+      };
+
+      const reviewModal = document.getElementById('review-modal');
+      const reviewForm = document.getElementById('review-form');
+      const reviewProductName = document.getElementById('review-experience-name');
+
+      if (reviewProductName) {
+        reviewProductName.textContent = product.shortName || product.name;
+      }
+
+      function openReviewModal() {
+        if (!reviewModal) return;
+        reviewModal.hidden = false;
+        document.body.classList.add('modal-open');
+        requestAnimationFrame(() => {
+          reviewForm?.querySelector('input[name="reviewerName"]')?.focus();
+        });
+      }
+
+      function closeReviewModal() {
+        if (!reviewModal) return;
+        reviewModal.hidden = true;
+        document.body.classList.remove('modal-open');
+      }
+
+      if (reviewModal && !reviewModal.dataset.bound) {
+        reviewModal.dataset.bound = '1';
+
+        reviewModal.querySelectorAll('[data-review-close]').forEach(btn => {
+          btn.addEventListener('click', closeReviewModal);
+        });
+
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && !reviewModal.hidden) {
+            closeReviewModal();
+          }
+        });
+
+        reviewForm?.addEventListener('submit', event => {
+          event.preventDefault();
+          if (!reviewForm.checkValidity()) {
+            reviewForm.reportValidity();
+            return;
+          }
+
+          const formData = new FormData(reviewForm);
+          const name = String(formData.get('reviewerName') || '').trim();
+          const scoreRaw = String(formData.get('reviewerScore') || '10').trim();
+          const comment = String(formData.get('reviewerComment') || '').trim();
+
+          if (!name || !comment) return;
+
+          const newReview = {
+            name,
+            score: scoreRaw,
+            comment
+          };
+
+          userReviews.unshift(newReview);
+          saveUserReviews(userReviews);
+          reviewsList = [...userReviews, ...defaultReviews];
+          startIdx = 0;
+
+          reviewForm.reset();
+          closeReviewModal();
+          updateReviewsUI();
+        });
+      }
+
+      updateReviewsUI();
     }
 
     installImageFallback(document.querySelector('main'), product.image);
@@ -836,19 +1101,28 @@
     installImageFallback(document.querySelector('main'), story.image);
   }
 
-  /* DANH SÁCH TRẢI NGHIỆM */
+  /* =====================================================
+     DANH SÁCH TRẢI NGHIỆM + BẢN ĐỒ VIỆT NAM 8 MỐC TƯƠNG TÁC
+  ===================================================== */
   function renderExperiences() {
     const grid = document.getElementById('experience-grid');
     if (!grid) return;
 
-    grid.innerHTML = (data.experiences || []).map(experience => {
+    const experiences = Array.isArray(data.experiences) ? data.experiences : [];
+
+    grid.innerHTML = experiences.map(experience => {
       const artist = experience.artistId
         ? findById('artists', experience.artistId)
         : null;
-      const guide = artist ? artist.name + ' (minh họa)' : 'Chưa cập nhật';
+      const guide = artist ? `${artist.name} (minh họa)` : 'Chưa cập nhật';
+      const provinceName = experience.province || (artist && artist.province) || '';
 
       return `
-        <article class="content-card experience-card reveal is-visible">
+        <article
+          class="content-card experience-card reveal is-visible"
+          data-province="${esc(provinceName)}"
+          data-place="${esc(experience.place)}"
+        >
           <a class="content-card-image" href="${url('trai-nghiem', experience.id)}">
             <img src="${esc(experience.image)}" alt="Hình minh họa: ${esc(experience.title)}" loading="lazy">
           </a>
@@ -862,6 +1136,89 @@
     }).join('');
 
     installImageFallback(grid);
+
+    // Tự động dự phòng tên ảnh bản đồ nếu bạn giữ nguyên tên gốc "Thiết kế chưa cgó tên.png"
+    const mapImg = document.getElementById('vietnam-map-img');
+    if (mapImg) {
+      mapImg.addEventListener('error', () => {
+        if (!mapImg.dataset.triedOriginalName) {
+          mapImg.dataset.triedOriginalName = '1';
+          mapImg.src = '../images/Thiết kế chưa cgó tên.png';
+        }
+      });
+    }
+
+    // Xử lý bấm vào 8 mốc địa điểm trên bản đồ Việt Nam
+    const pins = Array.from(document.querySelectorAll('.map-pin[data-province]'));
+    const cards = Array.from(grid.querySelectorAll('.experience-card'));
+    const statusEl = document.getElementById('experience-filter-status');
+    const resetBtn = document.getElementById('experience-reset-map');
+    const emptyEl = document.getElementById('experience-empty');
+
+    if (resetBtn) {
+      resetBtn.textContent = `Xem tất cả (${cards.length})`;
+    }
+
+    let selectedProvince = '';
+
+    function applyMapFilter(provinceValue) {
+      selectedProvince = provinceValue || '';
+      const normSelected = normalize(selectedProvince);
+
+      pins.forEach(pin => {
+        const isMatch = Boolean(normSelected) && normalize(pin.dataset.province) === normSelected;
+        pin.classList.toggle('is-active', isMatch);
+        pin.setAttribute('aria-pressed', String(isMatch));
+      });
+
+      let visibleCount = 0;
+
+      cards.forEach(cardEl => {
+        const cardProv = normalize(cardEl.dataset.province || '');
+        const cardPlace = normalize(cardEl.dataset.place || '');
+        const matched =
+          !normSelected ||
+          cardProv === normSelected ||
+          cardPlace.includes(normSelected);
+
+        cardEl.hidden = !matched;
+        cardEl.style.display = matched ? '' : 'none';
+        if (matched) visibleCount += 1;
+      });
+
+      if (statusEl) {
+        statusEl.innerHTML = selectedProvince
+          ? `Đang hiển thị: <strong>${esc(selectedProvince)} (${visibleCount} trải nghiệm)</strong>`
+          : `Đang hiển thị: <strong>Tất cả địa điểm (${visibleCount} trải nghiệm)</strong>`;
+      }
+
+      if (resetBtn) {
+        resetBtn.hidden = !selectedProvince;
+      }
+
+      if (emptyEl) {
+        emptyEl.hidden = visibleCount > 0;
+      }
+
+      grid.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    pins.forEach(pin => {
+      pin.addEventListener('click', () => {
+        const clickedProv = pin.dataset.province || '';
+        if (normalize(selectedProvince) === normalize(clickedProv)) {
+          applyMapFilter('');
+        } else {
+          applyMapFilter(clickedProv);
+        }
+      });
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => applyMapFilter(''));
+    }
+
+    applyMapFilter('');
   }
 
   /* =====================================================

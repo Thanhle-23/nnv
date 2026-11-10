@@ -39,11 +39,11 @@ a { color: inherit; text-decoration: none; }
 
 img { display: block; max-width: 100%; }
 
-button, input { font: inherit; }
+button, input, select, textarea { font: inherit; }
 
 button { cursor: pointer; }
 
-:where(a, button, input):focus-visible { outline: 2px solid #c99b5b; outline-offset: 3px; }
+:where(a, button, input, select, textarea):focus-visible { outline: 2px solid #c99b5b; outline-offset: 3px; }
 
 .container {
     width: min(1320px, calc(100% - 56px));
@@ -409,11 +409,11 @@ button { cursor: pointer; }
     gap: 52px;
 }
 
-/* 4.1. TẦNG 1 (TRANG ĐẦU): TRÁI = ẢNH CHÍNH | PHẢI = TÊN + NỘI DUNG MÔ TẢ */
+/* 4.1. TẦNG 1 (TRANG ĐẦU): TRÁI = ẢNH CHÍNH | PHẢI = TÊN + NỘI DUNG MÔ TẢ (ĐÃ BỎ 2 KHUNG BAO BỌC) */
 .product-top-row {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    align-items: stretch;
+    align-items: center;
     gap: clamp(32px, 4vw, 56px);
 }
 
@@ -465,30 +465,23 @@ button { cursor: pointer; }
 .product-copy {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    justify-content: center;
+    gap: 16px;
     min-width: 0;
+    padding: 6px 4px;
 }
 
 .product-copy h2 {
     margin: 0;
-    padding: 18px 24px;
-    border: 1px solid #e2d5c4;
-    border-radius: 12px;
-    background: #f3eadc;
     color: #382921;
     font: 600 clamp(30px, 3.2vw, 44px)/1.15 "Playfair Display", Georgia, serif;
     letter-spacing: -0.8px;
 }
 
 .product-copy > p {
-    flex: 1;
     margin: 0;
-    padding: 24px 26px;
-    border: 1px solid #e2d5c4;
-    border-radius: 12px;
-    background: #f3eadc;
     color: #5a4f47;
-    font-size: 15px;
+    font-size: 15.5px;
     line-height: 1.9;
 }
 
@@ -552,6 +545,21 @@ button { cursor: pointer; }
     flex-wrap: wrap;
     gap: 10px;
     margin-top: auto;
+}
+
+.product-order-notice {
+    margin: 12px 0 0;
+    padding: 10px 13px;
+    border: 1px solid #d9cabb;
+    border-radius: 9px;
+    background: #fffaf3;
+    color: #573e32;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.product-order-notice[hidden] {
+    display: none;
 }
 
 /* KHUNG ALBUM 5 HÌNH CÓ NÚT < > */
@@ -711,15 +719,15 @@ button { cursor: pointer; }
     color: #811a20;
 }
 
-/* 5. CỤM NÚT XEM NGHỆ NHÂN & YÊU THÍCH -------------------- */
+/* 5. CỤM NÚT XEM NGHỆ NHÂN, ĐĂNG KÝ MUA HÀNG & YÊU THÍCH --- */
 
 .product-action-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     min-height: 46px;
-    padding: 12px 18px;
+    padding: 12px 17px;
     border: 1px solid #573e32;
     border-radius: 10px;
     font-family: "DM Sans", Arial, sans-serif;
@@ -746,6 +754,23 @@ button { cursor: pointer; }
 .product-action-primary:hover {
     background: #382921;
     border-color: #382921;
+    transform: translateY(-2px);
+}
+
+.product-action-order {
+    background: #9c6e49;
+    border-color: #9c6e49;
+    color: #ffffff;
+}
+
+.product-action-order span {
+    color: #fff3e0;
+    font-size: 17px;
+}
+
+.product-action-order:hover {
+    background: #7d5536;
+    border-color: #7d5536;
     transform: translateY(-2px);
 }
 
@@ -821,6 +846,359 @@ button { cursor: pointer; }
     0% { transform: scale(1); }
     45% { transform: scale(1.04); }
     100% { transform: scale(1); }
+}
+
+/* 5.2. PHẦN ĐÁNH GIÁ SẢN PHẨM (TƯƠNG TỰ CHI TIẾT TRẢI NGHIỆM) */
+
+.product-reviews-section {
+    margin-top: 64px;
+    padding-top: 44px;
+    border-top: 1px solid #e2d6c7;
+}
+
+.reviews-section-title {
+    margin: 0 0 18px;
+    color: #382921;
+    font: 600 clamp(26px, 2.8vw, 34px)/1.2 "Playfair Display", Georgia, serif;
+}
+
+.reviews-summary-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.reviews-score-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 8px 8px 8px 2px;
+    background: #fbe32c;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.reviews-summary-text {
+    color: #382921;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.reviews-summary-count {
+    color: #706760;
+    font-weight: 500;
+}
+
+.reviews-read-all {
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #a12228;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.reviews-read-all:hover {
+    color: #7b181d;
+}
+
+.reviews-carousel-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.reviews-grid {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 22px;
+    border: 1px solid #e4d8c8;
+    border-radius: 14px;
+    background: #f8f2e8;
+    box-shadow: 0 8px 22px rgba(45, 34, 24, .05);
+}
+
+.review-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.review-user-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.review-avatar {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    border-radius: 50%;
+    background: #eadfce;
+    color: #573e32;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.review-user-meta strong {
+    color: #382921;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.review-item-score {
+    padding: 4px 9px;
+    border-radius: 7px;
+    background: #efe4d3;
+    color: #573e32;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.review-quote {
+    margin: 0;
+    color: #514740;
+    font-size: 13.5px;
+    line-height: 1.75;
+}
+
+.reviews-next-btn {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border: 1px solid #d7c8b6;
+    border-radius: 50%;
+    background: #fffaf3;
+    color: #573e32;
+    font-size: 22px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(45, 34, 24, .08);
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.reviews-next-btn:hover {
+    border-color: #573e32;
+    background: #573e32;
+    color: #ffffff;
+}
+
+.reviews-bottom-actions {
+    margin-top: 18px;
+}
+
+.review-write-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid #6c9db1;
+    border-radius: 10px;
+    background: #77acc3;
+    color: #fdfaf9;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background .2s ease, color .2s ease;
+}
+
+.review-write-btn:hover {
+    background: #1f699b;
+    color: #ffffff;
+}
+
+/* 5.3. MODAL ĐĂNG KÝ MUA HÀNG & MODAL ĐÁNH GIÁ ------------ */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.button-dark {
+    border-color: #573e32;
+    background: #573e32;
+    color: #ffffff;
+}
+
+.button-dark:hover {
+    border-color: #382921;
+    background: #382921;
+}
+
+.button-secondary {
+    border-color: #d7c8b6;
+    background: #f4ebde;
+    color: #573e32;
+}
+
+.button-secondary:hover {
+    background: #eadbc8;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.booking-modal[hidden] {
+    display: none;
+}
+
+.booking-modal {
+    position: fixed;
+    z-index: 300;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 22px;
+}
+
+.booking-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(35, 27, 22, .58);
+    backdrop-filter: blur(4px);
+}
+
+.booking-dialog {
+    position: relative;
+    z-index: 2;
+    width: min(720px, 100%);
+    max-height: min(88vh, 760px);
+    overflow-y: auto;
+    padding: 34px;
+    border: 1px solid #ddcfbe;
+    border-radius: 15px;
+    background: #faf4e9;
+    box-shadow: 0 26px 70px rgba(33, 25, 20, .28);
+}
+
+.booking-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid #d7c8b6;
+    border-radius: 50%;
+    background: #fffaf3;
+    color: #573e32;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.booking-close:hover {
+    background: #573e32;
+    color: #ffffff;
+}
+
+.form-kicker {
+    margin: 0 0 7px;
+    color: #986b43;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.booking-dialog h2 {
+    margin: 0;
+    color: #382921;
+    font: 600 34px/1.2 "Playfair Display", Georgia, serif;
+}
+
+.booking-experience-name {
+    margin: 9px 0 24px;
+    color: #796b60;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.booking-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #573e32;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.booking-form input,
+.booking-form textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 11px;
+    border: 1px solid #d7ccbd;
+    border-radius: 9px;
+    outline: 0;
+    background: #fffdf8;
+    color: #2d2824;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.booking-form textarea {
+    min-height: 95px;
+    resize: vertical;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus {
+    border-color: #b5874e;
+    box-shadow: 0 0 0 2px rgba(181, 135, 78, .12);
+}
+
+.booking-note-field {
+    grid-column: 1 / -1;
+}
+
+.booking-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 20px;
 }
 
 /* 6. NÚT QUAY LẠI GHIM THEO MÀN HÌNH ---------------------- */
@@ -1049,6 +1427,10 @@ button { cursor: pointer; }
         aspect-ratio: 16 / 10;
     }
 
+    .reviews-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .footer-main {
         grid-template-columns: 1.5fr 1fr 1fr;
     }
@@ -1097,6 +1479,19 @@ button { cursor: pointer; }
         min-height: 230px;
     }
 
+    .reviews-grid,
+    .booking-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-note-field {
+        grid-column: auto;
+    }
+
+    .booking-dialog {
+        padding: 27px 22px 24px;
+    }
+
     .footer-main {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -1126,7 +1521,7 @@ button { cursor: pointer; }
 
     .product-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 8px;
     }
 
@@ -1140,6 +1535,14 @@ button { cursor: pointer; }
 
     .product-favorite-button .favorite-button-text {
         font-size: 11px;
+    }
+
+    .booking-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .booking-form-actions .button {
+        width: 100%;
     }
 
     .footer-main {

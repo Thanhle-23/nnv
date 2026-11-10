@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Theo dõi bộ sưu tập yêu thích và lịch sử đăng ký trải nghiệm trên Nghệ nhân Việt.">
+    <meta name="description" content="Quản lý hồ sơ cá nhân, bộ sưu tập yêu thích, lịch sử đăng ký và không gian dành cho nghệ nhân trên Nghệ nhân Việt.">
     <meta name="theme-color" content="#faf7f1">
     <title>Tôi | Nghệ nhân Việt</title>
 
@@ -25,7 +25,7 @@
     <!-- Dữ liệu -->
     <script src="../js/content-data.js" defer></script>
 
-    <!-- Lưu sản phẩm / trải nghiệm / nghệ nhân yêu thích -->
+    <!-- Lưu sản phẩm / trải nghiệm / nghệ nhân yêu thích & quản lý trang Tôi -->
     <script src="../js/luutam.js" defer></script>
 </head>
 
@@ -90,30 +90,36 @@
     </div>
 </header>
 
+<!-- Nút quay lại -->
+<button
+    class="floating-back"
+    type="button"
+    aria-label="Quay lại trang trước"
+    onclick="if (history.length > 1) { history.back(); } else { window.location.href='../index.html'; }"
+>
+    <span aria-hidden="true">←</span>
+</button>
+
 <!-- =====================================================
      MAIN
 ===================================================== -->
 <main id="main" class="me-page-main">
 
     <!-- =================================================
-         THANH CHÀO MỪNG: [<-] Xin chào | Đăng ký / Đăng nhập
+         THANH CHÀO MỪNG: Xin chào | Đăng ký / Đăng nhập
     ================================================== -->
     <section class="me-top-bar" aria-label="Thông tin tài khoản">
         <div class="container me-top-bar-inner">
 
             <div class="me-welcome-left">
-                <button
-                    class="me-back-btn"
-                    type="button"
-                    aria-label="Quay lại trang trước"
-                    onclick="if (history.length > 1) { history.back(); } else { window.location.href='./index.html'; }"
-                >
-                    <span aria-hidden="true">←</span>
-                </button>
-
                 <div class="me-welcome-text">
-                    <h1>Xin chào</h1>
-                    <p>Không gian lưu giữ bộ sưu tập yêu thích và lịch trình trải nghiệm làng nghề của bạn.</p>
+                    <div class="me-welcome-heading-row">
+                        <h1 id="me-welcome-title">Xin chào</h1>
+                        <span class="artisan-verified-pill" id="artisan-verified-pill" hidden>
+                            ✓ Nghệ nhân đã xác thực
+                        </span>
+                    </div>
+                    <p id="me-welcome-desc">Không gian lưu giữ bộ sưu tập yêu thích và lịch trình trải nghiệm làng nghề của bạn.</p>
                 </div>
             </div>
 
@@ -126,7 +132,6 @@
                         Đăng nhập
                     </button>
                 </div>
-                
             </div>
 
         </div>
@@ -141,98 +146,510 @@
     </div>
 
     <!-- =================================================
-         KHỐI 1: BỘ SƯU TẬP YÊU THÍCH
-         (Gồm: Nghệ nhân · Sản phẩm · Trải nghiệm)
+         GIAO DIỆN 1: DÀNH CHO DU KHÁCH (#tourist-dashboard)
     ================================================== -->
-    <section class="me-group-section" aria-labelledby="fav-collection-title">
-        <div class="container">
+    <section class="me-dashboard-section" id="tourist-dashboard" aria-label="Quản lý tài khoản du khách">
+        <div class="container me-dashboard-layout">
 
-            <div class="me-group-header">
-                <h2 id="fav-collection-title">Bộ sưu tập yêu thích</h2>
-            </div>
+            <!-- CỘT TRÁI: MENU ĐIỀU HƯỚNG DU KHÁCH -->
+            <aside class="me-sidebar" aria-label="Danh mục người dùng">
+                <nav class="me-sidebar-nav" role="tablist" aria-orientation="vertical">
+                    <button
+                        class="me-menu-btn is-active"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="tab-panel-profile"
+                        data-me-tab="profile"
+                    >
+                        Hồ sơ
+                    </button>
 
-            <div class="me-group-box">
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-panel-collection"
+                        data-me-tab="collection"
+                    >
+                        Bộ sưu tập
+                    </button>
 
-                <!-- 1.1. NGHỆ NHÂN YÊU THÍCH -->
-                <div class="me-sub-block">
-                    <div class="me-sub-header">
-                        <h3>Nghệ nhân</h3>
-                        <a href="./nghe-nhan.html" class="text-link">
-                            Khám phá nghệ nhân <span>→</span>
-                        </a>
-                    </div>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-panel-history"
+                        data-me-tab="history"
+                    >
+                        Lịch sử đăng ký
+                    </button>
 
-                    <div class="me-list" id="favorite-artists"></div>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-panel-settings"
+                        data-me-tab="settings"
+                    >
+                        Cài đặt
+                    </button>
 
-                    <div class="me-empty" id="favorites-empty" hidden>
-                        <div class="me-empty-icon favorite-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28">
-                                <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="tab-panel-support"
+                        data-me-tab="support"
+                    >
+                        Hỗ trợ
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- CỘT PHẢI: KHUNG NỘI DUNG CHI TIẾT DU KHÁCH -->
+            <div class="me-content-area">
+
+                <!-- TAB 1: HỒ SƠ CỦA BẠN -->
+                <section
+                    class="me-tab-panel is-active"
+                    id="tab-panel-profile"
+                    role="tabpanel"
+                    data-me-panel="profile"
+                >
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Hồ sơ của bạn</h2>
+                            <p>Quản lý thông tin liên hệ để thuận tiện khi đăng ký trải nghiệm làng nghề.</p>
                         </div>
-                        <div class="me-empty-text">
-                            <h4>Chưa có nghệ nhân yêu thích</h4>
-                            <p>Nhấn biểu tượng trái tim trong hồ sơ nghệ nhân để lưu người bạn muốn theo dõi tại đây.</p>
+
+                        <h3 class="profile-sub-heading">Tài khoản của bạn</h3>
+
+                        <div class="profile-settings-box">
+
+                            <!-- DÒNG 1: ẢNH ĐẠI DIỆN -->
+                            <div class="profile-row profile-avatar-row">
+                                <div class="profile-avatar-left">
+                                    <div class="profile-avatar-circle" id="profile-avatar-preview">
+                                        <img id="profile-avatar-img" src="" alt="Ảnh đại diện người dùng" hidden>
+                                        <span class="profile-avatar-placeholder" id="profile-avatar-placeholder" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" width="32" height="32">
+                                                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+                                                <path d="M4.5 21c.7-4.3 3.2-6.5 7.5-6.5s6.8 2.2 7.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="profile-avatar-label">
+                                        <strong>Ảnh hồ sơ</strong>
+                                        <span>Định dạng JPG, PNG. Tự động lưu trên trình duyệt của bạn.</span>
+                                    </div>
+                                </div>
+
+                                <div class="profile-avatar-actions">
+                                    <input type="file" id="profile-avatar-input" accept="image/*" hidden>
+                                    <button type="button" class="profile-text-btn" id="profile-avatar-remove">
+                                        Xóa ảnh
+                                    </button>
+                                    <button type="button" class="profile-edit-btn" id="profile-avatar-change">
+                                        Thay đổi ảnh
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- DÒNG 2: TÊN -->
+                            <div class="profile-row">
+                                <div class="profile-field-info">
+                                    <span class="profile-field-label">Tên</span>
+                                    <p class="profile-field-value is-empty" id="profile-val-name" data-empty-text="Chưa có thông tin"></p>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="profile-edit-btn"
+                                    data-profile-edit="name"
+                                    data-profile-label="Tên"
+                                    data-profile-title="Chỉnh sửa tên"
+                                    data-profile-placeholder="Nhập họ và tên của bạn"
+                                >
+                                    Chỉnh sửa
+                                </button>
+                            </div>
+
+                            <!-- DÒNG 3: SỐ ĐIỆN THOẠI -->
+                            <div class="profile-row">
+                                <div class="profile-field-info">
+                                    <span class="profile-field-label">Số điện thoại</span>
+                                    <p class="profile-field-value is-empty" id="profile-val-phone" data-empty-text="Chưa có thông tin"></p>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="profile-edit-btn"
+                                    data-profile-edit="phone"
+                                    data-profile-label="Số điện thoại"
+                                    data-profile-title="Chỉnh sửa số điện thoại"
+                                    data-profile-placeholder="Nhập số điện thoại liên hệ"
+                                >
+                                    Chỉnh sửa
+                                </button>
+                            </div>
+
+                            <!-- DÒNG 4: ĐỊA CHỈ -->
+                            <div class="profile-row">
+                                <div class="profile-field-info">
+                                    <span class="profile-field-label">Địa chỉ</span>
+                                    <p class="profile-field-value is-empty" id="profile-val-address" data-empty-text="Chưa có thông tin"></p>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="profile-edit-btn"
+                                    data-profile-edit="address"
+                                    data-profile-label="Địa chỉ"
+                                    data-profile-title="Chỉnh sửa địa chỉ"
+                                    data-profile-placeholder="Nhập địa chỉ của bạn"
+                                >
+                                    Chỉnh sửa
+                                </button>
+                            </div>
+
+                            <!-- DÒNG 5: ĐỊA CHỈ EMAIL -->
+                            <div class="profile-row">
+                                <div class="profile-field-info">
+                                    <span class="profile-field-label">Địa chỉ email</span>
+                                    <p class="profile-field-value is-empty" id="profile-val-email" data-empty-text="Chưa có thông tin"></p>
+                                </div>
+                                <button
+                                    type="button"
+                                    class="profile-edit-btn"
+                                    data-profile-edit="email"
+                                    data-profile-label="Địa chỉ email"
+                                    data-profile-title="Chỉnh sửa địa chỉ email"
+                                    data-profile-placeholder="vidu@email.com"
+                                >
+                                    Chỉnh sửa
+                                </button>
+                            </div>
+
                         </div>
-                        <a class="button button-dark" href="./nghe-nhan.html">
-                            Khám phá nghệ nhân <span aria-hidden="true">↗</span>
-                        </a>
-                    </div>
-                </div>
 
-                <!-- 1.2. SẢN PHẨM YÊU THÍCH -->
-                <div class="me-sub-block">
-                    <div class="me-sub-header">
-                        <h3>Sản phẩm</h3>
-                        <a href="./san-pham.html" class="text-link">
-                            Khám phá sản phẩm <span>→</span>
-                        </a>
-                    </div>
-
-                    <div class="me-list" id="favorite-products"></div>
-
-                    <div class="me-empty" id="product-favorites-empty" hidden>
-                        <div class="me-empty-icon product-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28">
-                                <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+                        <div class="profile-bottom-bar">
+                            <p class="profile-save-status" id="profile-save-status" aria-live="polite"></p>
+                            <button type="button" class="button button-dark" id="profile-save-all-btn">
+                                Lưu hồ sơ
+                            </button>
                         </div>
-                        <div class="me-empty-text">
-                            <h4>Chưa có sản phẩm yêu thích</h4>
-                            <p>Nhấn biểu tượng trái tim ở trang chi tiết sản phẩm để lưu sản phẩm thủ công vào bộ sưu tập.</p>
-                        </div>
-                        <a class="button button-dark" href="./san-pham.html">
-                            Khám phá sản phẩm <span aria-hidden="true">↗</span>
-                        </a>
                     </div>
-                </div>
+                </section>
 
-                <!-- 1.3. TRẢI NGHIỆM YÊU THÍCH -->
-                <div class="me-sub-block">
-                    <div class="me-sub-header">
-                        <h3>Trải nghiệm</h3>
-                        <a href="./trai-nghiem.html" class="text-link">
-                            Khám phá trải nghiệm <span>→</span>
-                        </a>
-                    </div>
-
-                    <div class="me-list" id="favorite-experiences"></div>
-
-                    <div class="me-empty" id="experience-favorites-empty" hidden>
-                        <div class="me-empty-icon experience-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28">
-                                <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+                <!-- TAB 2: BỘ SƯU TẬP YÊU THÍCH -->
+                <section
+                    class="me-tab-panel"
+                    id="tab-panel-collection"
+                    role="tabpanel"
+                    data-me-panel="collection"
+                    hidden
+                >
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2 id="fav-collection-title">Bộ sưu tập yêu thích</h2>
+                            <p>Những nghệ nhân, sản phẩm thủ công và hoạt động trải nghiệm bạn đã đánh dấu yêu thích.</p>
                         </div>
-                        <div class="me-empty-text">
-                            <h4>Chưa có trải nghiệm yêu thích</h4>
-                            <p>Nhấn nút “Yêu thích” ở trang trải nghiệm để lưu lại hành trình làng nghề bạn quan tâm.</p>
+
+                        <div class="me-group-box">
+
+                            <!-- 1.1. NGHỆ NHÂN YÊU THÍCH -->
+                            <div class="me-sub-block">
+                                <div class="me-sub-header">
+                                    <h3>Nghệ nhân</h3>
+                                    <a href="./nghe-nhan.html" class="text-link">
+                                        Khám phá nghệ nhân <span>→</span>
+                                    </a>
+                                </div>
+
+                                <div class="me-list" id="favorite-artists"></div>
+
+                                <div class="me-empty" id="favorites-empty" hidden>
+                                    <div class="me-empty-icon favorite-empty-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="28" height="28">
+                                            <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="me-empty-text">
+                                        <h4>Chưa có nghệ nhân yêu thích</h4>
+                                        <p>Nhấn biểu tượng trái tim trong hồ sơ nghệ nhân để lưu người bạn muốn theo dõi tại đây.</p>
+                                    </div>
+                                    <a class="button button-dark" href="./nghe-nhan.html">
+                                        Khám phá nghệ nhân <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- 1.2. SẢN PHẨM YÊU THÍCH -->
+                            <div class="me-sub-block">
+                                <div class="me-sub-header">
+                                    <h3>Sản phẩm</h3>
+                                    <a href="./san-pham.html" class="text-link">
+                                        Khám phá sản phẩm <span>→</span>
+                                    </a>
+                                </div>
+
+                                <div class="me-list" id="favorite-products"></div>
+
+                                <div class="me-empty" id="product-favorites-empty" hidden>
+                                    <div class="me-empty-icon product-empty-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="28" height="28">
+                                            <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="me-empty-text">
+                                        <h4>Chưa có sản phẩm yêu thích</h4>
+                                        <p>Nhấn biểu tượng trái tim ở trang chi tiết sản phẩm để lưu sản phẩm thủ công vào bộ sưu tập.</p>
+                                    </div>
+                                    <a class="button button-dark" href="./san-pham.html">
+                                        Khám phá sản phẩm <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- 1.3. TRẢI NGHIỆM YÊU THÍCH -->
+                            <div class="me-sub-block">
+                                <div class="me-sub-header">
+                                    <h3>Trải nghiệm</h3>
+                                    <a href="./trai-nghiem.html" class="text-link">
+                                        Khám phá trải nghiệm <span>→</span>
+                                    </a>
+                                </div>
+
+                                <div class="me-list" id="favorite-experiences"></div>
+
+                                <div class="me-empty" id="experience-favorites-empty" hidden>
+                                    <div class="me-empty-icon experience-empty-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="28" height="28">
+                                            <path d="M12 20.4 4.2 13A5.3 5.3 0 0 1 11.7 5.5L12 5.8l.3-.3A5.3 5.3 0 0 1 19.8 13L12 20.4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="me-empty-text">
+                                        <h4>Chưa có trải nghiệm yêu thích</h4>
+                                        <p>Nhấn nút “Yêu thích” ở trang trải nghiệm để lưu lại hành trình làng nghề bạn quan tâm.</p>
+                                    </div>
+                                    <a class="button button-dark" href="./trai-nghiem.html">
+                                        Khám phá trải nghiệm <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
-                        <a class="button button-dark" href="./trai-nghiem.html">
-                            Khám phá trải nghiệm <span aria-hidden="true">↗</span>
-                        </a>
                     </div>
-                </div>
+                </section>
+
+                <!-- TAB 3: LỊCH SỬ ĐĂNG KÝ -->
+                <section
+                    class="me-tab-panel"
+                    id="tab-panel-history"
+                    role="tabpanel"
+                    data-me-panel="history"
+                    hidden
+                >
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2 id="history-collection-title">Lịch sử đăng ký</h2>
+                            <p>Theo dõi các sản phẩm thủ công đã đặt trước và lịch hẹn trải nghiệm cùng nghệ nhân.</p>
+                        </div>
+
+                        <div class="me-group-box">
+
+                            <!-- 2.1. SẢN PHẨM ĐÃ ĐẶT / ĐĂNG KÝ -->
+                            <div class="me-sub-block">
+                                <div class="me-sub-header">
+                                    <h3>Sản phẩm</h3>
+                                    <a href="./san-pham.html" class="text-link">
+                                        Khám phá thêm <span>→</span>
+                                    </a>
+                                </div>
+
+                                <div class="me-list" id="my-orders"></div>
+
+                                <div class="me-empty" id="orders-empty">
+                                    <div class="me-empty-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="28" height="28">
+                                            <path d="M5 7h14l-1 13H6L5 7Z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                                            <path d="M9 9V6a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="me-empty-text">
+                                        <h4>Chưa có sản phẩm đăng ký</h4>
+                                        <p>Các sản phẩm thủ công bạn liên hệ hoặc đặt trước sẽ được lưu tại đây.</p>
+                                    </div>
+                                    <a class="button button-dark" href="./san-pham.html">
+                                        Khám phá sản phẩm <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- 2.2. TRẢI NGHIỆM ĐÃ ĐĂNG KÝ -->
+                            <div class="me-sub-block">
+                                <div class="me-sub-header">
+                                    <h3>Trải nghiệm</h3>
+                                    <a href="./trai-nghiem.html" class="text-link">
+                                        Xem trải nghiệm <span>→</span>
+                                    </a>
+                                </div>
+
+                                <div class="me-list" id="my-bookings"></div>
+
+                                <div class="me-empty" id="bookings-empty" hidden>
+                                    <div class="me-empty-icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="28" height="28">
+                                            <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+                                            <path d="M8 3v4M16 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="me-empty-text">
+                                        <h4>Chưa có lịch trải nghiệm</h4>
+                                        <p>Những hoạt động trải nghiệm làng nghề bạn đã đăng ký sẽ hiển thị tại đây.</p>
+                                    </div>
+                                    <a class="button button-dark" href="./trai-nghiem.html">
+                                        Khám phá trải nghiệm <span aria-hidden="true">↗</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: CÀI ĐẶT CƠ BẢN -->
+                <section
+                    class="me-tab-panel"
+                    id="tab-panel-settings"
+                    role="tabpanel"
+                    data-me-panel="settings"
+                    hidden
+                >
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Cài đặt</h2>
+                            <p>Tùy chỉnh hiển thị và thông báo cơ bản trên trình duyệt của bạn.</p>
+                        </div>
+
+                        <div class="settings-list">
+
+                            <div class="settings-item">
+                                <div class="settings-item-info">
+                                    <h3>Ngôn ngữ hiển thị</h3>
+                                    <p>Ngôn ngữ mặc định cho nội dung câu chuyện di sản và thông tin làng nghề.</p>
+                                </div>
+                                <select class="settings-select" aria-label="Chọn ngôn ngữ hiển thị">
+                                    <option value="vi" selected>Tiếng Việt (Mặc định)</option>
+                                    <option value="en">English (Minh họa)</option>
+                                </select>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="settings-item-info">
+                                    <h3>Thông báo hoạt động trải nghiệm mới</h3>
+                                    <p>Nhận thông tin khi có lịch workshop hoặc hoạt động giao lưu mới cùng nghệ nhân.</p>
+                                </div>
+                                <label class="settings-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="settings-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="settings-item-info">
+                                    <h3>Nhắc lịch hẹn trải nghiệm</h3>
+                                    <p>Hiển thị lời nhắc trước ngày tham gia hoạt động tại các làng nghề đã đăng ký.</p>
+                                </div>
+                                <label class="settings-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="settings-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="settings-item-info">
+                                    <h3>Tự động điền thông tin hồ sơ khi đăng ký</h3>
+                                    <p>Sử dụng Tên, Số điện thoại và Email trong mục Hồ sơ để điền nhanh biểu mẫu trải nghiệm.</p>
+                                </div>
+                                <label class="settings-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="settings-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="settings-item">
+                                <div class="settings-item-info">
+                                    <h3>Hiệu ứng chuyển động mượt</h3>
+                                    <p>Bật hiệu ứng chuyển trang và chuyển cảnh nhẹ nhàng khi khám phá nội dung.</p>
+                                </div>
+                                <label class="settings-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="settings-slider"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 5: HỖ TRỢ -->
+                <section
+                    class="me-tab-panel"
+                    id="tab-panel-support"
+                    role="tabpanel"
+                    data-me-panel="support"
+                    hidden
+                >
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Hỗ trợ</h2>
+                            <p>Liên hệ với đội ngũ phát triển nếu bạn cần giải đáp về thông tin nghệ nhân hoặc lịch trải nghiệm.</p>
+                        </div>
+
+                        <div class="support-contact-box">
+                            <div class="support-email-badge">
+                                <span class="support-email-icon" aria-hidden="true">✉</span>
+                                <div>
+                                    <span>Email hỗ trợ chính thức</span>
+                                    <a href="mailto:hello@nghenhanviet.example">hello@nghenhanviet.example</a>
+                                </div>
+                            </div>
+                            <span class="support-unit-note">Đơn vị thực hiện: Đại học Trà Vinh · Trà Vinh, Việt Nam</span>
+                        </div>
+
+                        <form class="support-form" id="me-support-form">
+                            <label class="support-field">
+                                <span>Chủ đề cần hỗ trợ</span>
+                                <input
+                                    type="text"
+                                    name="supportSubject"
+                                    placeholder="Ví dụ: Tư vấn lịch tham quan làng nghề, Góp ý nội dung..."
+                                    required
+                                >
+                            </label>
+
+                            <label class="support-field">
+                                <span>Mô tả chi tiết yêu cầu hỗ trợ</span>
+                                <textarea
+                                    name="supportMessage"
+                                    rows="5"
+                                    placeholder="Nhập nội dung hoặc vấn đề bạn cần hỗ trợ tại đây..."
+                                    required
+                                ></textarea>
+                            </label>
+
+                            <div class="support-form-footer">
+                                <p class="support-status-msg" id="support-status-msg" aria-live="polite"></p>
+                                <button type="submit" class="button button-dark">
+                                    Gửi yêu cầu hỗ trợ
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
 
             </div>
 
@@ -240,73 +657,233 @@
     </section>
 
     <!-- =================================================
-         KHỐI 2: LỊCH SỬ ĐĂNG KÝ
-         (Gồm: Sản phẩm · Trải nghiệm)
+         GIAO DIỆN 2: KHÔNG GIAN QUẢN LÝ CỦA NGHỆ NHÂN (#artisan-dashboard)
     ================================================== -->
-    <section class="me-group-section me-history-section" aria-labelledby="history-collection-title">
-        <div class="container">
+    <section class="me-dashboard-section artisan-dashboard-section" id="artisan-dashboard" hidden aria-label="Không gian quản lý dành cho Nghệ nhân">
+        <div class="container me-dashboard-layout">
 
-            <div class="me-group-header">
-                <h2 id="history-collection-title">Lịch sử đăng ký</h2>
-            </div>
+            <!-- CỘT TRÁI: MENU NGHỆ NHÂN -->
+            <aside class="me-sidebar" aria-label="Danh mục quản lý của nghệ nhân">
+                <div class="artisan-Filter-card" id="artisan-current-card"></div>
 
-            <div class="me-group-box">
+                <nav class="me-sidebar-nav" role="tablist" aria-orientation="vertical">
+                    <button
+                        class="me-menu-btn is-active"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        data-artisan-tab="overview"
+                    >
+                        Tổng quan &amp; Lịch hẹn
+                    </button>
 
-                <!-- 2.1. SẢN PHẨM ĐÃ ĐẶT / ĐĂNG KÝ -->
-                <div class="me-sub-block">
-                    <div class="me-sub-header">
-                        <h3>Sản phẩm</h3>
-                        <a href="./san-pham.html" class="text-link">
-                            Khám phá thêm <span>→</span>
-                        </a>
-                    </div>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        data-artisan-tab="orders"
+                    >
+                        Đơn đặt sản phẩm
+                    </button>
 
-                    <div class="me-list" id="my-orders"></div>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        data-artisan-tab="workshop"
+                    >
+                        Xưởng nghề &amp; Đón khách
+                    </button>
 
-                    <div class="me-empty" id="orders-empty">
-                        <div class="me-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28">
-                                <path d="M5 7h14l-1 13H6L5 7Z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
-                                <path d="M9 9V6a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="1.5"></path>
-                            </svg>
+                    <button
+                        class="me-menu-btn"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        data-artisan-tab="reviews"
+                    >
+                        Đánh giá từ du khách
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- CỘT PHẢI: NỘI DUNG QUẢN LÝ CỦA NGHỆ NHÂN -->
+            <div class="me-content-area">
+
+                <!-- TAB NGHỆ NHÂN 1: TỔNG QUAN & LỊCH HẸN TRẢI NGHIỆM -->
+                <section class="me-tab-panel is-active" data-artisan-panel="overview">
+                    <div class="me-panel-card">
+                        <div class="me-panel-head artisan-panel-head-flex">
+                            <div>
+                                <h2>Bảng điều khiển xưởng nghề</h2>
+                                <p>Theo dõi nhanh các yêu cầu đặt lịch tham quan, trải nghiệm và đơn đặt hàng thủ công từ du khách.</p>
+                            </div>
+                            <label class="artisan-scope-toggle">
+                                <input type="checkbox" id="artisan-show-all-toggle" checked>
+                                <span>Hiển thị tất cả đơn &amp; lịch hẹn trên hệ thống</span>
+                            </label>
                         </div>
-                        <div class="me-empty-text">
-                            <h4>Chưa có sản phẩm đăng ký</h4>
-                            <p>Các sản phẩm thủ công bạn liên hệ hoặc đặt trước sẽ được lưu tại đây.</p>
-                        </div>
-                        <a class="button button-dark" href="./san-pham.html">
-                            Khám phá sản phẩm <span aria-hidden="true">↗</span>
-                        </a>
-                    </div>
-                </div>
 
-                <!-- 2.2. TRẢI NGHIỆM ĐÃ ĐĂNG KÝ -->
-                <div class="me-sub-block">
-                    <div class="me-sub-header">
-                        <h3>Trải nghiệm</h3>
-                        <a href="./trai-nghiem.html" class="text-link">
-                            Xem trải nghiệm <span>→</span>
-                        </a>
-                    </div>
+                        <!-- 4 THẺ THỐNG KÊ NHANH -->
+                        <div class="artisan-stats-grid">
+                            <article class="artisan-stat-card">
+                                <span class="artisan-stat-label">Lịch hẹn trải nghiệm</span>
+                                <strong class="artisan-stat-value" id="artisan-stat-bookings">0</strong>
+                                <small id="artisan-stat-bookings-sub">0 lịch chờ duyệt</small>
+                            </article>
 
-                    <div class="me-list" id="my-bookings"></div>
+                            <article class="artisan-stat-card">
+                                <span class="artisan-stat-label">Đơn đặt sản phẩm</span>
+                                <strong class="artisan-stat-value" id="artisan-stat-orders">0</strong>
+                                <small id="artisan-stat-orders-sub">0 đơn chờ xác nhận</small>
+                            </article>
 
-                    <div class="me-empty" id="bookings-empty" hidden>
-                        <div class="me-empty-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="28" height="28">
-                                <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
-                                <path d="M8 3v4M16 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.5"></path>
-                            </svg>
+                            <article class="artisan-stat-card">
+                                <span class="artisan-stat-label">Điểm đánh giá xưởng</span>
+                                <strong class="artisan-stat-value" id="artisan-stat-rating">9,8</strong>
+                                <small id="artisan-stat-reviews-sub">Xuất sắc · Tin cậy</small>
+                            </article>
+
+                            <article class="artisan-stat-card">
+                                <span class="artisan-stat-label">Trạng thái đón khách</span>
+                                <strong class="artisan-stat-value artisan-stat-status-text" id="artisan-stat-open">Đang mở cửa</strong>
+                                <small id="artisan-stat-hours-sub">08:00 – 17:00 hằng ngày</small>
+                            </article>
                         </div>
-                        <div class="me-empty-text">
-                            <h4>Chưa có lịch trải nghiệm</h4>
-                            <p>Những hoạt động trải nghiệm làng nghề bạn đã đăng ký sẽ hiển thị tại đây.</p>
+
+                        <!-- DANH SÁCH LỊCH HẸN TRẢI NGHIỆM KHÁCH ĐẶT -->
+                        <div class="me-sub-block" style="margin-top: 28px;">
+                            <div class="me-sub-header">
+                                <h3>Yêu cầu đặt lịch trải nghiệm từ du khách</h3>
+                                <a href="./trai-nghiem.html" class="text-link">Xem trang Trải nghiệm <span>→</span></a>
+                            </div>
+
+                            <div class="me-list" id="artisan-bookings-list"></div>
+
+                            <div class="me-empty" id="artisan-bookings-empty" hidden>
+                                <div class="me-empty-icon" aria-hidden="true">📅</div>
+                                <div class="me-empty-text">
+                                    <h4>Chưa có lịch hẹn trải nghiệm mới</h4>
+                                    <p>Khi du khách gửi biểu mẫu “Đăng ký trải nghiệm”, thông tin người đặt và ngày tham gia sẽ hiện tại đây để nghệ nhân duyệt.</p>
+                                </div>
+                                <a class="button button-dark" href="./trai-nghiem.html">
+                                    Thử đặt lịch trải nghiệm <span aria-hidden="true">↗</span>
+                                </a>
+                            </div>
                         </div>
-                        <a class="button button-dark" href="./trai-nghiem.html">
-                            Khám phá trải nghiệm <span aria-hidden="true">↗</span>
-                        </a>
                     </div>
-                </div>
+                </section>
+
+                <!-- TAB NGHỆ NHÂN 2: ĐƠN ĐẶT SẢN PHẨM -->
+                <section class="me-tab-panel" data-artisan-panel="orders" hidden>
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Quản lý đơn đặt mua sản phẩm</h2>
+                            <p>Tiếp nhận yêu cầu đặt mua sản phẩm thủ công chính gốc trực tiếp từ du khách không qua trung gian.</p>
+                        </div>
+
+                        <div class="me-list" id="artisan-orders-list"></div>
+
+                        <div class="me-empty" id="artisan-orders-empty" hidden>
+                            <div class="me-empty-icon" aria-hidden="true">🏺</div>
+                            <div class="me-empty-text">
+                                <h4>Chưa có đơn đặt mua sản phẩm nào</h4>
+                                <p>Khi du khách nhấn “Đăng ký mua hàng” ở trang Chi tiết sản phẩm, đơn hàng sẽ được chuyển thẳng về đây để nghệ nhân xác nhận.</p>
+                            </div>
+                            <a class="button button-dark" href="./san-pham.html">
+                                Xem danh mục sản phẩm <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB NGHỆ NHÂN 3: XƯỞNG NGHỀ & ĐÓN KHÁCH -->
+                <section class="me-tab-panel" data-artisan-panel="workshop" hidden>
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Thông tin xưởng nghề &amp; Lịch đón khách</h2>
+                            <p>Cập nhật trạng thái hoạt động thực tế của xưởng để du khách chủ động sắp xếp lịch trình tham quan.</p>
+                        </div>
+
+                        <form class="support-form" id="artisan-workshop-form">
+                            <div class="artisan-form-grid">
+                                <label class="support-field">
+                                    <span>Nghệ nhân / Cơ sở đang quản lý</span>
+                                    <select id="artisan-select-switcher" class="settings-select" style="width:100%; height:44px;"></select>
+                                </label>
+
+                                <label class="support-field">
+                                    <span>Trạng thái đón khách tại xưởng</span>
+                                    <select name="openStatus" id="workshop-open-status" class="settings-select" style="width:100%; height:44px;">
+                                        <option value="Đang mở cửa đón khách">Đang mở cửa đón khách</option>
+                                        <option value="Chỉ nhận đoàn đặt lịch trước">Chỉ nhận đoàn đặt lịch trước</option>
+                                        <option value="Đang bận mùa vụ / Tạm ngưng đón đoàn">Đang bận mùa vụ / Tạm ngưng đón đoàn</option>
+                                    </select>
+                                </label>
+
+                                <label class="support-field">
+                                    <span>Khung giờ đón khách trong ngày</span>
+                                    <input
+                                        type="text"
+                                        name="openHours"
+                                        id="workshop-open-hours"
+                                        value="08:00 – 17:00 (Thứ 2 – Chủ nhật)"
+                                        required
+                                    >
+                                </label>
+
+                                <label class="support-field">
+                                    <span>Số lượng khách tối đa / lượt workshop</span>
+                                    <input
+                                        type="text"
+                                        name="maxGuests"
+                                        id="workshop-max-guests"
+                                        value="Tối đa 15 khách / lượt"
+                                        required
+                                    >
+                                </label>
+                            </div>
+
+                            <label class="support-field">
+                                <span>Thông báo / Lưu ý văn hóa gửi tới du khách khi ghé xưởng</span>
+                                <textarea
+                                    name="visitorNote"
+                                    id="workshop-visitor-note"
+                                    rows="4"
+                                    placeholder="Ví dụ: Du khách vui lòng đặt lịch trước 1 ngày để xưởng chuẩn bị nguyên liệu đất sét, giấy dó hoặc khung dệt..."
+                                ></textarea>
+                            </label>
+
+                            <div class="support-form-footer">
+                                <p class="support-status-msg" id="workshop-save-msg" aria-live="polite"></p>
+                                <button type="submit" class="button button-dark">
+                                    Lưu thiết lập xưởng nghề
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="me-sub-block" style="margin-top: 28px;">
+                            <div class="me-sub-header">
+                                <h3>Sản phẩm &amp; Hoạt động đang giới thiệu trên nền tảng</h3>
+                            </div>
+                            <div class="me-list" id="artisan-own-items"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB NGHỆ NHÂN 4: ĐÁNH GIÁ TỪ DU KHÁCH -->
+                <section class="me-tab-panel" data-artisan-panel="reviews" hidden>
+                    <div class="me-panel-card">
+                        <div class="me-panel-head">
+                            <h2>Đánh giá &amp; Phản hồi từ du khách</h2>
+                            <p>Lắng nghe cảm nhận của du khách về sản phẩm thủ công và buổi trải nghiệm tại làng nghề.</p>
+                        </div>
+
+                        <div class="artisan-reviews-stack" id="artisan-reviews-list"></div>
+                    </div>
+                </section>
 
             </div>
 
@@ -316,7 +893,40 @@
 </main>
 
 <!-- =====================================================
-     POPUP ĐĂNG NHẬP / ĐĂNG KÝ
+     POPUP CHỈNH SỬA TỪNG TRƯỜNG HỒ SƠ (GIỐNG MẪU CANVA)
+===================================================== -->
+<div class="profile-edit-modal" id="profile-edit-modal" hidden aria-hidden="true">
+    <div class="profile-edit-backdrop" data-profile-modal-close></div>
+
+    <div class="profile-edit-dialog" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+        <h2 id="profile-modal-title">Chỉnh sửa tên</h2>
+
+        <form id="profile-edit-form" class="profile-edit-form">
+            <label for="profile-modal-input">
+                <span id="profile-modal-label">Tên</span>
+                <input
+                    id="profile-modal-input"
+                    type="text"
+                    name="fieldValue"
+                    autocomplete="off"
+                    placeholder="Nhập thông tin..."
+                >
+            </label>
+
+            <div class="profile-modal-actions">
+                <button type="button" class="profile-modal-cancel" data-profile-modal-close>
+                    Hủy
+                </button>
+                <button type="submit" class="profile-modal-save">
+                    Lưu
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- =====================================================
+     POPUP ĐĂNG NHẬP / ĐĂNG KÝ (CÓ CHỌN VAI TRÒ DU KHÁCH / NGHỆ NHÂN)
 ===================================================== -->
 <div class="auth-modal" id="auth-modal" hidden aria-hidden="true">
 
@@ -338,7 +948,7 @@
 
             <div>
                 <strong>Nghệ nhân Việt</strong>
-                <small>Tài khoản minh họa</small>
+                <small>Hệ thống tài khoản Du khách &amp; Nghệ nhân</small>
             </div>
         </div>
 
@@ -346,17 +956,37 @@
         <section class="auth-panel" id="auth-login-panel" data-auth-panel="login">
             <p class="auth-eyebrow">Chào mừng trở lại</p>
             <h2 id="auth-dialog-title">Đăng nhập</h2>
-            
 
             <form class="auth-form" id="demo-login-form">
+                <!-- CHỌN VAI TRÒ ĐĂNG NHẬP -->
+                <div class="auth-role-field">
+                    <span>Bạn đăng nhập với vai trò:</span>
+                    <div class="auth-role-tabs" role="radiogroup" aria-label="Chọn vai trò đăng nhập">
+                        <label class="auth-role-option is-selected">
+                            <input type="radio" name="role" value="tourist" checked>
+                            <span>🧳 Du khách</span>
+                        </label>
+                        <label class="auth-role-option">
+                            <input type="radio" name="role" value="artisan">
+                            <span>🏺 Nghệ nhân làng nghề</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- CHỌN HỒ SƠ NGHỆ NHÂN (CHỈ HIỆN KHI CHỌN VAI TRÒ NGHỆ NHÂN) -->
+                <label id="login-artisan-picker-wrap" hidden>
+                    <span>Chọn hồ sơ Nghệ nhân quản lý (Demo):</span>
+                    <select name="artistId" id="login-artist-select" class="auth-select"></select>
+                </label>
+
                 <label>
                     <span>Email</span>
-                    <input type="email" name="email" placeholder="vidu@email.com" required>
+                    <input type="email" name="email" id="login-email-input" placeholder="vidu@email.com" required>
                 </label>
 
                 <label>
                     <span>Mật khẩu</span>
-                    <input type="password" name="password" placeholder="Nhập mật khẩu" required>
+                    <input type="password" name="password" id="login-password-input" value="123456" placeholder="Nhập mật khẩu" required>
                 </label>
 
                 <button class="button button-dark auth-submit" type="submit">
@@ -376,9 +1006,28 @@
         <section class="auth-panel" id="auth-register-panel" data-auth-panel="register" hidden>
             <p class="auth-eyebrow">Bắt đầu khám phá</p>
             <h2>Đăng ký</h2>
-            
 
             <form class="auth-form" id="demo-register-form">
+                <!-- CHỌN VAI TRÒ ĐĂNG KÝ -->
+                <div class="auth-role-field">
+                    <span>Loại tài khoản đăng ký:</span>
+                    <div class="auth-role-tabs" role="radiogroup" aria-label="Chọn vai trò đăng ký">
+                        <label class="auth-role-option is-selected">
+                            <input type="radio" name="role" value="tourist" checked>
+                            <span>🧳 Du khách</span>
+                        </label>
+                        <label class="auth-role-option">
+                            <input type="radio" name="role" value="artisan">
+                            <span>🏺 Nghệ nhân làng nghề</span>
+                        </label>
+                    </div>
+                </div>
+
+                <label id="register-artisan-picker-wrap" hidden>
+                    <span>Gắn với cơ sở Nghệ nhân:</span>
+                    <select name="artistId" id="register-artist-select" class="auth-select"></select>
+                </label>
+
                 <label>
                     <span>Họ và tên</span>
                     <input type="text" name="name" placeholder="Nhập họ và tên" required>
@@ -459,7 +1108,7 @@
             <h3>Thông tin</h3>
             <a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
             <a href="./thong-tin-chi-tiet.html">Thông tin chi tiết</a>
-            <a href="./index.html#about">Giới thiệu</a>
+            <a href="../index.html#about">Giới thiệu</a>
         </div>
 
         <div class="footer-column footer-contact">

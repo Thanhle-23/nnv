@@ -1,18 +1,12 @@
 body {
     opacity: 1;
-    
-    transition:
-        opacity 0.22s ease,
-        
+    transition: opacity 0.22s ease;
 }
 
-/* Khi chuẩn bị chuyển sang trang khác */
 body.page-leaving {
     opacity: 0;
-    transform: translateY(8px);
 }
 
-/* Hiệu ứng khi trang mới vừa mở */
 body.page-entering {
     animation: pageEnter 0.35s ease both;
 }
@@ -20,22 +14,18 @@ body.page-entering {
 @keyframes pageEnter {
     from {
         opacity: 0;
-        transform: translateY(8px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
-/* Tôn trọng người dùng không muốn animation */
 @media (prefers-reduced-motion: reduce) {
     body,
     body.page-entering {
         transition: none;
         animation: none;
-        transform: none;
     }
 }
 
@@ -52,11 +42,12 @@ html {
 body {
     margin: 0;
     min-width: 320px;
-    background: #faf7f1;
+    background: #fcfaf7;
     color: #2d2824;
     font-family: "DM Sans", Arial, sans-serif;
     font-size: 15px;
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -70,7 +61,9 @@ a {
 }
 
 button,
-input {
+input,
+select,
+textarea {
     font: inherit;
 }
 
@@ -78,7 +71,7 @@ button {
     cursor: pointer;
 }
 
-:where(a, button, input):focus-visible {
+:where(a, button, input, select, textarea):focus-visible {
     outline: 2px solid #c99b5b;
     outline-offset: 3px;
 }
@@ -106,6 +99,7 @@ button {
     top: 8px;
     left: 12px;
     padding: 10px 15px;
+    border-radius: 10px;
     background: #ffffff;
     color: #573e32;
     transform: translateY(-160%);
@@ -121,8 +115,8 @@ button {
 .site-header {
     position: relative;
     z-index: 50;
-    background: #faf7f1;
-    border-bottom: 1px solid #e5ddd1;
+    background: #fcfaf7;
+    border-bottom: 1px solid #ede6dc;
 }
 
 .header-inner {
@@ -134,7 +128,6 @@ button {
     gap: 14px;
 }
 
-/* BRAND */
 .brand {
     display: inline-flex;
     align-items: center;
@@ -167,7 +160,6 @@ button {
     text-transform: uppercase;
 }
 
-/* NAV */
 .primary-nav {
     display: flex;
     align-items: center;
@@ -210,7 +202,6 @@ button {
     transform: scaleX(1);
 }
 
-/* SEARCH */
 .header-search-wrap {
     position: relative;
     flex: 0 1 340px;
@@ -223,9 +214,9 @@ button {
     width: 100%;
     height: 43px;
     overflow: hidden;
-    border: 1px solid #d7ccbd;
+    border: 1px solid #dfd5c7;
     border-radius: 10px;
-    background: #faf7f1;
+    background: #ffffff;
 }
 
 .header-search input {
@@ -250,7 +241,6 @@ button {
     background: #382921;
 }
 
-/* SUGGESTIONS DROPDOWN */
 .search-suggest-panel {
     position: absolute;
     z-index: 120;
@@ -260,10 +250,10 @@ button {
     max-height: min(445px, 64vh);
     overflow-y: auto;
     padding: 9px;
-    border: 1px solid #e0d3c3;
-    border-radius: 10px;
-    background: #fffcf6;
-    box-shadow: 0 16px 38px rgba(41, 31, 25, 0.2);
+    border: 1px solid #e6ddd0;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 16px 38px rgba(41, 31, 25, 0.14);
     color: #382921;
 }
 
@@ -293,7 +283,7 @@ button {
 
 .search-suggest-item:hover,
 .search-suggest-item.is-active {
-    background: #f3ecde;
+    background: #f8f4ed;
 }
 
 .search-suggest-icon {
@@ -302,9 +292,9 @@ button {
     flex: 0 0 36px;
     width: 36px;
     height: 36px;
-    border: 1px solid #e0cbb4;
+    border: 1px solid #e5d5c3;
     border-radius: 9px;
-    background: #f5e9d8;
+    background: #fbf5ec;
     color: #905b32;
     font-size: 11px;
     font-weight: 700;
@@ -355,14 +345,13 @@ button {
     display: block;
     margin-top: 5px;
     padding: 11px 10px 5px;
-    border-top: 1px solid #eaded0;
+    border-top: 1px solid #efe7dc;
     color: #9b2429;
     font-size: 12px;
     font-weight: 700;
     text-align: center;
 }
 
-/* ACCOUNT / TÔI */
 .header-account {
     display: flex;
     align-items: center;
@@ -381,7 +370,7 @@ button {
     height: 42px;
     border: 1px solid #573e32;
     border-radius: 50%;
-    background: #faf7f1;
+    background: #ffffff;
     color: #573e32;
     transition:
         background 0.2s ease,
@@ -409,7 +398,7 @@ button {
     min-width: 19px;
     height: 19px;
     padding: 0 5px;
-    border: 2px solid #faf7f1;
+    border: 2px solid #fcfaf7;
     border-radius: 999px;
     background: #a12228;
     color: #ffffff;
@@ -426,14 +415,65 @@ button {
 }
 
 /* =========================================================
-   3. THANH CHÀO MỪNG ĐẦU TRANG (THEO BỐ CỤC ẢNH 1)
+   3. NÚT QUAY LẠI (FLOATING-BACK GIỐNG TRANG SẢN PHẨM)
+========================================================= */
+.floating-back {
+    position: fixed;
+    z-index: 70;
+    top: 10px;
+    left: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 1px solid #6e1e1e;
+    border-radius: 10px;
+    background: rgba(137, 65, 65, 0.97);
+    color: #faf9f9;
+    box-shadow: 0 6px 20px rgba(57, 43, 30, 0.10);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-10px);
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.floating-back.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.floating-back span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.floating-back:hover {
+    border-color: #5d2727;
+    background: #712020;
+    color: #ffffff;
+}
+
+/* =========================================================
+   4. THANH CHÀO MỪNG ĐẦU TRANG
 ========================================================= */
 .me-page-main {
-    padding-bottom: 84px;
+    padding-bottom: 88px;
 }
 
 .me-top-bar {
-    padding: 34px 0 24px;
+    padding: 34px 0 26px;
 }
 
 .me-top-bar-inner {
@@ -442,52 +482,50 @@ button {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 0;
+    border: 0;
+    background: transparent;
 }
 
 .me-welcome-left {
     display: flex;
     align-items: center;
-    gap: 16px;
 }
 
-.me-back-btn {
-    display: inline-flex;
+.me-welcome-heading-row {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    border: 1px solid #d7c8b6;
-    border-radius: 50%;
-    background: #efe6d8;
-    color: #573e32;
-    font-size: 19px;
-    line-height: 1;
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.me-back-btn:hover {
-    border-color: #573e32;
-    background: #573e32;
-    color: #ffffff;
-    transform: translateX(-2px);
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .me-welcome-text h1 {
     margin: 0;
-    color: #382921;
-    font: 600 clamp(30px, 3.4vw, 44px)/1.12 "Playfair Display", Georgia, serif;
+    color: #26211d;
+    font: 600 clamp(30px, 3.2vw, 42px)/1.14 "Playfair Display", Georgia, serif;
+}
+
+.artisan-verified-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border: 1px solid #b9dec2;
+    border-radius: 999px;
+    background: #ebf7ee;
+    color: #256b36;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.artisan-verified-pill[hidden] {
+    display: none;
 }
 
 .me-welcome-text p {
-    margin: 4px 0 0;
-    color: #706760;
-    font-size: 13px;
+    margin: 6px 0 0;
+    color: #6e655e;
+    font-size: 14px;
 }
 
 .me-top-bar-right {
@@ -505,40 +543,414 @@ button {
     margin: 0;
 }
 
-.me-auth-note {
+/* =========================================================
+   5. BỐ CỤC 2 PHẦN: MENU TRÁI + NỘI DUNG CHI TIẾT PHẢI
+========================================================= */
+.me-dashboard-section {
+    padding-top: 4px;
+}
+
+.me-dashboard-section[hidden] {
+    display: none;
+}
+
+.me-dashboard-layout {
+    display: grid;
+    grid-template-columns: 255px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+/* CỘT TRÁI: DANH SÁCH NÚT MENU */
+.me-sidebar {
+    position: sticky;
+    top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.me-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.me-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 54px;
+    padding: 12px 20px;
+    border: 1px solid #e7e0d6;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #3b332c;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(35, 28, 22, 0.03);
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.18s ease,
+        box-shadow 0.2s ease;
+}
+
+.me-menu-btn:hover {
+    border-color: #d5b895;
+    background: #fdfaf5;
+    color: #9e2a2f;
+    transform: translateY(-1px);
+}
+
+.me-menu-btn.is-active {
+    border-color: #9e2a2f;
+    background: #9e2a2f;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(158, 42, 47, 0.18);
+}
+
+/* CỘT PHẢI: KHUNG HIỂN THỊ CHI TIẾT NỀN TRẮNG SÁNG */
+.me-content-area {
+    min-width: 0;
+}
+
+.me-tab-panel[hidden] {
+    display: none;
+}
+
+.me-panel-card {
+    padding: 34px 36px;
+    border: 1px solid #ebe5dc;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 12px 34px rgba(34, 28, 22, 0.045);
+}
+
+.me-panel-head {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0ebe3;
+}
+
+.me-panel-head h2 {
     margin: 0;
-    color: #8c796b;
-    font-size: 11px;
-    text-align: right;
+    color: #26211d;
+    font: 600 clamp(24px, 2.4vw, 31px)/1.22 "Playfair Display", Georgia, serif;
+}
+
+.me-panel-head p {
+    margin: 6px 0 0;
+    color: #726962;
+    font-size: 13.5px;
 }
 
 /* =========================================================
-   4. KHỐI NHÓM LỚN: BỘ SƯU TẬP YÊU THÍCH & LỊCH SỬ ĐĂNG KÝ
+   6. TAB HỒ SƠ DU KHÁCH
 ========================================================= */
-.me-group-section {
-    padding: 18px 0 26px;
+.profile-sub-heading {
+    margin: 0 0 14px;
+    color: #26211d;
+    font-size: 17px;
+    font-weight: 700;
 }
 
-.me-group-header {
-    margin-bottom: 16px;
+.profile-settings-box {
+    border: 1px solid #ebe5dc;
+    border-radius: 16px;
+    background: #ffffff;
+    overflow: hidden;
 }
 
-.me-group-header h2 {
+.profile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+}
+
+.profile-row + .profile-row {
+    border-top: 1px solid #f1ece4;
+}
+
+.profile-avatar-row {
+    padding: 24px;
+    background: #fdfbf8;
+}
+
+.profile-avatar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+}
+
+.profile-avatar-circle {
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 1px solid #e4d9c8;
+    background: #f6f0e6;
+    color: #7d6249;
+    overflow: hidden;
+}
+
+.profile-avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar-circle img[hidden],
+.profile-avatar-placeholder[hidden] {
+    display: none;
+}
+
+.profile-avatar-label {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-avatar-label strong {
+    color: #26211d;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-avatar-label span {
+    color: #7a7068;
+    font-size: 12.5px;
+}
+
+.profile-avatar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profile-text-btn {
+    padding: 8px 12px;
+    border: 0;
+    background: transparent;
+    color: #6b5e54;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.profile-text-btn:hover {
+    background: #f8f3eb;
+    color: #a12228;
+}
+
+.profile-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 18px;
+    border: 1px solid #ded6ca;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #2d2824;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.profile-edit-btn:hover {
+    border-color: #b89f82;
+    background: #fcf9f4;
+    box-shadow: 0 3px 10px rgba(45, 40, 36, 0.05);
+}
+
+.profile-field-info {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.profile-field-label {
+    display: block;
+    color: #26211d;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.profile-field-value {
     margin: 0;
-    color: #382921;
-    font: 600 clamp(24px, 2.5vw, 32px)/1.25 "Playfair Display", Georgia, serif;
+    color: #4f463f;
+    font-size: 14.5px;
+    word-break: break-word;
+    min-height: 22px;
 }
 
-/* Khung bao lớn (tương ứng khung xám bo góc trong Ảnh 1) */
+.profile-field-value.is-empty::before {
+    content: attr(data-empty-text);
+    color: #a69b90;
+    font-style: italic;
+    font-size: 13.5px;
+}
+
+.profile-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.profile-save-status {
+    margin: 0;
+    color: #2e6b3e;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 20px;
+}
+
+/* =========================================================
+   7. POPUP CHỈNH SỬA HỒ SƠ
+========================================================= */
+body.profile-modal-open {
+    overflow: hidden;
+}
+
+.profile-edit-modal {
+    position: fixed;
+    z-index: 1050;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.profile-edit-modal[hidden] {
+    display: none;
+}
+
+.profile-edit-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(28, 24, 21, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.profile-edit-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(480px, 100%);
+    padding: 28px 30px;
+    border: 1px solid #ebe4da;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 24px 64px rgba(28, 21, 17, 0.18);
+    animation: authDialogOpen 0.2s ease both;
+}
+
+.profile-edit-dialog h2 {
+    margin: 0 0 18px;
+    color: #221e1b;
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.profile-edit-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-edit-form label > span {
+    color: #2d2824;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.profile-edit-form input {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1.5px solid #d5c7b4;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #2d2824;
+    font-size: 14.5px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-edit-form input:focus {
+    border-color: #9e2a2f;
+    box-shadow: 0 0 0 3px rgba(158, 42, 47, 0.12);
+}
+
+.profile-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.profile-modal-cancel,
+.profile-modal-save {
+    min-width: 86px;
+    height: 42px;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-modal-cancel {
+    border: 1px solid #ded6ca;
+    background: #ffffff;
+    color: #2d2824;
+}
+
+.profile-modal-cancel:hover {
+    background: #f7f3ed;
+}
+
+.profile-modal-save {
+    border: 1px solid #9e2a2f;
+    background: #9e2a2f;
+    color: #ffffff;
+}
+
+.profile-modal-save:hover {
+    border-color: #822025;
+    background: #822025;
+}
+
+/* =========================================================
+   8. BỘ SƯU TẬP YÊU THÍCH & LỊCH SỬ ĐĂNG KÝ
+========================================================= */
 .me-group-box {
     display: flex;
     flex-direction: column;
     gap: 28px;
-    padding: 28px 30px;
-    border: 1px solid #dfd2c1;
-    border-radius: 18px;
-    background: #f3ecde;
-    box-shadow: 0 10px 28px rgba(49, 37, 28, 0.05);
 }
 
 .me-sub-block {
@@ -549,7 +961,7 @@ button {
 
 .me-sub-block + .me-sub-block {
     padding-top: 24px;
-    border-top: 1px solid #e2d5c4;
+    border-top: 1px solid #f0ebe3;
 }
 
 .me-sub-header {
@@ -562,8 +974,8 @@ button {
 
 .me-sub-header h3 {
     margin: 0;
-    color: #573e32;
-    font: 600 21px/1.3 "Playfair Display", Georgia, serif;
+    color: #2d2824;
+    font: 600 20px/1.3 "Playfair Display", Georgia, serif;
 }
 
 .text-link {
@@ -571,8 +983,8 @@ button {
     align-items: center;
     gap: 6px;
     width: fit-content;
-    color: #7a583b;
-    font-size: 12px;
+    color: #8c5d38;
+    font-size: 12.5px;
     font-weight: 700;
     border-bottom: 1px solid transparent;
     transition: color 0.2s ease, border-color 0.2s ease;
@@ -583,12 +995,9 @@ button {
     border-bottom-color: #a12228;
 }
 
-/* =========================================================
-   5. LƯỚI 4 THẺ NGANG TRONG MỖI DANH MỤC (THEO ẢNH 1)
-========================================================= */
 .me-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
 }
 
@@ -601,9 +1010,10 @@ button {
     flex-direction: column;
     min-width: 0;
     overflow: hidden;
-    border: 1px solid #dfd2c1;
+    border: 1px solid #ebe4da;
     border-radius: 14px;
-    background: #fffdf8;
+    background: #ffffff;
+    box-shadow: 0 4px 14px rgba(34, 28, 22, 0.04);
     transition:
         transform 0.22s ease,
         box-shadow 0.22s ease,
@@ -611,9 +1021,9 @@ button {
 }
 
 .me-card:hover {
-    border-color: #c99b5b;
+    border-color: #d2b48c;
     transform: translateY(-3px);
-    box-shadow: 0 12px 26px rgba(46, 35, 24, 0.1);
+    box-shadow: 0 12px 26px rgba(46, 35, 24, 0.09);
 }
 
 .me-card-image {
@@ -622,7 +1032,7 @@ button {
     height: 165px;
     min-height: 165px;
     overflow: hidden;
-    background: #e8ded1;
+    background: #f3ede4;
 }
 
 .me-card-image img {
@@ -655,7 +1065,7 @@ button {
 
 .me-card h3 {
     margin: 0 0 8px;
-    color: #382921;
+    color: #26211d;
     font: 600 18px/1.32 "Playfair Display", Georgia, serif;
 }
 
@@ -665,11 +1075,12 @@ button {
 
 .me-card-content > p {
     margin: 0 0 6px;
-    color: #706760;
-    font-size: 12px;
+    color: #6e655e;
+    font-size: 12.5px;
     line-height: 1.55;
     display: -webkit-box;
-    -webkit-line-clamp: 2;line-clamp: 2;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -679,9 +1090,6 @@ button {
     overflow: visible;
 }
 
-/* =========================================================
-   6. NHÃN TRẠNG THÁI & NÚT TRONG THẺ
-========================================================= */
 .me-status,
 .favorite-status,
 .product-favorite-status,
@@ -693,16 +1101,28 @@ button {
     margin-top: 6px;
     padding: 4px 10px;
     border-radius: 999px;
-    background: #f5dddd;
+    background: #fdf0f0;
     color: #a12228;
-    font-size: 10px;
+    font-size: 10.5px;
     font-weight: 700;
     letter-spacing: 0.3px;
 }
 
 .booking-status {
-    background: #e6efe2;
-    color: #3d6336;
+    background: #edf6eb;
+    color: #2f6839;
+}
+
+.booking-status.is-approved {
+    border: 1px solid #b8dfc2;
+    background: #e6f6ea;
+    color: #1e6330;
+}
+
+.booking-status.is-pending {
+    border: 1px solid #ebd7b9;
+    background: #fdf5e8;
+    color: #966020;
 }
 
 .me-card-actions {
@@ -742,10 +1162,10 @@ button {
     justify-content: center;
     min-height: 30px;
     padding: 0 10px;
-    border: 1px solid #d0b4ae;
+    border: 1px solid #e2c9c6;
     border-radius: 7px;
-    background: transparent;
-    color: #8f3535;
+    background: #ffffff;
+    color: #9e2a2f;
     font-family: "DM Sans", Arial, sans-serif;
     font-size: 11px;
     font-weight: 700;
@@ -766,19 +1186,16 @@ button {
     color: #ffffff;
 }
 
-/* =========================================================
-   7. EMPTY STATE GỌN GÀNG TRONG KHUNG NHÓM
-========================================================= */
 .me-empty {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    padding: 18px 22px;
-    border: 1px dashed #d5c4b0;
-    border-radius: 12px;
-    background: #faf7f1;
+    padding: 20px 24px;
+    border: 1px dashed #e2d8ca;
+    border-radius: 14px;
+    background: #fdfbf8;
     text-align: left;
 }
 
@@ -793,8 +1210,9 @@ button {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: #f2e6d8;
+    background: #faeee7;
     color: #a12228;
+    font-size: 20px;
 }
 
 .me-empty-icon svg {
@@ -809,18 +1227,461 @@ button {
 .me-empty h3,
 .me-empty h4 {
     margin: 0 0 4px;
-    color: #382921;
+    color: #26211d;
     font: 600 17px/1.3 "Playfair Display", Georgia, serif;
 }
 
 .me-empty p {
     margin: 0;
-    color: #706760;
+    color: #726962;
     font-size: 13px;
 }
 
 /* =========================================================
-   8. BUTTON CHUNG
+   8.5. GIAO DIỆN KHÔNG GIAN NGHỆ NHÂN (#artisan-dashboard)
+========================================================= */
+.artisan-Filter-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid #e7ddd0;
+    border-radius: 16px;
+    background: #fdfaf5;
+}
+
+.artisan-Filter-card img {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c99b5b;
+}
+
+.artisan-Filter-card div {
+    min-width: 0;
+}
+
+.artisan-Filter-card strong {
+    display: block;
+    color: #26211d;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artisan-Filter-card span {
+    display: block;
+    color: #8c623d;
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.artisan-panel-head-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.artisan-scope-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid #e4d8c8;
+    border-radius: 10px;
+    background: #fdfaf5;
+    color: #573e32;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.artisan-scope-toggle input {
+    accent-color: #9e2a2f;
+}
+
+.artisan-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.artisan-stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border: 1px solid #ebe4da;
+    border-radius: 16px;
+    background: #fdfbf8;
+}
+
+.artisan-stat-label {
+    color: #7c7066;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.artisan-stat-value {
+    color: #26211d;
+    font: 700 28px/1.15 "Playfair Display", Georgia, serif;
+}
+
+.artisan-stat-status-text {
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 17px;
+    color: #256b36;
+}
+
+.artisan-stat-card small {
+    color: #8c7b6c;
+    font-size: 12px;
+}
+
+.artisan-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border: 1px solid #256b36;
+    border-radius: 8px;
+    background: #256b36;
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.artisan-action-btn:hover {
+    background: #1b5228;
+    border-color: #1b5228;
+}
+
+.artisan-action-btn.is-secondary {
+    border-color: #c99b5b;
+    background: #fdf6ec;
+    color: #7d5228;
+}
+
+.artisan-action-btn.is-secondary:hover {
+    background: #c99b5b;
+    color: #ffffff;
+}
+
+.artisan-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.artisan-reviews-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.artisan-review-item {
+    padding: 20px 22px;
+    border: 1px solid #ebe4da;
+    border-radius: 15px;
+    background: #fdfbf8;
+}
+
+.artisan-review-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.artisan-review-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.artisan-review-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eadfce;
+    color: #573e32;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.artisan-review-user strong {
+    display: block;
+    color: #26211d;
+    font-size: 14px;
+}
+
+.artisan-review-user span {
+    color: #8c7b6c;
+    font-size: 12px;
+}
+
+.artisan-review-score {
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: #573e32;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.artisan-review-comment {
+    margin: 0;
+    color: #4f463f;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.artisan-reply-box {
+    margin-top: 12px;
+    padding: 12px 15px;
+    border-left: 3px solid #c99b5b;
+    border-radius: 6px;
+    background: #f5efe6;
+    color: #382921;
+    font-size: 13px;
+}
+
+.artisan-reply-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.artisan-reply-form input {
+    flex: 1 1 auto;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #ded6ca;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 13px;
+}
+
+/* =========================================================
+   9. TAB CÀI ĐẶT & TAB HỖ TRỢ
+========================================================= */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ebe5dc;
+    border-radius: 16px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 24px;
+}
+
+.settings-item + .settings-item {
+    border-top: 1px solid #f1ece4;
+}
+
+.settings-item-info h3 {
+    margin: 0 0 4px;
+    color: #26211d;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.settings-item-info p {
+    margin: 0;
+    color: #726962;
+    font-size: 13px;
+}
+
+.settings-select {
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid #ded6ca;
+    border-radius: 10px;
+    background: #fdfbf8;
+    color: #2d2824;
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+.settings-switch {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 26px;
+}
+
+.settings-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    border-radius: 999px;
+    background: #dcd4c8;
+    transition: background 0.22s ease;
+}
+
+.settings-slider::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.22s ease;
+}
+
+.settings-switch input:checked + .settings-slider {
+    background: #9e2a2f;
+}
+
+.settings-switch input:checked + .settings-slider::before {
+    transform: translateX(22px);
+}
+
+/* TAB HỖ TRỢ */
+.support-contact-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding: 18px 22px;
+    border: 1px solid #ebe5dc;
+    border-radius: 14px;
+    background: #fdfbf8;
+}
+
+.support-email-badge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.support-email-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #faeee7;
+    color: #a12228;
+    font-size: 18px;
+}
+
+.support-email-badge span {
+    display: block;
+    color: #726962;
+    font-size: 12px;
+}
+
+.support-email-badge a {
+    color: #26211d;
+    font-size: 15.5px;
+    font-weight: 700;
+}
+
+.support-email-badge a:hover {
+    color: #a12228;
+    text-decoration: underline;
+}
+
+.support-unit-note {
+    color: #7a7068;
+    font-size: 12.5px;
+}
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border: 1px solid #ebe5dc;
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+.support-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.support-field > span {
+    color: #26211d;
+    font-size: 13.5px;
+    font-weight: 700;
+}
+
+.support-field input,
+.support-field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #ded6ca;
+    border-radius: 10px;
+    background: #fdfbf8;
+    color: #2d2824;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.support-field input:focus,
+.support-field textarea:focus {
+    border-color: #c99b5b;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(201, 155, 91, 0.12);
+}
+
+.support-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.support-status-msg {
+    margin: 0;
+    color: #2e6b3e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   10. BUTTON CHUNG & POPUP ĐĂNG NHẬP - ĐĂNG KÝ (CÓ CHỌN VAI TRÒ)
 ========================================================= */
 .button {
     display: inline-flex;
@@ -828,10 +1689,10 @@ button {
     justify-content: center;
     gap: 8px;
     min-height: 42px;
-    padding: 9px 16px;
+    padding: 9px 18px;
     border: 1px solid transparent;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 700;
     transition:
         background 0.2s ease,
@@ -845,30 +1706,28 @@ button {
 }
 
 .button-dark {
-    border-color: #573e32;
-    background: #573e32;
+    border-color: #9e2a2f;
+    background: #9e2a2f;
     color: #ffffff;
 }
 
 .button-dark:hover {
-    border-color: #382921;
-    background: #382921;
+    border-color: #822025;
+    background: #822025;
 }
 
 .button-outline {
-    border: 1px solid #573e32;
-    background: transparent;
-    color: #573e32;
+    border: 1px solid #d8cfc3;
+    background: #ffffff;
+    color: #3b332c;
 }
 
 .button-outline:hover {
-    background: #573e32;
-    color: #ffffff;
+    border-color: #9e2a2f;
+    background: #fdfaf6;
+    color: #9e2a2f;
 }
 
-/* =========================================================
-   9. POPUP ĐĂNG NHẬP - ĐĂNG KÝ
-========================================================= */
 body.auth-modal-open {
     overflow: hidden;
 }
@@ -889,7 +1748,7 @@ body.auth-modal-open {
 .auth-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(31, 25, 21, 0.63);
+    background: rgba(28, 24, 21, 0.52);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
@@ -900,11 +1759,11 @@ body.auth-modal-open {
     width: min(520px, 100%);
     max-height: calc(100vh - 48px);
     overflow-y: auto;
-    padding: 38px;
-    border: 1px solid #e1d4c5;
-    border-radius: 14px;
-    background: #fffdf8;
-    box-shadow: 0 28px 80px rgba(28, 21, 17, 0.28);
+    padding: 36px;
+    border: 1px solid #ebe4da;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 28px 80px rgba(28, 21, 17, 0.22);
     animation: authDialogOpen 0.22s ease both;
 }
 
@@ -928,16 +1787,17 @@ body.auth-modal-open {
     width: 38px;
     height: 38px;
     padding: 0;
-    border: 1px solid #e0d5c8;
+    border: 1px solid #e6ddd0;
     border-radius: 50%;
-    background: #faf7f1;
+    background: #fdfbf8;
     color: #573e32;
     font-size: 24px;
     line-height: 1;
 }
 
 .auth-close:hover {
-    background: #573e32;
+    background: #9e2a2f;
+    border-color: #9e2a2f;
     color: #ffffff;
 }
 
@@ -946,7 +1806,7 @@ body.auth-modal-open {
     align-items: center;
     gap: 12px;
     padding-right: 45px;
-    margin-bottom: 31px;
+    margin-bottom: 24px;
 }
 
 .auth-brand-mark {
@@ -956,7 +1816,7 @@ body.auth-modal-open {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: #573e32;
+    background: #9e2a2f;
     color: #ffffff;
 }
 
@@ -966,7 +1826,7 @@ body.auth-modal-open {
 }
 
 .auth-brand strong {
-    color: #382921;
+    color: #26211d;
     font: 600 18px/1.3 "Playfair Display", Georgia, serif;
 }
 
@@ -983,7 +1843,7 @@ body.auth-modal-open {
 }
 
 .auth-eyebrow {
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     color: #a16f47;
     font-size: 10px;
     font-weight: 700;
@@ -993,20 +1853,59 @@ body.auth-modal-open {
 
 .auth-panel h2 {
     margin: 0;
-    color: #382921;
-    font: 600 36px/1.2 "Playfair Display", Georgia, serif;
-}
-
-.auth-description {
-    margin: 13px 0 25px;
-    color: #706760;
-    font-size: 13px;
-    line-height: 1.8;
+    color: #26211d;
+    font: 600 34px/1.2 "Playfair Display", Georgia, serif;
 }
 
 .auth-form {
     display: grid;
-    gap: 17px;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.auth-role-field {
+    display: grid;
+    gap: 8px;
+}
+
+.auth-role-field > span {
+    color: #3b332c;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.auth-role-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.auth-role-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 8px 12px;
+    border: 1.5px solid #ded6ca;
+    border-radius: 10px;
+    background: #fdfbf8;
+    color: #4f463f;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.auth-role-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth-role-option.is-selected {
+    border-color: #9e2a2f;
+    background: #fdf2f2;
+    color: #9e2a2f;
 }
 
 .auth-form label {
@@ -1014,25 +1913,33 @@ body.auth-modal-open {
     gap: 7px;
 }
 
+.auth-form label[hidden] {
+    display: none;
+}
+
 .auth-form label > span {
-    color: #573e32;
-    font-size: 11px;
+    color: #3b332c;
+    font-size: 11.5px;
     font-weight: 700;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-select {
     width: 100%;
-    height: 47px;
+    height: 46px;
     padding: 0 13px;
-    border: 1px solid #d8ccbd;
+    border: 1px solid #ded6ca;
     border-radius: 9px;
     outline: 0;
-    background: #ffffff;
+    background: #fdfbf8;
     color: #2d2824;
+    font-size: 13.5px;
 }
 
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-select:focus {
     border-color: #c99b5b;
+    background: #ffffff;
     box-shadow: 0 0 0 3px rgba(201, 155, 91, 0.14);
 }
 
@@ -1050,7 +1957,7 @@ body.auth-modal-open {
 .auth-message {
     min-height: 22px;
     margin: 0;
-    color: #52734f;
+    color: #2e6b3e;
     font-size: 12px;
     line-height: 1.6;
 }
@@ -1060,7 +1967,7 @@ body.auth-modal-open {
 }
 
 .auth-switch {
-    margin: 24px 0 0;
+    margin: 20px 0 0;
     color: #706760;
     font-size: 12px;
     text-align: center;
@@ -1079,17 +1986,17 @@ body.auth-modal-open {
 }
 
 /* =========================================================
-   10. FOOTER & BACK TO TOP
+   11. FOOTER & BACK TO TOP
 ========================================================= */
 .site-footer {
     border-top: 3px solid #c99b5b;
-    background: #2b2521;
-    color: #ffffff;
+    background: #302c26;
+    color: #eee6dc;
 }
 
 .footer-main {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1.1fr;
     gap: 45px;
     padding: 62px 0;
 }
@@ -1118,6 +2025,7 @@ body.auth-modal-open {
 .footer-column h3 {
     margin: 0 0 8px;
     font-size: 13px;
+    color: #ffffff;
 }
 
 .footer-column a,
@@ -1136,22 +2044,23 @@ body.auth-modal-open {
     justify-content: space-between;
     gap: 15px;
     padding: 20px 0;
-    border-top: 1px solid #403831;
+    border-top: 1px solid #453d35;
     color: #bcaea3;
     font-size: 11px;
 }
 
 .back-to-top {
     position: fixed;
-    z-index: 40;
-    right: 22px;
-    bottom: 22px;
-    width: 44px;
-    height: 44px;
-    border: 1px solid #bfac97;
+    z-index: 45;
+    right: 24px;
+    bottom: 24px;
+    width: 46px;
+    height: 46px;
+    border: 1px solid #a12228;
     border-radius: 10px;
-    background: #573e32;
+    background: #a12228;
     color: #ffffff;
+    font-size: 24px;
     opacity: 0;
     pointer-events: none;
     transform: translateY(8px);
@@ -1168,8 +2077,12 @@ body.auth-modal-open {
     transform: translateY(0);
 }
 
+.back-to-top:hover {
+    background: #811a20;
+}
+
 /* =========================================================
-   11. RESPONSIVE
+   12. RESPONSIVE
 ========================================================= */
 @media (max-width: 1279px) {
     .header-inner {
@@ -1208,7 +2121,7 @@ body.auth-modal-open {
         padding: 9px;
         border: 1px solid #e2d8ca;
         border-radius: 10px;
-        background: #faf7f1;
+        background: #ffffff;
     }
 
     .menu-toggle span {
@@ -1229,7 +2142,7 @@ body.auth-modal-open {
         gap: 0;
         padding: 14px 24px 18px;
         border-top: 1px solid #e2d8ca;
-        background: #faf7f1;
+        background: #fcfaf7;
         box-shadow: 0 12px 22px rgba(30, 23, 19, 0.12);
     }
 
@@ -1246,14 +2159,31 @@ body.auth-modal-open {
     .nav-link::after {
         display: none;
     }
-
-    .me-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
 }
 
 @media (max-width: 980px) {
-    .me-list {
+    .me-dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .me-sidebar {
+        position: static;
+    }
+
+    .me-sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .me-menu-btn {
+        flex: 1 1 calc(33.333% - 10px);
+        min-height: 48px;
+        font-size: 14.5px;
+    }
+
+    .me-list,
+    .artisan-stats-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
@@ -1301,6 +2231,14 @@ body.auth-modal-open {
         height: 42px;
     }
 
+    .floating-back {
+        top: auto;
+        left: 16px;
+        bottom: 18px;
+        width: 42px;
+        height: 42px;
+    }
+
     .me-top-bar-inner {
         flex-direction: column;
         align-items: flex-start;
@@ -1311,16 +2249,25 @@ body.auth-modal-open {
         align-items: flex-start;
     }
 
-    .me-auth-note {
-        text-align: left;
+    .me-panel-card {
+        padding: 24px 18px;
     }
 
-    .me-group-box {
-        padding: 20px 18px;
-        gap: 22px;
+    .profile-row,
+    .profile-avatar-row,
+    .settings-item {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .me-empty {
+    .profile-avatar-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .me-empty,
+    .artisan-form-grid {
+        grid-template-columns: 1fr;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -1335,7 +2282,13 @@ body.auth-modal-open {
         display: none;
     }
 
-    .me-list {
+    .me-menu-btn {
+        flex: 1 1 calc(50% - 8px);
+    }
+
+    .me-list,
+    .artisan-stats-grid,
+    .auth-role-tabs {
         grid-template-columns: 1fr;
     }
 
@@ -1343,8 +2296,9 @@ body.auth-modal-open {
         height: 195px;
     }
 
-    .auth-dialog {
-        padding: 26px 20px;
+    .auth-dialog,
+    .profile-edit-dialog {
+        padding: 24px 18px;
     }
 
     .auth-form-row {

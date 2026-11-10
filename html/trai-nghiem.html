@@ -27,7 +27,7 @@
 <header class="site-header" id="top">
 <div class="container header-inner">
 
-<a class="brand" href="./index.html" aria-label="Nghệ nhân Việt - Trang chủ">
+<a class="brand" href="../index.html" aria-label="Nghệ nhân Việt - Trang chủ">
 <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
 <span class="brand-copy">
 <strong>Nghệ nhân Việt</strong>
@@ -77,129 +77,192 @@ stroke-linecap="round"></path>
 class="floating-back"
 type="button"
 aria-label="Quay lại trang trước"
-onclick="if (history.length > 1) { history.back(); } else { window.location.href='./index.html'; }"
+onclick="if (history.length > 1) { history.back(); } else { window.location.href='../index.html'; }"
 >
 <span aria-hidden="true">←</span>
-<span></span>
 </button>
 
 <main id="main">
 
 <!-- =========================
-     TIÊU ĐỀ TRANG
+     BỐ CỤC 2 CỘT: DANH SÁCH TRẢI NGHIỆM (TRÁI) + BẢN ĐỒ VIỆT NAM (PHẢI)
 ========================== -->
-<section
-class="artist-page-heading"
-aria-labelledby="experience-page-title"
->
-<div class="container artist-page-heading-inner">
+<section class="experience-map-section" aria-label="Bản đồ và danh sách hoạt động trải nghiệm làng nghề">
+<div class="container experience-explorer-layout">
 
-<h1 id="experience-page-title">
-Đi để hiểu nghề, chạm để nhớ văn hóa
-</h1>
+<!-- CỘT TRÁI: KHUNG DANH SÁCH TRẢI NGHIỆM -->
+<div class="experience-list-panel">
 
-<p class="artist-page-subtitle">
-Lựa chọn hoạt động trải nghiệm tại các làng nghề truyền thống và gặp gỡ trực tiếp những người giữ lửa di sản
-</p>
-
-</div>
-</section>
-
-<!-- =========================
-     BỘ LỌC & DANH SÁCH TRẢI NGHIỆM
-========================== -->
-<section
-class="artist-section"
-aria-label="Danh sách hoạt động trải nghiệm"
->
-<div class="container">
-
-<!-- BỘ LỌC -->
-<div
-class="filter-bar"
-role="search"
-aria-label="Lọc danh sách trải nghiệm"
->
-
-<label for="experience-search">
-<input
-id="experience-search"
-type="search"
-autocomplete="off"
-placeholder="Nhập tên trải nghiệm, nghệ nhân hoặc làng nghề..."
->
-</label>
-
-<label for="experience-craft">
-<select id="experience-craft">
-<option value="">Tất cả nghề</option>
-<option value="Dệt lụa tơ tằm và tơ sen">Dệt lụa &amp; tơ sen</option>
-<option value="Sơn mài">Sơn mài</option>
-<option value="Tranh dân gian Đông Hồ">Tranh dân gian Đông Hồ</option>
-<option value="Mộc và chạm khắc gỗ">Mộc &amp; chạm khắc gỗ</option>
-<option value="Hoa giấy Thanh Tiên">Hoa giấy</option>
-<option value="Chạm bạc truyền thống Chăm">Chạm bạc Chăm</option>
-<option value="Dệt thổ cẩm Chăm">Dệt thổ cẩm Chăm</option>
-<option value="Chế tác mão, mặt nạ và hiện vật Khmer">Chế tác mặt nạ Khmer</option>
-<option value="Tranh kiếng Khmer">Tranh kiếng Khmer</option>
-<option value="Mây tre đan Khmer">Mây tre đan</option>
-</select>
-</label>
-
-<label for="experience-place">
-<select id="experience-place">
-<option value="">Tất cả địa phương</option>
-<option value="Hà Nội">Hà Nội</option>
-<option value="Bắc Ninh">Bắc Ninh</option>
-<option value="Đà Nẵng">Đà Nẵng</option>
-<option value="Huế">Huế</option>
-<option value="Khánh Hòa">Khánh Hòa</option>
-<option value="An Giang">An Giang</option>
-<option value="Vĩnh Long">Vĩnh Long</option>
-<option value="Cần Thơ">Cần Thơ</option>
-</select>
-</label>
+<div class="experience-panel-header">
+<div class="experience-panel-title-wrap">
+<h1 id="experience-page-title">Điểm đến trải nghiệm làng nghề</h1>
 
 </div>
 
-<!-- DANH SÁCH -->
+<button
+class="experience-reset-btn"
+id="experience-reset-map"
+type="button"
+hidden
+>
+Xem tất cả (9)
+</button>
+</div>
+
 <div class="content-grid" id="experience-grid"></div>
 
 <noscript>
 Hãy bật JavaScript để hiển thị danh sách trải nghiệm.
 </noscript>
 
-<p
-class="empty-state"
-id="experience-empty"
-role="status"
-hidden
+<p class="empty-state" id="experience-empty" role="status" hidden>
+Chưa có hoạt động trải nghiệm tại địa điểm này.
+</p>
+
+</div>
+
+<!-- CỘT PHẢI: BẢN ĐỒ VIỆT NAM & 8 MỐC ĐỊA ĐIỂM -->
+<div class="experience-map-panel" aria-label="Bản đồ các làng nghề tại Việt Nam">
+
+<p class="map-guide-hint">
+Bấm vào mốc vị trí trên bản đồ để xem trải nghiệm tại làng nghề đó
+</p>
+
+<div class="vietnam-map-stage" id="vietnam-map-stage">
+
+<img
+class="vietnam-map-img"
+id="vietnam-map-img"
+src="../images/bando.jpg"
+alt="Bản đồ Việt Nam đánh dấu 8 địa phương có làng nghề truyền thống"
 >
-Không tìm thấy hoạt động trải nghiệm phù hợp.
-</p>
 
-<p class="demo-note">
-* Nội dung được tổng hợp từ nguồn tham khảo. Lịch tổ chức, thời lượng và khả năng tham gia
-có thể thay đổi; cần xác nhận với cơ sở hoặc đơn vị tổ chức trước khi sử dụng như thông tin đặt lịch thực tế.
-</p>
+<!-- 1. BẮC NINH -->
+<button
+type="button"
+class="map-pin"
+data-province="Bắc Ninh"
+style="left: 34.8%; top: 12.0%;"
+aria-label="Xem trải nghiệm tại Bắc Ninh"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Bắc Ninh · Tranh Đông Hồ</span>
+</button>
+
+<!-- 2. HÀ NỘI -->
+<button
+type="button"
+class="map-pin"
+data-province="Hà Nội"
+style="left: 29.0%; top: 13.5%;"
+aria-label="Xem trải nghiệm tại Hà Nội"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Hà Nội · Tơ sen &amp; Sơn mài</span>
+</button>
+
+<!-- 3. HUẾ -->
+<button
+type="button"
+class="map-pin"
+data-province="Huế"
+style="left: 43.6%; top: 39.5%;"
+aria-label="Xem trải nghiệm tại Huế"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Huế · Hoa giấy Thanh Tiên</span>
+</button>
+
+<!-- 4. ĐÀ NẴNG (HỘI AN) -->
+<button
+type="button"
+class="map-pin"
+data-province="Đà Nẵng"
+style="left: 47.3%; top: 43.4%;"
+aria-label="Xem trải nghiệm tại Đà Nẵng - Hội An"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Đà Nẵng · Mộc Kim Bồng</span>
+</button>
+
+<!-- 5. KHÁNH HÒA (BÀU TRÚC) -->
+<button
+type="button"
+class="map-pin"
+data-province="Khánh Hòa"
+style="left: 55.3%; top: 63.1%;"
+aria-label="Xem trải nghiệm tại Khánh Hòa"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Khánh Hòa · Chạm bạc Chăm</span>
+</button>
+
+<!-- 6. AN GIANG (CHÂU PHONG) -->
+<button
+type="button"
+class="map-pin"
+data-province="An Giang"
+style="left: 24.0%; top: 73.4%;"
+aria-label="Xem trải nghiệm tại An Giang"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">An Giang · Thổ cẩm Chăm</span>
+</button>
+
+<!-- 7. VĨNH LONG (SONG LỘC) -->
+<button
+type="button"
+class="map-pin"
+data-province="Vĩnh Long"
+style="left: 33.8%; top: 74.4%;"
+aria-label="Xem trải nghiệm tại Vĩnh Long"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Vĩnh Long · Mặt nạ Khmer</span>
+</button>
+
+<!-- 8. HÀ GIANG (LÙNG TÁM - QUẢN BẠ) -->
+<button
+type="button"
+class="map-pin"
+data-province="Hà Giang"
+style="left: 23.8%; top: 4.8%;"
+aria-label="Xem trải nghiệm tại Hà Giang"
+>
+<svg class="map-pin-svg" viewBox="0 0 24 32" aria-hidden="true">
+<path d="M12 1C5.9 1 1 5.9 1 12c0 8.1 11 19 11 19s11-10.9 11-19c0-6.1-4.9-11-11-11z"></path>
+<circle cx="12" cy="12" r="4.5"></circle>
+</svg>
+<span class="map-pin-tooltip">Hà Giang · Dệt lanh Lùng Tám</span>
+</button>
+
+<span class="map-island-label map-hoang-sa" aria-hidden="true">QĐ. Hoàng Sa</span>
+<span class="map-island-label map-truong-sa" aria-hidden="true">QĐ. Trường Sa</span>
 
 </div>
-</section>
 
-<section class="travel-cta">
-<div class="container travel-cta-inner">
-
-<div>
-<h2>Không chỉ tham quan, hãy thử chạm vào nghề</h2>
-<p>
-Trải nghiệm là cách giúp du khách hiểu rõ hơn công sức, kỹ thuật và câu chuyện
-đằng sau mỗi sản phẩm thủ công truyền thống.
-</p>
 </div>
-
-<a href="./thong-tin-chi-tiet.html">
-Xem thông tin chi tiết →
-</a>
 
 </div>
 </section>
@@ -210,7 +273,7 @@ Xem thông tin chi tiết →
 <div class="container footer-main">
 
 <div class="footer-brand">
-<a class="brand brand-light" href="./index.html">
+<a class="brand brand-light" href="../index.html">
 <img class="brand-mark-image" src="../images/logo-nghe-nhan.jpg" alt="" aria-hidden="true">
 <span class="brand-copy">
 <strong>Nghệ nhân Việt</strong>
@@ -232,8 +295,8 @@ Xem thông tin chi tiết →
 <div class="footer-column">
 <h3>Thông tin</h3>
 <a href="./trai-nghiem.html">Địa điểm trải nghiệm</a>
-<a href="./thong-tin-chi-tiet.html">Ứng xử văn hóa</a>
-<a href="./index.html#about">Giới thiệu</a>
+<a href="./thong-tin-chi-tiet.html">Thông tin chi tiết</a>
+<a href="../index.html#about">Giới thiệu</a>
 </div>
 
 <div class="footer-column footer-contact">

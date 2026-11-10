@@ -442,7 +442,6 @@ button {
 
 /* =========================================================
    3. NÚT QUAY LẠI
-   class is-visible được script.js bật khi cuộn
 ========================================================= */
 
 .floating-back {
@@ -527,7 +526,6 @@ button {
     font-weight: 500;
 }
 
-/* Khung ảnh nằm ngang bên phải tiêu đề */
 .product-intro-banner {
     width: 100%;
     height: 124px;
@@ -544,7 +542,7 @@ button {
 }
 
 /* =========================================================
-   5. DẢI PHÂN CÁCH
+   5. DẢI PHÂN CÁCH (ĐÃ BỎ KÝ HIỆU SỐ 01)
 ========================================================= */
 
 .collection-rule {
@@ -552,36 +550,26 @@ button {
 }
 
 .collection-rule-inner {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 14px;
-    color: #9c6e49;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
+    display: block;
+}
+
+.collection-rule-inner span {
+    display: none;
 }
 
 .collection-rule-inner i {
+    display: block;
+    width: 100%;
     height: 1px;
     background: #ded1c1;
 }
 
 /* =========================================================
-   6. GALLERY SẢN PHẨM
+   6. THIẾT KẾ THẺ SẢN PHẨM (ẢNH CHIẾM HẾT KHUNG + CHỮ TRONG ẢNH)
 ========================================================= */
 
 .product-gallery {
     padding: 6px 0 96px;
-}
-
-.gallery-heading {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 470px);
-    align-items: end;
-    gap: 60px;
-    margin-bottom: 24px;
 }
 
 .gallery-heading:empty {
@@ -589,32 +577,7 @@ button {
     margin-bottom: 0;
 }
 
-.gallery-kicker {
-    margin: 0 0 9px;
-    color: #a16f47;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.3px;
-    text-transform: uppercase;
-}
-
-.gallery-heading h2 {
-    max-width: 700px;
-    margin: 0;
-    color: #382921;
-    font: 600 clamp(30px, 3vw, 44px)/1.15 "Playfair Display", Georgia, serif;
-    letter-spacing: -.8px;
-}
-
-.gallery-heading > p {
-    margin: 0;
-    color: #81756c;
-    font-size: 13px;
-    line-height: 1.85;
-}
-
 .content-grid {
-    counter-reset: product-card;
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     align-items: stretch;
@@ -622,360 +585,202 @@ button {
 }
 
 .content-card {
-    counter-increment: product-card;
     position: relative;
     grid-column: span 4;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     min-width: 0;
+    padding: 26px 28px;
     overflow: hidden;
-    border: 1px solid #e5d9ca;
+    border: 0;
     border-radius: 10px;
-    background: #fffcf6;
-    box-shadow: 0 5px 20px rgba(58, 42, 32, .035);
+    background: #211e1c;
+    color: #ffffff;
+    isolation: isolate;
+    box-shadow: 0 8px 24px rgba(33, 25, 20, 0.10);
     transition:
         transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-}
-
-.content-card::before {
-    content: "0" counter(product-card);
-    position: absolute;
-    z-index: 4;
-    top: 14px;
-    right: 14px;
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(255, 255, 255, .7);
-    border-radius: 50%;
-    background: rgba(45, 40, 36, .65);
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .6px;
-    backdrop-filter: blur(6px);
+        box-shadow .25s ease;
 }
 
 .content-card:hover {
-    border-color: #d8c4ad;
     transform: translateY(-4px);
-    box-shadow: 0 17px 36px rgba(58, 42, 32, .10);
+    box-shadow: 0 16px 34px rgba(33, 25, 20, 0.20);
 }
 
 .content-card-image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
     display: block;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    background: #ded0c0;
+    background: #2d2824;
+}
+
+.content-card-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        0deg,
+        rgba(24, 18, 14, 0.88) 0%,
+        rgba(24, 18, 14, 0.42) 45%,
+        rgba(24, 18, 14, 0.06) 78%
+    );
+    pointer-events: none;
 }
 
 .content-card-image img {
     width: 100%;
-    height: 230px;
+    height: 100%;
     object-fit: cover;
-    transition: transform .5s ease;
+    transition: transform .45s ease;
 }
 
 .content-card:hover .content-card-image img {
-    transform: scale(1.035);
+    transform: scale(1.05);
 }
 
 .content-card-body {
+    position: relative;
+    z-index: 1;
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 22px 22px;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0 38px 0 0;
+    background: transparent;
+    pointer-events: none;
 }
 
 .card-kicker {
-    margin: 0 0 8px;
-    color: #9c6e49;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .85px;
-    text-transform: uppercase;
+    margin: 0;
+    color: #f7d9a3;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: none;
 }
 
 .content-card-body h2 {
-    margin: 0 0 8px;
-    color: #382921;
-    font: 600 23px/1.26 "Playfair Display", Georgia, serif;
+    margin: 6px 0 0;
+    color: #ffffff;
+    font: 600 25px/1.22 "Playfair Display", Georgia, serif;
 }
 
 .content-card-body h2 a {
+    color: #ffffff;
+    pointer-events: auto;
     transition: color .2s ease;
 }
 
 .content-card-body h2 a:hover {
-    color: #a12228;
+    color: #f7d9a3;
 }
 
-.content-card-body > p:not(.card-kicker) {
-    margin: 0 0 16px;
-    color: #706760;
-    font-size: 13px;
-    line-height: 1.72;
+/* Ẩn mô tả sản phẩm và link phụ, chỉ giữ mũi tên ↗ ở góc phải dưới */
+.content-card-body > p:not(.card-kicker),
+.content-card .card-link {
+    display: none;
 }
 
-.content-card-body > p strong {
-    color: #573e32;
-    font-weight: 700;
+.content-card::after {
+    content: "↗";
+    position: absolute;
+    z-index: 1;
+    right: 24px;
+    bottom: 24px;
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 1;
+    pointer-events: none;
+    transition: transform .22s ease, color .22s ease;
 }
 
-.card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: auto;
-    padding-bottom: 4px;
-    border-bottom: 1px solid transparent;
-    color: #a12228;
-    font-size: 12px;
-    font-weight: 700;
-    transition: gap .2s ease, border-color .2s ease;
-}
-
-.card-link span {
-    color: #b5874e;
-    font-size: 18px;
-    font-weight: 400;
-}
-
-.card-link:hover {
-    gap: 16px;
-    border-bottom-color: #a12228;
+.content-card:hover::after {
+    color: #f7d9a3;
+    transform: translate(2px, -2px);
 }
 
 /* =========================================================
-   7. BỐ CỤC GALLERY SẢN PHẨM (CHIỀU CAO GỌN VỪA TRANG ĐẦU)
+   7. BỐ CỤC VỐN CÓ CỦA TRANG SẢN PHẨM (GIỮ NGUYÊN NHỊP ĐỘ TO - NHỎ)
 ========================================================= */
 
-/* Sản phẩm 1: nổi bật lớn, chiều cao gọn 380px */
+/* Hàng 1: Sản phẩm 1 lớn (8 cột) + Sản phẩm 2 dọc (4 cột) — cao 380px */
 .content-card:first-child {
     grid-column: span 8;
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(250px, .85fr);
     min-height: 380px;
-}
-
-.content-card:first-child .content-card-image {
-    height: 100%;
-}
-
-.content-card:first-child .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 380px;
-    max-height: 410px;
-    object-fit: cover;
-}
-
-.content-card:first-child .content-card-body {
-    justify-content: center;
-    padding: 26px 28px;
-    background: #f2e8da;
-}
-
-.content-card:first-child .card-kicker {
-    margin-bottom: 10px;
+    padding: 30px 32px;
 }
 
 .content-card:first-child .content-card-body h2 {
-    font-size: clamp(26px, 2.5vw, 34px);
+    font-size: clamp(28px, 2.6vw, 36px);
     line-height: 1.16;
 }
 
-.content-card:first-child .content-card-body > p:not(.card-kicker) {
-    font-size: 13.5px;
-}
-
-/* Sản phẩm 2: card dọc cao bằng Sản phẩm 1 */
 .content-card:nth-child(2) {
     grid-column: span 4;
+    min-height: 380px;
 }
 
-.content-card:nth-child(2) .content-card-image img {
-    height: 200px;
-}
-
-/* Sản phẩm 3 - 4: hai card ngang cân nhau */
+/* Hàng 2: Sản phẩm 3 + Sản phẩm 4 — hai thẻ ngang cân nhau (6 cột + 6 cột), cao 255px */
 .content-card:nth-child(3),
 .content-card:nth-child(4) {
     grid-column: span 6;
-    display: grid;
-    grid-template-columns: minmax(200px, .88fr) minmax(0, 1fr);
+    min-height: 255px;
 }
 
-.content-card:nth-child(3) .content-card-image,
-.content-card:nth-child(4) .content-card-image {
-    min-height: 250px;
+.content-card:nth-child(3) .content-card-body h2,
+.content-card:nth-child(4) .content-card-body h2 {
+    font-size: 26px;
 }
 
-.content-card:nth-child(3) .content-card-image img,
-.content-card:nth-child(4) .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 250px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(3) .content-card-body,
-.content-card:nth-child(4) .content-card-body {
-    justify-content: center;
-}
-
-/* Sản phẩm 5: full width, ảnh trái - nội dung phải */
+/* Hàng 3: Sản phẩm 5 — full width toàn chiều ngang (12 cột), cao 360px */
 .content-card:nth-child(5) {
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr);
     min-height: 360px;
-    background: #f2e8da;
-}
-
-.content-card:nth-child(5) .content-card-image {
-    height: 100%;
-    min-height: 360px;
-}
-
-.content-card:nth-child(5) .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 360px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(5) .content-card-body {
-    justify-content: center;
-    padding: 32px;
+    padding: 32px 34px;
 }
 
 .content-card:nth-child(5) .content-card-body h2 {
-    font-size: clamp(26px, 2.5vw, 36px);
+    font-size: clamp(28px, 2.7vw, 38px);
     line-height: 1.15;
 }
 
-/* Sản phẩm 6: card dọc hẹp */
+/* Hàng 4: Sản phẩm 6 hẹp (5 cột) + Sản phẩm 7 rộng (7 cột) — cao 340px */
 .content-card:nth-child(6) {
     grid-column: span 5;
-    display: flex;
-    flex-direction: column;
+    min-height: 340px;
 }
 
-.content-card:nth-child(6) .content-card-image {
-    min-height: 320px;
-}
-
-.content-card:nth-child(6) .content-card-image img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(6) .content-card-body {
-    padding: 24px 26px;
-}
-
-/* Sản phẩm 7: card rộng */
 .content-card:nth-child(7) {
     grid-column: span 7;
-    display: grid;
-    grid-template-columns: minmax(210px, .85fr) minmax(0, 1fr);
-}
-
-.content-card:nth-child(7) .content-card-image {
-    height: 100%;
     min-height: 340px;
-}
-
-.content-card:nth-child(7) .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 340px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(7) .content-card-body {
-    justify-content: center;
-    padding: 28px;
+    padding: 28px 30px;
 }
 
 .content-card:nth-child(7) .content-card-body h2 {
-    font-size: 27px;
+    font-size: 28px;
 }
 
-/* Sản phẩm 8: full width đảo chiều, nội dung trái - ảnh phải */
+/* Hàng 5: Sản phẩm 8 rộng (7 cột) + Sản phẩm 9 hẹp (5 cột) nằm cùng hàng — cao 300px */
 .content-card:nth-child(8) {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: minmax(280px, .8fr) minmax(0, 1.45fr);
-    min-height: 360px;
-    background: #eee2d3;
-}
-
-.content-card:nth-child(8) .content-card-image {
-    grid-column: 2;
-    grid-row: 1;
-    height: 100%;
-    min-height: 360px;
-}
-
-.content-card:nth-child(8) .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 360px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(8) .content-card-body {
-    grid-column: 1;
-    grid-row: 1;
-    justify-content: center;
-    padding: 32px;
+    grid-column: span 7;
+    min-height: 300px;
+    padding: 28px 30px;
 }
 
 .content-card:nth-child(8) .content-card-body h2 {
-    font-size: clamp(26px, 2.5vw, 36px);
-    line-height: 1.15;
+    font-size: 28px;
 }
 
-/* Sản phẩm 9: card rộng */
 .content-card:nth-child(9) {
-    grid-column: span 7;
-    display: grid;
-    grid-template-columns: minmax(210px, .9fr) minmax(0, 1fr);
-}
-
-.content-card:nth-child(9) .content-card-image {
-    min-height: 290px;
-}
-
-.content-card:nth-child(9) .content-card-image img {
-    width: 100%;
-    height: 100%;
-    min-height: 290px;
-    object-fit: cover;
-}
-
-.content-card:nth-child(9) .content-card-body {
-    justify-content: center;
-    padding: 26px;
-}
-
-/* Sản phẩm 10: card dọc hẹp */
-.content-card:nth-child(10) {
     grid-column: span 5;
-    display: flex;
-    flex-direction: column;
-}
-
-.content-card:nth-child(10) .content-card-image img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
+    min-height: 300px;
 }
 
 /* =========================================================
@@ -1250,8 +1055,7 @@ button {
         padding-top: 24px;
     }
 
-    .product-intro-grid,
-    .gallery-heading {
+    .product-intro-grid {
         grid-template-columns: 1fr;
         gap: 18px;
     }
@@ -1260,68 +1064,21 @@ button {
         height: 150px;
     }
 
-    .content-card:first-child {
-        grid-column: span 12;
+    .content-card:first-child,
+    .content-card:nth-child(5) {
+        grid-column: 1 / -1;
+        min-height: 340px;
     }
 
     .content-card:nth-child(2),
     .content-card:nth-child(3),
-    .content-card:nth-child(4) {
-        grid-column: span 6;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content-card:nth-child(2) .content-card-image img,
-    .content-card:nth-child(3) .content-card-image img,
-    .content-card:nth-child(4) .content-card-image img {
-        height: 250px;
-        min-height: 0;
-    }
-
-    .content-card:nth-child(5) {
-        grid-column: 1 / -1;
-        grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-    }
-
+    .content-card:nth-child(4),
     .content-card:nth-child(6),
-    .content-card:nth-child(7) {
+    .content-card:nth-child(7),
+    .content-card:nth-child(8),
+    .content-card:nth-child(9) {
         grid-column: span 6;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content-card:nth-child(6) .content-card-image,
-    .content-card:nth-child(7) .content-card-image {
-        min-height: 0;
-    }
-
-    .content-card:nth-child(6) .content-card-image img,
-    .content-card:nth-child(7) .content-card-image img {
-        height: 270px;
-        min-height: 0;
-    }
-
-    .content-card:nth-child(8) {
-        grid-column: 1 / -1;
-        grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr);
-    }
-
-    .content-card:nth-child(9),
-    .content-card:nth-child(10) {
-        grid-column: span 6;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .content-card:nth-child(9) .content-card-image {
-        min-height: 0;
-    }
-
-    .content-card:nth-child(9) .content-card-image img,
-    .content-card:nth-child(10) .content-card-image img {
-        height: 250px;
-        min-height: 0;
+        min-height: 290px;
     }
 
     .footer-main {
@@ -1413,6 +1170,7 @@ button {
         gap: 18px;
     }
 
+    .content-card,
     .content-card:first-child,
     .content-card:nth-child(2),
     .content-card:nth-child(3),
@@ -1421,51 +1179,18 @@ button {
     .content-card:nth-child(6),
     .content-card:nth-child(7),
     .content-card:nth-child(8),
-    .content-card:nth-child(9),
-    .content-card:nth-child(10) {
+    .content-card:nth-child(9) {
         grid-column: 1 / -1;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
+        min-height: 290px;
+        padding: 22px;
     }
 
-    .content-card:nth-child(8) .content-card-image,
-    .content-card:nth-child(8) .content-card-body {
-        grid-column: auto;
-        grid-row: auto;
-    }
-
-    .content-card:first-child .content-card-image,
-    .content-card:nth-child(5) .content-card-image,
-    .content-card:nth-child(6) .content-card-image,
-    .content-card:nth-child(7) .content-card-image,
-    .content-card:nth-child(8) .content-card-image,
-    .content-card:nth-child(9) .content-card-image {
-        height: auto;
-        min-height: 0;
-    }
-
-    .content-card:first-child .content-card-image img,
-    .content-card:nth-child(2) .content-card-image img,
-    .content-card:nth-child(3) .content-card-image img,
-    .content-card:nth-child(4) .content-card-image img,
-    .content-card:nth-child(5) .content-card-image img,
-    .content-card:nth-child(6) .content-card-image img,
-    .content-card:nth-child(7) .content-card-image img,
-    .content-card:nth-child(8) .content-card-image img,
-    .content-card:nth-child(9) .content-card-image img,
-    .content-card:nth-child(10) .content-card-image img {
-        width: 100%;
-        height: 260px;
-        min-height: 0;
-        object-fit: cover;
-    }
-
-    .content-card:first-child .content-card-body,
-    .content-card:nth-child(5) .content-card-body,
-    .content-card:nth-child(8) .content-card-body {
-        padding: 24px 22px;
-        background: #f2e8da;
+    .content-card-body h2,
+    .content-card:first-child .content-card-body h2,
+    .content-card:nth-child(5) .content-card-body h2,
+    .content-card:nth-child(7) .content-card-body h2,
+    .content-card:nth-child(8) .content-card-body h2 {
+        font-size: 25px;
     }
 
     .footer-main {
@@ -1531,44 +1256,17 @@ button {
         height: 120px;
     }
 
-    .collection-rule-inner {
-        grid-template-columns: auto 1fr;
-    }
-
-    .collection-rule-inner span:last-child {
-        display: none;
-    }
-
-    .gallery-heading {
-        margin-bottom: 18px;
-    }
-
-    .gallery-heading h2 {
-        font-size: 30px;
-    }
-
-    .content-card:first-child .content-card-image img,
-    .content-card:nth-child(2) .content-card-image img,
-    .content-card:nth-child(3) .content-card-image img,
-    .content-card:nth-child(4) .content-card-image img,
-    .content-card:nth-child(5) .content-card-image img,
-    .content-card:nth-child(6) .content-card-image img,
-    .content-card:nth-child(7) .content-card-image img,
-    .content-card:nth-child(8) .content-card-image img,
-    .content-card:nth-child(9) .content-card-image img,
-    .content-card:nth-child(10) .content-card-image img {
-        height: 230px;
-    }
-
-    .content-card-body {
+    .content-card,
+    .content-card:first-child,
+    .content-card:nth-child(5) {
+        min-height: 260px;
         padding: 20px;
     }
 
     .content-card-body h2,
     .content-card:first-child .content-card-body h2,
-    .content-card:nth-child(5) .content-card-body h2,
-    .content-card:nth-child(8) .content-card-body h2 {
-        font-size: 24px;
+    .content-card:nth-child(5) .content-card-body h2 {
+        font-size: 23px;
     }
 
     .footer-main {
